@@ -42,8 +42,8 @@ Class Admin extends Controller{
                             $token = bin2hex(openssl_random_pseudo_bytes(15));
                             $link = $_SERVER["HTTP_REFERER"].'/activate/'.$token;
                             $this->Admin_model->register($firstname, $lastname, $login, $email, $token);
-                            $message = "Bienvenue sur Camagru\r\nPour activer votre compte administrateur, veuillez cliquer sur le lien suivant\r\n".$link;
-                            mail($email, 'Camagru - Admin - Account verification', $message);
+                            $message = "Bienvenue sur Matcha\r\nPour activer votre compte administrateur, veuillez cliquer sur le lien suivant\r\n".$link;
+                            mail($email, 'Matcha - Admin - Account verification', $message);
                             header('Location: /index.php/Admin');
                         }
                         else

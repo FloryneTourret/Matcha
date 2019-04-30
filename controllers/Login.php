@@ -67,8 +67,8 @@ Class Login extends Controller{
                     $token = bin2hex(openssl_random_pseudo_bytes(15));
                     $link = 'http://'.$_SERVER["HTTP_HOST"].'/index.php/Login/resetpassword/'.$token;
                     $this->Register_model->create_token($email, $token);
-                    $message = "Bienvenue sur Camagru\r\nPour récupérer votre mot de passe, veuillez cliquer sur le lien suivant\r\n".$link;
-                    mail($email, 'Camagru - Password recovery', $message);
+                    $message = "Bienvenue sur Matcha\r\nPour récupérer votre mot de passe, veuillez cliquer sur le lien suivant\r\n".$link;
+                    mail($email, 'Matcha - Password recovery', $message);
                     header('Location: /index.php/Login');
                 }
                 else
