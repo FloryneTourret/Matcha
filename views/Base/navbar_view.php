@@ -12,8 +12,8 @@
 
   <div id="navbarBasicExample" class="navbar-menu">
     <div class="navbar-start">
-      <a class="navbar-item" href="/index.php/Studio">
-          <img src="/assets/img/filter.png" width="auto" height="28">
+      <a class="navbar-item" href="/index.php/#">
+          Lien 1
       </a>
     </div>
 
