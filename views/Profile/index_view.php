@@ -1,6 +1,6 @@
-<div class="columns info_profile">
-    <div class="column is-one-quarter">
-        <figure class="image is-128x128 img_user">
+<div class="row info_profile">
+    <div class="col-md-3">
+        <figure class="img_user">
         <?php if (!empty($user['path_profile_picture'])){?>
             <div class="picture_profile" style='background-image: url("/<?php echo $user['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
         <?php }else{ ?>
@@ -9,8 +9,8 @@
         </div>
         </figure>
     </div>
-    <div class="column is-half">
-        <h1 class="user_login is-size-1"><?php echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="has-text-dark is-size-4 settings_user"><i class="fas fa-cog"></i></a>';?></h1>
+    <div class="col-md-6">
+        <h1 class="user_login"><?php echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';?></h1>
         <p><?php echo $user['firstname'].' '.$user['lastname'] ?></p>
         <p><?php echo $user['email']?></p>
         <?php if (!empty($user['biography'])){?>
@@ -18,70 +18,27 @@
         <?php } ?>
     </div>
 </div>
-<div class="tabs is-centered">
-  <ul>
-    <li class="is-active">
-      <a>
-        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-        <span>Pictures</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-        <span>Music</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="fas fa-film" aria-hidden="true"></i></span>
-        <span>Videos</span>
-      </a>
-    </li>
-    <li>
-      <a>
-        <span class="icon is-small"><i class="far fa-file-alt" aria-hidden="true"></i></span>
-        <span>Documents</span>
-      </a>
-    </li>
-  </ul>
-</div>
+<div class="row">
+  <div class="col-md-10 offset-md-1 content_profile">
+    <nav>
+      <div class="nav nav-tabs" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Pictures</a>
+        <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false">Views</a>
+        <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab" aria-controls="nav-contact" aria-selected="false">Likes</a>
+      </div>
+    </nav>
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          Contenu pictures
+      </div>
 
-<div class="row"> 
-  <div class="col" id="col1">
-  </div>
+      <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          Contenu likes
+      </div>
 
-  <div class="col" id="col2">
-  </div> 
-
-  <div class="col" id="col3">
-  </div>
-
-  <div class="col" id="col4">
+      <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
+          Contenu view
+      </div>
+    </div>
   </div>
 </div>
-
-
-<script>
-var pictures = <?php echo json_encode($pictures);?>;
-col1 = document.getElementById('col1');
-col2 = document.getElementById('col2');
-col3 = document.getElementById('col3');
-col4 = document.getElementById('col4');
-
-i = 0;
-pictures.forEach(function(element) {
-  i++;
-  if(i == 1)
-    col1.innerHTML += '<img src="/'+element['picture_path']+'">'
-  else if(i == 2)
-    col2.innerHTML += '<img src="/'+element['picture_path']+'">'
-  else if(i == 3)
-    col3.innerHTML += '<img src="/'+element['picture_path']+'">'
-  else if(i == 4)
-    col4.innerHTML += '<img src="/'+element['picture_path']+'">'
-  if (i == 4)
-    i = 0;
-});
-
-</script>

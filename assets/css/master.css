@@ -1,0 +1,43 @@
+body{
+    background-color: #5D576B;
+    position: relative;
+    padding-bottom: 40px;
+}
+a{
+    text-decoration: none!important;
+}
+td{
+    font-size: .9rem;
+}
+.navbar.navbar-expand-lg.navbar-dark.bg-dark
+{
+    background-color: #0A1128 !important;
+}
+.navbar-dark .navbar-brand{
+    color: #FCFCFC;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #FFFAE3;
+}
+.nav-login{
+   line-height: 28px;
+   vertical-align: middle;
+}
+.nav-link{
+    cursor: pointer;
+    color: #FCFCFC!important;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+    color: #EF6461 !important;
+}
+.nav-link.active{
+    border-left: 2px solid #EF6461;
+}
+.menu-label{
+    text-transform: uppercase;
+    color: #FCFCFC;
+}
+
+.row{
+    width: 100%;
+}

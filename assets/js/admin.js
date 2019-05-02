@@ -1,21 +1,21 @@
 document.getElementById('admin').style.display = "none";
-document.getElementById('display_admin').classList.remove("is-active");
+document.getElementById('display_admin').classList.remove("active");
 document.getElementById('users').style.display = "block";
-document.getElementById('display_users').classList.add("is-active");
+document.getElementById('display_users').classList.add("active");
 
 function display_admin(){
     document.getElementById('admin').style.display = "block";
-    document.getElementById('display_admin').classList.add("is-active");
+    document.getElementById('display_admin').classList.add("active");
     document.getElementById('users').style.display = "none";
-    document.getElementById('display_users').classList.remove("is-active"); 
+    document.getElementById('display_users').classList.remove("active"); 
     
 }
 
 function display_users(){
     document.getElementById('admin').style.display = "none";
-    document.getElementById('display_admin').classList.remove("is-active");
+    document.getElementById('display_admin').classList.remove("active");
     document.getElementById('users').style.display = "block";
-    document.getElementById('display_users').classList.add("is-active"); 
+    document.getElementById('display_users').classList.add("active"); 
     
 }
 

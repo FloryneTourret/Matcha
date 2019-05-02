@@ -1,6 +1,6 @@
 <div class="gestion_user">
-    <div class="columns">
-        <div class="column is-three-fifths is-offset-one-fifth">
+    <div class="row">
+        <div class="col-md-3 offset-md-1">
             <?php if (!empty($error)){ ?>
                 <p class="has-text-danger"><?php echo $error; ?></p>
             <?php } ?>
@@ -10,22 +10,24 @@
         </div>
     </div>
     
-    <div class="columns">
-        <div class="column is-one-fifth is-offset-one-fifth menu_user">
+    <div class="row">
+        <div class="col-md-3 offset-md-1">
             <aside class="menu">
                 <p class="menu-label">
                     Gestion du compte
                 </p>
-                <ul class="menu-list">
-                    <li><a onclick="display_profile()" id="display_profile">Modifier mon profil</a></li>
-                    <li><a onclick="display_picture()" id="display_picture">Modifier ma photo de profil</a></li>
-                    <li><a onclick="display_password()" id="display_password">Changer mon mot de passe</a></li>
-                    <li><a onclick="display_notif()" id="display_notif">Mes notfications</a></li>
-                    <li><a onclick="display_delete()" id="display_delete">Supprimer mon compte</a></li>
-                </ul>
+                <hr>
+                <nav class="nav flex-column">
+                    <a class="nav-link active" onclick="display_profile()" id="display_profile">Modifier mon profil</a>
+                    <a class="nav-link" onclick="display_picture()" id="display_picture">Modifier ma photo de profil</a>
+                    <a class="nav-link" onclick="display_password()" id="display_password">Changer mon mot de passe</a>
+                    <a class="nav-link" onclick="display_notif()" id="display_notif">Mes notfications</a>
+                    <a class="nav-link" onclick="display_delete()" id="display_delete">Supprimer mon compte</a>
+                </nav>
             </aside>
         </div>
-        <div class="column is-two-fifths forms_user">
+       
+        <div class="col-md-7">
             <div class="container-changepicture" id="picture">
                 <figure class="image is-128x128 img_user">
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
@@ -36,121 +38,112 @@
                     </div>
                 </figure>
                 <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
-                    <div class="file has-name">
-                        <label class="file-label">
-                        <input class="file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">
-                            <span class="file-cta">
-                            <span class="file-icon">
-                                <i class="fas fa-upload"></i>
-                            </span>
-                            <span class="file-label">
-                                Séléctionner un fichier
-                            </span>
-                            </span>
-                            <span class="file-name" id="file_output">
-                                Aucun fichier sélectionné
-                            </span>
-                        </label>
-                    </div>
-                    <div class="field">
-                        <button class="button is-small is-fullwidth is-primary" type="submit">Changer ma photo</button>
+                    
+                    <div class="input-group">
+                        <div class="custom-file">
+                        <input class="custom-file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">
+                            <label class="custom-file-label" id="file_output">Charger un fichier</label>
+                        </div>
+                        <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Envoyer !</button>
+                        </div>
                     </div>
                 </form>
             </div>
             <div class="container-changeprofile" id="profile">
-                <form class="column" action="/index.php/Account" method="post">
+                <form action="/index.php/Account" method="post">
 
-                    <div class="field">
-                        <label class="label">Prénom</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="text" name="user_firstname" placeholder="Prénom" required value="<?php echo $_SESSION['user']['firstname']; ?>">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label>Prénom</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input class="form-control" type="text" name="user_firstname" placeholder="Prénom" required value="<?php echo $_SESSION['user']['firstname']; ?>">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Nom</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="text" name="user_lastname" placeholder="Nom" required value="<?php echo $_SESSION['user']['lastname']; ?>">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label>Nom</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input class="form-control" type="text" name="user_lastname" placeholder="Nom" required value="<?php echo $_SESSION['user']['lastname']; ?>">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Pseudo</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="text" name="user_pseudo" placeholder="Pseudo" required value="<?php echo $_SESSION['user']['login']; ?>">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-user"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label>Pseudo</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input class="form-control" type="text" name="user_pseudo" placeholder="Pseudo" required value="<?php echo $_SESSION['user']['login']; ?>">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Adresse email</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="mail" name="user_mail" placeholder="Adresse email" required value="<?php echo $_SESSION['user']['email']; ?>">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-envelope"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label>Adresse email</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
+                            </div>
+                            <input class="form-control" type="mail" name="user_mail" placeholder="Adresse email" required value="<?php echo $_SESSION['user']['email']; ?>">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Biographie</label>
-                        <p class="control has-icons-left">
-                            <textarea class="input" type="text" name="user_bio" placeholder="Biographie"><?php if (!empty($_SESSION['user']['biography'])) echo $_SESSION['user']['biography'];?></textarea>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-pen-nib"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label>Biographie</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-pen-nib"></i></div>
+                            </div>
+                            <textarea class="form-control" type="text" name="user_bio" placeholder="Biographie"><?php if (!empty($_SESSION['user']['biography'])) echo $_SESSION['user']['biography'];?></textarea>
+                        </div>
                     </div>
                     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
-                    <div class="field">
-                        <button class="button is-medium is-fullwidth is-primary" type="submit">Mettre à jour mon profil</button>
+                    <div class="clearfix">
+                        <button class="btn btn-secondary mb-2 float-right" type="submit">Mettre à jour mon profil</button>
                     </div>
                 </form>
             </div>
 
 
             <div class="container-changepassword" id="password">
-                <form class="column" action="/index.php/Account" method="post">
-                    <div class="field">
+                <form action="/index.php/Account" method="post">
+                    <div class="form-group">
                         <label class="label">Votre mot de passe actuel</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="password" name="user_old_password" placeholder="Votre mot de passe actuel" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                            </div>
+                            <input class="form-control" type="password" name="user_old_password" placeholder="Votre mot de passe actuel" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
+                        </div>
                     </div>
-                    <div class="field">
-                        <label class="label">Votre nouveau mot de passe <i class="fas fa-info-circle" id="info"></i></label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="password" name="user_password" placeholder="Votre mot de passe" required>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
+                    <div class="form-group">
+                        <label class="label">Votre nouveau mot de passe <i class="fas fa-info-circle" data-toggle="modal" data-target="#password_modal"></i></label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                            </div>
+                            <input class="form-control" type="password" name="user_password" placeholder="Votre mot de passe" required>
+                        </div>
                     </div>
-                    <div class="field">
+                    <div class="form-group">
                         <label class="label">Répétez votre nouveau mot de passe</label>
-                        <p class="control has-icons-left">
-                            <input class="input" type="password" name="user_password_repeat" placeholder="Votre mot de passe" required>
-                            <span class="icon is-small is-left">
-                                <i class="fas fa-lock"></i>
-                            </span>
-                        </p>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-lock"></i></div>
+                            </div>
+                            <input class="form-control" type="password" name="user_password_repeat" placeholder="Votre mot de passe" required>
+                        </div>
                     </div>
                     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
-                    <div class="field">
-                        <button class="button is-medium is-fullwidth is-primary" type="submit">Modifier mon mot de passe</button>
+                    <div class="clearfix">
+                        <button class="btn btn-secondary mb-2 float-right" type="submit">Modifier mon mot de passe</button>
                     </div>
                 </form>
             </div>
 
             <div class="container-changenotif" id="notif">
-                <form class="column" action="/index.php/Account" method="post">
+                <form action="/index.php/Account" method="post">
                     <div class="field">
                         <label class="label">Recevoir des notifications?</label>
                         <label class="switch">
@@ -164,8 +157,8 @@
                     </div>
                     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
                     <input class="input" name="user_notif_active" type="hidden" value="<?php echo $_SESSION['token'];?>">
-                    <div class="field">
-                        <button class="button is-medium is-fullwidth is-primary" type="submit">Mettre à jour mes paramètres</button>
+                    <div>
+                        <button class="btn btn-secondary mb-2" type="submit">Mettre à jour mes paramètres</button>
                     </div>
                 </form>
             </div>
@@ -174,13 +167,13 @@
 
                 <div class="column">
                     <div class="field">
-                        <label class="label">Supprimer mon compte ?</label>
+                        <label class="label label-danger">Supprimer mon compte ?</label>
                         <p class="has-text-danger">Attention, cette action est irreversible. Une fois le compte supprimé, toutes les données seront effacées et ne pourront pas être récupérées.</p>
                     </div>
                     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
                     <input class="input" name="user_delete" type="hidden" value="<?php echo $_SESSION['token'];?>">
-                    <div class="field">
-                        <button class="button is-medium is-fullwidth is-danger" onclick="account_delete('<?php echo $_SESSION['user']['user_id'];?>')">Supprimer</button>
+                    <div>
+                        <button class="btn btn-danger mb-2" onclick="account_delete('<?php echo $_SESSION['user']['user_id'];?>')">Supprimer</button>
                     </div>
                 </div>
             </div>
@@ -189,14 +182,16 @@
     </div>
 </div>
 
-<div class="modal" id='modal'>
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">Règles de mot de passe</p>
-      <button class="delete" id="delete" aria-label="close"></button>
-    </header>
-    <section class="modal-card-body">
+<div class="modal fade" id="password_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Règles de mot de passe</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
       <p>Votre mot de passe contient au moins : </p>
       <ul class="modal_list">
         <li>12 caractères</li>
@@ -205,12 +200,12 @@
         <li>un chiffre</li>
         <li>un caractère spécial</li>
       </ul>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success" id="gotit">Compris !</button>
-    </footer>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Compris !</button>
+      </div>
+    </div>
   </div>
 </div>
 
-<script src="/assets/js/modal.js"></script>
 <script src="/assets/js/account.js"></script>
