@@ -112,10 +112,10 @@ Class Admin extends Controller{
                 }
             }
             else
-                $data['error'] = "Le token de validation est expiré.";
+                $data['fatalerror'] = "Le token de validation est expiré.";
         }
         else
-            $data['error'] = "Le token est invalide.";
+            $data['fatalerror'] = "Le token est invalide.";
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Admin/activate_view', $data);

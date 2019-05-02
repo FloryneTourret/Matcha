@@ -122,5 +122,3 @@ if (isset($error))
     </div>
   </div>
 </div>
-
-<script src="/assets/js/modal.js"></script>
