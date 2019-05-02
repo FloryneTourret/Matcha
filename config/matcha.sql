@@ -37,32 +37,6 @@ CREATE TABLE `pictures` (
   `picture_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
---
--- Déchargement des données de la table `pictures`
---
-
-INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_title`, `picture_desc`, `picture_user_id`, `picture_date`) VALUES
-(1, 'assets/upload/naplouvi/65f6af6b4f64feca.jpg', NULL, NULL, 5, '2019-04-18 14:22:49'),
-(2, 'assets/upload/ftourret/07840b7886546561.jpg', NULL, NULL, 2, '2019-04-18 14:29:10'),
-(3, 'assets/upload/ftourret/8bcb04f6462706d8.jpg', NULL, NULL, 2, '2019-04-18 14:29:17'),
-(4, 'assets/upload/ftourret/0a1ee9a611b58639.jpg', NULL, NULL, 2, '2019-04-18 14:29:22'),
-(5, 'assets/upload/ftourret/683f3972ce6e5fd8.jpg', NULL, NULL, 2, '2019-04-18 14:29:26'),
-(6, 'assets/upload/ftourret/d577a21e3a32756a.jpg', NULL, NULL, 2, '2019-04-18 14:29:30'),
-(7, 'assets/upload/ftourret/9289ae2eb4543fa7.jpg', NULL, NULL, 2, '2019-04-18 14:29:37'),
-(8, 'assets/upload/ftourret/67deb9f839a70de0.jpg', NULL, NULL, 2, '2019-04-18 14:29:41'),
-(9, 'assets/upload/ftourret/b154111357cbe156.jpg', NULL, NULL, 2, '2019-04-18 14:29:44'),
-(10, 'assets/upload/ftourret/72c17cf218645e87.jpg', NULL, NULL, 2, '2019-04-18 14:29:48'),
-(11, 'assets/upload/ftourret/b2fb5272910ae577.jpg', NULL, NULL, 2, '2019-04-18 14:29:52'),
-(12, 'assets/upload/ftourret/fff9b0431f490875.jpg', NULL, NULL, 2, '2019-04-18 14:29:56'),
-(13, 'assets/upload/ftourret/593e83cee51a6e8b.jpg', NULL, NULL, 2, '2019-04-18 14:30:00'),
-(14, 'assets/upload/ftourret/e77c43aeda590eb2.jpg', NULL, NULL, 2, '2019-04-18 14:30:04'),
-(15, 'assets/upload/ftourret/31a591918f484259.jpg', NULL, NULL, 2, '2019-04-18 14:30:07'),
-(16, 'assets/upload/ftourret/7c5cb9e2a89408f1.jpg', NULL, NULL, 2, '2019-04-18 14:30:11'),
-(17, 'assets/upload/ftourret/2f7afd62c07186d6.jpg', NULL, NULL, 2, '2019-04-18 14:30:14'),
-(18, 'assets/upload/ftourret/7dda691bf0d66d97.jpg', NULL, NULL, 2, '2019-04-18 14:30:17'),
-(19, 'assets/upload/lettoh/0567a6b062e0ca95.jpg', NULL, NULL, 1, '2019-04-18 14:47:58'),
-(20, 'assets/upload/lettoh/09fe6229be8bba4e.jpg', NULL, NULL, 1, '2019-04-18 14:48:10');
-
 -- --------------------------------------------------------
 
 --
