@@ -1,6 +1,6 @@
 <div class="gestion_user">
-    <div class="columns">
-        <div class="column is-three-fifths is-offset-one-fifth">
+    <div class="row">
+        <div class="col-md-3 offset-md-1">
             <?php if (!empty($error)){ ?>
                 <p class="has-text-danger"><?php echo $error; ?></p>
             <?php } ?>
@@ -10,19 +10,19 @@
         </div>
     </div>
     
-    <div class="columns">
-        <div class="column is-one-fifth is-offset-one-fifth menu_user">
+    <div class="row">
+        <div class="col-md-3 offset-md-1">
             <aside class="menu">
                 <p class="menu-label">
                     Panel admin
                 </p>
-                <ul class="menu-list">
-                    <li><a onclick="display_users()" id="display_users">Gérer les utilisateurs</a></li>
-                    <li><a onclick="display_admin()" id="display_admin">Ajouter un administrateur</a></li>
-                </ul>
+                <nav class="nav flex-column">
+                    <a class="nav-link active" onclick="display_users()" id="display_users">Gérer les utilisateurs</a>
+                    <a class="nav-link" onclick="display_admin()" id="display_admin">Ajouter un administrateur</a>
+                </nav>
             </aside>
         </div>
-        <div class="column is-three-fifths forms_user">  
+        <div class="col-md-7">  
             <div class="container-users" id="users">
                 <table class="table is-fullwidth">
                     <td class="has-text-primary">Admin</td>

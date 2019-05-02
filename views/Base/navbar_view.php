@@ -39,6 +39,9 @@
 	        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="margin-right: 20px;">
             <a class="dropdown-item" href="/index.php/Profile/<?php echo $_SESSION['user']['login'];?>">Voir mon profil</a>
             <a class="dropdown-item" href="/index.php/Account">Gérer mon profil</a>
+            <?php if ($_SESSION['user']['admin'] == 1){?>
+              <a class="dropdown-item" href="/index.php/Admin">Panel administrateur</a>
+            <?php } ?>
             <div class="dropdown-divider"></div>
 	          <a class="dropdown-item" href="/index.php/Logout">Déconnexion</a>
 	        </div>

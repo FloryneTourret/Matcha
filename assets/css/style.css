@@ -99,23 +99,9 @@ td.email{
     margin-top: 2vh;
 }
 
-ul.modal_list li{
-    list-style-type: circle;
-    margin-left: 40px;
-}
 #info{
     cursor: pointer;
 }
 #user_picture{
     margin-right: 10px;
-}
-
-
-.menu-list a.is-active{
-    background-color: transparent;
-    color: gray;
-    border-left: 1px solid gray;
-}
-.container-filters, .container-users{
-    padding-right: 5vw;
 }
