@@ -19,9 +19,9 @@ Class Account_model extends Model
         $req->execute();
     }
 
-    public function updateProfile($firstname, $lastname, $login, $email, $bio, $id){
+    public function updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $id){
         $req = $this->db->prepare("UPDATE `users` SET `firstname` = '$firstname', `lastname` = '$lastname', `login` = '$login',
-        `email` = '$email', `biography` = '$bio' WHERE `user_id` = '$id'");
+        `email` = '$email', `biography` = '$bio', `user_orientation_id` = '$orientation', `user_gender_id` = '$gender' WHERE `user_id` = '$id'");
         $req->execute();
     }
 

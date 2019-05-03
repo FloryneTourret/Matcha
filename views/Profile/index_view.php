@@ -10,7 +10,7 @@
         </figure>
     </div>
     <div class="col-md-6">
-        <h1 class="user_login"><?php echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';?></h1>
+        <h1 class="user_login"><?php if($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> '; else if($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> '; else if($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> '; echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';?></h1>
         <p><?php echo $user['firstname'].' '.$user['lastname'] ?></p>
         <p><?php echo $user['email']?></p>
         <?php if (!empty($user['biography'])){?>

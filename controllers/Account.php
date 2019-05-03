@@ -37,33 +37,42 @@ Class Account extends Controller{
                 }
 
                 if (isset($_POST['user_firstname']) && isset($_POST['user_lastname']) && isset($_POST['user_pseudo'])
-                    && isset($_POST['user_mail']))
+                    && isset($_POST['user_mail']) && isset($_POST['user_gender']) && isset($_POST['user_orientation']))
                 {
-                    if (!isset($_POST['user_bio']))
-                        $bio = NULL;
-                    else
-                        $bio = trim(htmlspecialchars(addslashes($_POST['user_bio'])));
-                    $firstname = ucfirst(trim(htmlspecialchars(addslashes($_POST['user_firstname']))));
-                    $lastname = strtoupper(trim(htmlspecialchars(addslashes($_POST['user_lastname']))));
-                    $login = strtolower(trim(htmlspecialchars(addslashes($_POST['user_pseudo']))));
-                    $email = trim(htmlspecialchars(addslashes($_POST['user_mail'])));
-                    if ($this->Register_model->email_already_used($email) == FALSE || $email == $_SESSION['user']['email'])
+                    if ($_POST['user_orientation'] > 0 && $_POST['user_orientation'] < 6 && $_POST['user_gender'] > 0 && $_POST['user_gender'] < 4)
                     {
-                        if ($this->Register_model->login_already_used($login) == FALSE || $login == $_SESSION['user']['login'])
+                        if (!isset($_POST['user_bio']))
+                            $bio = NULL;
+                        else
+                            $bio = trim(htmlspecialchars(addslashes($_POST['user_bio'])));
+                        $gender = trim(htmlspecialchars(addslashes($_POST['user_gender'])));
+                        $orientation = trim(htmlspecialchars(addslashes($_POST['user_orientation'])));
+                        $firstname = ucfirst(trim(htmlspecialchars(addslashes($_POST['user_firstname']))));
+                        $lastname = strtoupper(trim(htmlspecialchars(addslashes($_POST['user_lastname']))));
+                        $login = strtolower(trim(htmlspecialchars(addslashes($_POST['user_pseudo']))));
+                        $email = trim(htmlspecialchars(addslashes($_POST['user_mail'])));
+                        if ($this->Register_model->email_already_used($email) == FALSE || $email == $_SESSION['user']['email'])
                         {
-                            $_SESSION['user']['firstname'] = $firstname;
-                            $_SESSION['user']['lastname'] = $lastname;
-                            $_SESSION['user']['login'] = $login;
-                            $_SESSION['user']['email'] = $email;
-                            $_SESSION['user']['biography'] = $bio;
-                            $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $_SESSION['user']['user_id']);
-                            $data['success'] = "Votre profil a bien été mis à jour.";
+                            if ($this->Register_model->login_already_used($login) == FALSE || $login == $_SESSION['user']['login'])
+                            {
+                                $_SESSION['user']['firstname'] = $firstname;
+                                $_SESSION['user']['lastname'] = $lastname;
+                                $_SESSION['user']['login'] = $login;
+                                $_SESSION['user']['email'] = $email;
+                                $_SESSION['user']['biography'] = $bio;
+                                $_SESSION['user']['user_orientation_id'] = $orientation;
+                                $_SESSION['user']['user_gender_id'] = $gender;
+                                $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $_SESSION['user']['user_id']);
+                                $data['success'] = "Votre profil a bien été mis à jour.";
+                            }
+                            else
+                                $data['error'] = "Désolé, ce login est déjà utilisé.";
                         }
                         else
-                            $data['error'] = "Désolé, ce login est déjà utilisé.";
+                            $data['error'] = "Désolé, cet email est déjà utilisé.";
                     }
                     else
-                        $data['error'] = "Désolé, cet email est déjà utilisé.";
+                        $data['error'] = "Merci de sélectionner une orientation sexuelle.";
                 }
 
                 if (isset($_POST['user_notif_active']))

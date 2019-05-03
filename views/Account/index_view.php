@@ -19,7 +19,7 @@
                 <hr>
                 <nav class="nav flex-column">
                     <a class="nav-link active" onclick="display_profile()" id="display_profile">Modifier mon profil</a>
-                    <a class="nav-link" onclick="display_picture()" id="display_picture">Modifier ma photo de profil</a>
+                    <a class="nav-link" onclick="display_picture()" id="display_picture">Gérer mes photos</a>
                     <a class="nav-link" onclick="display_password()" id="display_password">Changer mon mot de passe</a>
                     <a class="nav-link" onclick="display_notif()" id="display_notif">Mes notfications</a>
                     <a class="nav-link" onclick="display_delete()" id="display_delete">Supprimer mon compte</a>
@@ -30,6 +30,7 @@
         <div class="col-md-7">
             <div class="container-changepicture" id="picture">
                 <figure class="image is-128x128 img_user">
+                    <h2>Ma photo de profil</h2>
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
                         <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                     <?php }else{ ?>
@@ -37,12 +38,13 @@
                     <?php } ?>
                     </div>
                 </figure>
+                
                 <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
                     
                     <div class="input-group">
                         <div class="custom-file">
                         <input class="custom-file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">
-                            <label class="custom-file-label" id="file_output">Charger un fichier</label>
+                            <label class="custom-file-label" id="file_output">Ajouter une photo</label>
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-outline-secondary" type="submit" id="inputGroupFileAddon04">Envoyer !</button>
@@ -69,6 +71,41 @@
                                 <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
                             <input class="form-control" type="text" name="user_lastname" placeholder="Nom" required value="<?php echo $_SESSION['user']['lastname']; ?>">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Genre</label>
+                        <div class="input-group mb-2">
+                            <select class="form-control" name="user_gender">
+                                <option value="1" <?php if ($_SESSION['user']['user_gender_id'] == 1 ) echo 'selected'; ?>>Homme</option>
+                                <option value="2" <?php if ($_SESSION['user']['user_gender_id'] == 2 ) echo 'selected'; ?>>Femme</option>
+                                <option value="3" <?php if ($_SESSION['user']['user_gender_id'] == 3 ) echo 'selected'; ?>>Non binaire</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Orientation</label>
+                        <div class="input-group mb-2">
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline1" name="user_orientation" value="1" class="custom-control-input" <?php if ($_SESSION['user']['user_orientation_id'] == 1) echo 'checked';?>>
+                                <label class="custom-control-label" for="customRadioInline1">Homme</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline2" name="user_orientation" value="2" class="custom-control-input" <?php if ($_SESSION['user']['user_orientation_id'] == 2) echo 'checked';?>>
+                                <label class="custom-control-label" for="customRadioInline2">Femme</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline3" name="user_orientation" value="3" class="custom-control-input" <?php if ($_SESSION['user']['user_orientation_id'] == 3) echo 'checked';?>>
+                                <label class="custom-control-label" for="customRadioInline3">Non binaire</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline4" name="user_orientation" value="4" class="custom-control-input" <?php if ($_SESSION['user']['user_orientation_id'] == 4) echo 'checked';?>>
+                                <label class="custom-control-label" for="customRadioInline4">Bisexuel</label>
+                            </div>
+                            <div class="custom-control custom-radio custom-control-inline">
+                                <input type="radio" id="customRadioInline5" name="user_orientation" value="5" class="custom-control-input" <?php if ($_SESSION['user']['user_orientation_id'] == 5) echo 'checked';?>>
+                                <label class="custom-control-label" for="customRadioInline5">Tous les genres</label>
+                            </div>
                         </div>
                     </div>
                     <div class="form-group">
