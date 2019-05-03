@@ -16,16 +16,16 @@ td{
 .navbar-dark .navbar-brand{
     color: #FCFCFC;
 }
-.navbar-dark .navbar-nav .nav-link {
-    color: #FFFAE3;
-}
 .nav-login{
    line-height: 28px;
    vertical-align: middle;
 }
 .nav-link{
     cursor: pointer;
-    color: #FCFCFC!important;
+    color: #0A1128 !important;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: #FCFCFC !important;
 }
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
     color: #EF6461 !important;
@@ -35,7 +35,7 @@ td{
 }
 .menu-label{
     text-transform: uppercase;
-    color: #FCFCFC;
+    color: #0A1128;
 }
 
 .row{

@@ -28,10 +28,10 @@
                     <td class="text-success">Admin</td>
                     <td class="text-danger">Banni</td>
                     <td class="text-warning">Non activé</td>
-                    <td class="text-white">Utilisateur</td>
+                    <td class="text-dark">Utilisateur</td>
                 </table>
-                <table class="table table-striped table-hover table-responsive">
-                    <thead class="thead-light">
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
                         <th scope="col">Prénom Nom</th>
                         <th scope="col">Login</th>
                         <th scope="col">Email</th>
@@ -63,7 +63,7 @@
                                 </tr>';
                             else
                                 echo '<tr id="tr_'.$user['user_id'].'">
-                                <td id="name_'.$user['user_id'].'" class="text-white">'.$user['firstname'].' '.$user['lastname'].'</td>
+                                <td id="name_'.$user['user_id'].'" class="text-dark">'.$user['firstname'].' '.$user['lastname'].'</td>
                                 <td>'.$user['login'].'</td>
                                 <td class="email">'.$user['email'].'</td>
                                 <td id="button_'.$user['user_id'].'"><button class="btn btn-sm btn-danger" onclick="ban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Bannir l\'utilisateur</button></td>
