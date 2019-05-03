@@ -38,7 +38,9 @@
                     <?php } ?>
                     </div>
                 </figure>
-                
+                <h2 class="title_list_pictures">Mes photos</h2>
+
+
                 <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
                     
                     <div class="input-group">
