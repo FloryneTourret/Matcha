@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  jeu. 18 avr. 2019 à 14:50
+-- Généré le :  ven. 03 mai 2019 à 16:25
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -19,8 +19,50 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `camagru`
+-- Base de données :  `matcha`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `genders`
+--
+
+CREATE TABLE `genders` (
+  `id` int(11) NOT NULL,
+  `genre` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `genders`
+--
+
+INSERT INTO `genders` (`id`, `genre`) VALUES
+(1, 'Homme'),
+(2, 'Femme'),
+(3, 'Non binaire');
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `orientations`
+--
+
+CREATE TABLE `orientations` (
+  `orientation_id` int(11) NOT NULL,
+  `orientation_name` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `orientations`
+--
+
+INSERT INTO `orientations` (`orientation_id`, `orientation_name`) VALUES
+(1, 'Homme'),
+(2, 'Femme'),
+(3, 'Non Binaire'),
+(4, 'Bisexuel'),
+(5, 'Tous les genres');
 
 -- --------------------------------------------------------
 
@@ -47,6 +89,8 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `user_gender_id` int(11) NOT NULL DEFAULT '3',
+  `user_orientation_id` int(11) NOT NULL DEFAULT '4',
   `login` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `biography` varchar(255) DEFAULT NULL,
@@ -63,14 +107,26 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `login`, `email`, `biography`, `path_profile_picture`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred', 'assets/upload/lettoh/02de54d0db88a333.jpg', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 0, 1, 1, NULL, NULL),
-(2, 'Floryne', 'TOURRET', 'ftourret', 'floryne.tourret@gmail.com', NULL, 'assets/upload/ftourret/47c54b7051dc1ddd.jpg', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
-(3, 'Frédéric', 'LEONARD', 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
+(1, 'Frédéric', 'LEONARD', 1, 5, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/569251fb93daa59f.jpg', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
+(2, 'Floryne', 'TOURRET', 2, 4, 'ftourret', 'floryne.tourret@gmail.com', NULL, 'assets/upload/ftourret/47c54b7051dc1ddd.jpg', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
+(3, 'Frédéric', 'LEONARD', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
 --
+
+--
+-- Index pour la table `genders`
+--
+ALTER TABLE `genders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Index pour la table `orientations`
+--
+ALTER TABLE `orientations`
+  ADD PRIMARY KEY (`orientation_id`);
 
 --
 -- Index pour la table `pictures`
@@ -92,10 +148,22 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT pour la table `genders`
+--
+ALTER TABLE `genders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT pour la table `orientations`
+--
+ALTER TABLE `orientations`
+  MODIFY `orientation_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `users`
