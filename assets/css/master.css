@@ -1,5 +1,5 @@
 body{
-    background-color: #5D576B;
+    background-color: #FCFCFC;
     position: relative;
     padding-bottom: 40px;
 }
@@ -11,7 +11,7 @@ td{
 }
 .navbar.navbar-expand-lg.navbar-dark.bg-dark
 {
-    background-color: #0A1128 !important;
+    background-color: #EF6461 !important;
 }
 .navbar-dark .navbar-brand{
     color: #FCFCFC;
