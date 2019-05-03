@@ -12,7 +12,10 @@
 	      </li>
     </ul>
     <?php if (isset($_SESSION['user'])){?>
-		<ul class="navbar-nav ml-auto notification" id="notif-icon" style="padding-right: 10px!important;">
+    <ul class="navbar-nav ml-auto notification" id="notif-icon" style="padding-right: 10px!important;">
+        <li class="nav-item">
+            <a class="nav-link chat" href="/index.php/Chat"><i class="far fa-comment-alt"></i></a>
+        </li>
 	      <li class="nav-item dropdown" id="notif-content">
 	        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 				    <i class="far fa-bell"></i>

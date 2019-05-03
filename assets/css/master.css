@@ -6,6 +6,9 @@ body{
 a{
     text-decoration: none!important;
 }
+a:hover{
+    color: #5D576B;
+}
 td{
     font-size: .9rem;
 }
@@ -33,11 +36,17 @@ td{
 .nav-link.active{
     border-left: 2px solid #EF6461;
 }
+.chat{
+    margin-right: 10px;
+}
 .menu-label{
     text-transform: uppercase;
     color: #0A1128;
 }
-
+.dropdown-item:focus, .dropdown-item:hover{
+    background-color: #f8f9fa;
+    color: #0A1128;
+}
 .row{
     width: 100%;
 }
