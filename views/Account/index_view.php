@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-md-3 offset-md-1">
             <?php if (!empty($error)){ ?>
-                <p class="has-text-danger"><?php echo $error; ?></p>
+                <p class="text-danger"><?php echo $error; ?></p>
             <?php } ?>
             <?php if (!empty($success)){ ?>
-                <p class="has-text-info"><?php echo $success; ?></p>
+                <p class="text-info"><?php echo $success; ?></p>
             <?php } ?>
         </div>
     </div>

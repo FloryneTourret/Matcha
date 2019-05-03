@@ -42,6 +42,9 @@ label{
 .label-danger{
     color: #dc3545;
 }
+.label-dark{
+    color: #000;
+}
 .switch {
     position: relative;
     display: inline-block;

@@ -96,7 +96,7 @@ Class Register extends Controller{
         $this->loadModel('Register_model');
         $data = array();
 
-        if(isset($_POST['user_email']) && isset($_POST['token']))
+        if(isset($_POST['user_email']) && isset($_POST['user_token']))
         {
             if($_POST['user_token'] == $_SESSION['token'])
             {

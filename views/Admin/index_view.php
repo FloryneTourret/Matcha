@@ -2,10 +2,10 @@
     <div class="row">
         <div class="col-md-3 offset-md-1">
             <?php if (!empty($error)){ ?>
-                <p class="has-text-danger"><?php echo $error; ?></p>
+                <p class="text-danger"><?php echo $error; ?></p>
             <?php } ?>
             <?php if (!empty($success)){ ?>
-                <p class="has-text-info"><?php echo $success; ?></p>
+                <p class="text-info"><?php echo $success; ?></p>
             <?php } ?>
         </div>
     </div>
@@ -24,49 +24,49 @@
         </div>
         <div class="col-md-7">  
             <div class="container-users" id="users">
-                <table class="table is-fullwidth">
-                    <td class="has-text-primary">Admin</td>
-                    <td class="has-text-danger">Banni</td>
-                    <td class="has-text-warning">Non activé</td>
-                    <td class="has-text-grey-dark">Utilisateur</td>
+                <table class="table">
+                    <td class="text-success">Admin</td>
+                    <td class="text-danger">Banni</td>
+                    <td class="text-warning">Non activé</td>
+                    <td class="text-white">Utilisateur</td>
                 </table>
-                <table class="table is-striped is-hoverable is-fullwidth">
-                    <thead>
-                        <th>Prénom Nom</th>
-                        <th>Login</th>
-                        <th>Email</th>
-                        <th></th>
+                <table class="table table-striped table-hover table-responsive">
+                    <thead class="thead-light">
+                        <th scope="col">Prénom Nom</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
                     </thead>
                     <tbody>
                     <?php
                         foreach($users as $user){
                             if($user['admin'] == 1)
                                 echo '<tr id="tr_'.$user['user_id'].'">
-                                <td id="name_'.$user['user_id'].'" class="has-text-primary">'.$user['firstname'].' '.$user['lastname'].'</td>
+                                <td id="name_'.$user['user_id'].'" class="text-success">'.$user['firstname'].' '.$user['lastname'].'</td>
                                 <td>'.$user['login'].'</td>
                                 <td class="email">'.$user['email'].'</td>
                                 <td id="button_'.$user['user_id'].'"></td>
                                 </tr>';
                             else if($user['enabled'] == -1)
                                 echo '<tr id="tr_'.$user['user_id'].'">
-                                <td id="name_'.$user['user_id'].'" class="has-text-danger">'.$user['firstname'].' '.$user['lastname'].'</td>
+                                <td id="name_'.$user['user_id'].'" class="text-danger">'.$user['firstname'].' '.$user['lastname'].'</td>
                                 <td>'.$user['login'].'</td>
                                 <td class="email">'.$user['email'].'</td>
-                                <td id="button_'.$user['user_id'].'"><button class="button is-small is-warning" onclick="unban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Autoriser l\'utilisateur</button></td>
+                                <td id="button_'.$user['user_id'].'"><button class="btn btn-sm btn-warning" onclick="unban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Autoriser l\'utilisateur</button></td>
                                 </tr>';
                             else if($user['enabled'] == 0)
                                 echo '<tr id="tr_'.$user['user_id'].'">
-                                <td id="name_'.$user['user_id'].'" class="has-text-warning">'.$user['firstname'].' '.$user['lastname'].'</td>
+                                <td id="name_'.$user['user_id'].'" class="text-warning">'.$user['firstname'].' '.$user['lastname'].'</td>
                                 <td>'.$user['login'].'</td>
                                 <td class="email">'.$user['email'].'</td>
-                                <td id="button_'.$user['user_id'].'"><button class="button is-small is-danger" onclick="ban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Bannir l\'utilisateur</button></td>
+                                <td id="button_'.$user['user_id'].'"><button class="btn btn-sm btn-danger" onclick="ban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Bannir l\'utilisateur</button></td>
                                 </tr>';
                             else
                                 echo '<tr id="tr_'.$user['user_id'].'">
-                                <td id="name_'.$user['user_id'].'" class="has-text-grey-dark">'.$user['firstname'].' '.$user['lastname'].'</td>
+                                <td id="name_'.$user['user_id'].'" class="text-white">'.$user['firstname'].' '.$user['lastname'].'</td>
                                 <td>'.$user['login'].'</td>
                                 <td class="email">'.$user['email'].'</td>
-                                <td id="button_'.$user['user_id'].'"><button class="button is-small is-danger" onclick="ban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Bannir l\'utilisateur</button></td>
+                                <td id="button_'.$user['user_id'].'"><button class="btn btn-sm btn-danger" onclick="ban(\''.$user['user_id'].'\' , \''.$user['enabled'].'\' , \''.$user['admin'].'\')">Bannir l\'utilisateur</button></td>
                                 </tr>';
                         }
                     ?>
@@ -74,76 +74,74 @@
                 </table>
             </div>
             <div class="container-admin" id="admin">
-                <div class="columns">
-                    <form class="column is-three-quarters" action="/index.php/Admin" method="post">
+                <form action="/index.php/Admin" method="post">
 
-                        <div class="field">
-                            <label class="label">Prénom</label>
-                            <div class="control">
-                            <p class="control has-icons-left">
-                                <input class="input" type="text" name="user_firstname" placeholder="Prénom" required value="<?php if(isset($_POST['user_firstname'])){echo $_POST['user_firstname'];}?>">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </p>
+                    <div class="form-group">
+                        <label class="label">Prénom</label>
+                        <div class="control">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
+                            <input class="form-control" type="text" name="user_firstname" placeholder="Prénom" required value="<?php if(isset($_POST['user_firstname'])){echo $_POST['user_firstname'];}?>">
                         </div>
+                        </div>
+                    </div>
 
-                        <div class="field">
-                            <label class="label">Nom</label>
-                            <div class="control">
-                            <p class="control has-icons-left">
-                                <input class="input" type="text" name="user_lastname" placeholder="Nom" required value="<?php if(isset($_POST['user_lastname'])){echo $_POST['user_lastname'];}?>">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </p>
+                    <div class="form-group">
+                        <label class="label">Nom</label>
+                        <div class="control">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
+                            <input class="form-control" type="text" name="user_lastname" placeholder="Nom" required value="<?php if(isset($_POST['user_lastname'])){echo $_POST['user_lastname'];}?>">
                         </div>
+                        </div>
+                    </div>
 
-                        <div class="field">
-                            <label class="label">Pseudo</label>
-                            <div class="control">
-                            <p class="control has-icons-left">
-                                <input class="input" type="text" name="user_login" placeholder="Pseudo" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </p>
+                    <div class="form-group">
+                        <label class="label">Pseudo</label>
+                        <div class="control">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
                             </div>
+                            <input class="form-control" type="text" name="user_login" placeholder="Pseudo" required value="<?php if(isset($_POST['user_login'])){echo $_POST['user_login'];}?>">
                         </div>
+                        </div>
+                    </div>
 
-                        <div class="field">
-                            <label class="label">Email</label>
-                            <div class="control">
-                            <p class="control has-icons-left">
-                                <input class="input" type="email" name="user_email" placeholder="Adresse email" required value="<?php if(isset($_POST['user_email'])){echo $_POST['user_email'];}?>">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                            </p>
+                    <div class="form-group">
+                        <label class="label">Email</label>
+                        <div class="control">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                             </div>
+                            <input class="form-control" type="email" name="user_email" placeholder="Adresse email" required value="<?php if(isset($_POST['user_email'])){echo $_POST['user_email'];}?>">
                         </div>
+                        </div>
+                    </div>
 
-                        <div class="field">
-                            <label class="label">Confirmez votre email</label>
-                            <div class="control">
-                            <p class="control has-icons-left">
-                                <input class="input" type="email" name="user_email_confirm" placeholder="Confirmation adresse email" required value="<?php if(isset($_POST['user_email_confirm'])){echo $_POST['user_email_confirm'];}?>">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                            </p>
+                    <div class="form-group">
+                        <label class="label">Confirmez l'email</label>
+                        <div class="control">
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-envelope"></i></div>
                             </div>
+                            <input class="form-control" type="email" name="user_email_confirm" placeholder="Confirmation adresse email" required value="<?php if(isset($_POST['user_email_confirm'])){echo $_POST['user_email_confirm'];}?>">
                         </div>
-
-                        <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
-
-                        <div class="field">
-                            <button class="button is-medium is-fullwidth is-primary" type="submit">Inscrire</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+
+                    <input class="form-control" name="user_token" type="hidden" value="<?php echo $_SESSION['token'];?>">
+
+                    <div class="clearfix">
+                        <button class="btn btn-secondary mb-2 float-right" type="submit">Inscrire</button>
+                    </div>
+                </form>
             </div>
 
         </div>
