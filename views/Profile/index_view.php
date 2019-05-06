@@ -33,11 +33,11 @@
       </div>
 
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-          Contenu likes
+          Contenu views
       </div>
 
       <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">
-          Contenu view
+          Contenu likes
       </div>
     </div>
   </div>
