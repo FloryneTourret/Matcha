@@ -39,9 +39,18 @@
                     </div>
                 </figure>
                 <h2 class="title_list_pictures">Mes photos</h2>
+                <small class="font-italic">Attention, le nombre de photos est limité à 5.</small>
 
+                <div class="list-pictures">
+                    <?php $i = 0;foreach ($pictures as $picture){ ?>
+                        <?php if($i == 0) {?>
+                            <img class="offset-md-1 col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
+                        <?php }else{ ?>
+                            <img class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
+                    <?php } $i++; } ?>
+                </div>
 
-                <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
+                <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload" id="upload-form">
                     
                     <img id="image-preview" alt="Upload profile">
                     <div id="wapper-image"></div>

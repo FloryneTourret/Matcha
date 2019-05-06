@@ -6,6 +6,7 @@ Class Account extends Controller{
         $data = array();
         $this->loadModel('Account_model');
         $this->loadModel('Register_model');
+        $this->loadModel('Profile_model');
         if(!isset($_SESSION['user']))
             header('Location: /');
         if (isset($_POST['user_token']))
@@ -142,6 +143,8 @@ Class Account extends Controller{
             if($_GET['delete'] == $_SESSION['user']['user_id'])
                 $this->Account_model->delete($_GET['delete']);
         }
+
+        $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Account/index_view', $data);
