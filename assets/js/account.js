@@ -1,7 +1,7 @@
-document.getElementById('profile').style.display = "block";
-document.getElementById('display_profile').classList.add("active");
-document.getElementById('picture').style.display = "none";
-document.getElementById('display_picture').classList.remove("active");
+document.getElementById('profile').style.display = "none";
+document.getElementById('display_profile').classList.remove("active");
+document.getElementById('picture').style.display = "block";
+document.getElementById('display_picture').classList.add("active");
 document.getElementById('password').style.display = "none";
 document.getElementById('display_password').classList.remove("active");
 document.getElementById('notif').style.display = "none";

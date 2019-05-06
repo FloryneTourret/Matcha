@@ -18,8 +18,8 @@
                 </p>
                 <hr>
                 <nav class="nav flex-column">
-                    <a class="nav-link active" onclick="display_profile()" id="display_profile">Modifier mon profil</a>
                     <a class="nav-link" onclick="display_picture()" id="display_picture">Gérer mes photos</a>
+                    <a class="nav-link active" onclick="display_profile()" id="display_profile">Modifier mon profil</a>
                     <a class="nav-link" onclick="display_password()" id="display_password">Changer mon mot de passe</a>
                     <a class="nav-link" onclick="display_notif()" id="display_notif">Mes notfications</a>
                     <a class="nav-link" onclick="display_delete()" id="display_delete">Supprimer mon compte</a>
