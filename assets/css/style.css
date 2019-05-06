@@ -36,6 +36,16 @@
 .carousel{
     margin-top: 8vh;
 }
+.profile_pictures{
+    width: 60%;
+    margin-left: 20%;
+}
+.carousel-control-next {
+    filter: invert(100%);
+}
+.carousel-control-prev {
+    filter: invert(100%);
+}
 
 
 /* Page account */
@@ -97,6 +107,12 @@ input:checked + .slider:before {
 }
 h2.title_list_pictures{
     margin-top: 3vh;
+}
+.rcrop-outer{
+    background-color: black !important;
+}
+#image-preview{
+    width: 100%;;
 }
 
 

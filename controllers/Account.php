@@ -90,8 +90,9 @@ Class Account extends Controller{
             else
                 $data['error'] = "Une erreur est survenue.";
         }
-        if (!empty($_FILES))
+        if (!empty($_FILES) && isset($_POST['crop-x']) && isset($_POST['crop-y']) && isset($_POST['crop-height']) && isset($_POST['crop-width']))
         {
+
             if ($_FILES['newimg']['type'] == 'image/jpeg' || $_FILES['newimg']['type'] == 'image/png'
                     || $_FILES['newimg']['type'] == 'image/jpg')
             {
@@ -111,19 +112,30 @@ Class Account extends Controller{
                     while (file_exists('/var/www/html/assets/upload'.$_SESSION['user']['login'].'/'.$name))
                         $name = bin2hex(openssl_random_pseudo_bytes(8));
                     if ($_FILES['newimg']['type'] == 'image/png')
+                    {
+                        $img = imagecreatefrompng($_FILES['newimg']['tmp_name']);
                         $name = $name.'.png';
+                    }
                     else if ($_FILES['newimg']['type'] == 'image/jpeg')
+                    {
+                        $img = imagecreatefromjpeg($_FILES['newimg']['tmp_name']);
                         $name = $name.'.jpg';
+                    }
+                    $bg = imagecreatetruecolor($_POST['crop-width'][0], $_POST['crop-height'][0]);
                     $target_file = $target_dir . $name;
-                    move_uploaded_file($_FILES['newimg']['tmp_name'], $target_file);
+                    imagecopy($bg, $img, 0, 0, $_POST['crop-x'][0], $_POST['crop-y'][0], $_POST['crop-width'][0], $_POST['crop-height'][0]);
+                    imagejpeg($bg, $target_file);
+                    imagedestroy($bg);
+                    imagedestroy($img);
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
-                    // $_SESSION['user']['path_profile_picture'] = $target;
                     $data['success'] = "Votre image a été enregistrée.";
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
             }
+            else
+                $data['error'] = 'Format d\'image non autorisé';
         }
         if(isset($_GET['delete']))
         {

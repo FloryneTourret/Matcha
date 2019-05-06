@@ -43,6 +43,9 @@
 
                 <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload">
                     
+                    <img id="image-preview" alt="Upload profile">
+                    <div id="wapper-image"></div>
+
                     <div class="input-group">
                         <div class="custom-file">
                         <input class="custom-file-input" id="file_upload" onchange="name_input()" type="file" name="newimg" id="newimg" accept="image/*">
