@@ -32,16 +32,18 @@
                 <figure class="image is-128x128 img_user">
                     <h2>Ma photo de profil</h2>
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
-                        <div style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+                        <div data-toggle="modal" data-target="#profile_picture_modal" style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                     <?php }else{ ?>
-                    <div style='background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+                    <div data-toggle="modal" data-target="#profile_picture_modal" style='background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                     <?php } ?>
                     </div>
                 </figure>
                 <h2 class="title_list_pictures">Mes photos</h2>
-                <small class="font-italic">Attention, le nombre de photos est limité à 5.</small>
+                <?php if (count($pictures) >= 5) { ?>
+                    <small class="font-italic">Attention, le nombre de photos est limité à 5.</small>
+                <?php } ?>
 
-                <div class="list-pictures">
+                <div class="list-pictures mt-5">
                     <?php $i = 0;foreach ($pictures as $picture){ ?>
                         <?php if($i == 0) {?>
                             <img class="offset-md-1 col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
@@ -50,9 +52,10 @@
                     <?php } $i++; } ?>
                 </div>
 
+                <?php if (count($pictures) < 5) { ?>
                 <form action="/index.php/Account" method="post" enctype="multipart/form-data" class="form_upload" id="upload-form">
                     
-                    <img id="image-preview" alt="Upload profile">
+                    <img id="image-preview" alt="Upload profile" style="display: none">
                     <div id="wapper-image"></div>
 
                     <div class="input-group">
@@ -65,6 +68,7 @@
                         </div>
                     </div>
                 </form>
+                <?php } ?>
             </div>
             <div class="container-changeprofile" id="profile">
                 <form action="/index.php/Account" method="post">
@@ -258,5 +262,44 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="profile_picture_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Choisir ma photo de profil</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      <div class="row">
+          <?php if (count($pictures) == 0)
+          {
+              echo '<p class="ml-4">Veuillez uploader une photo avant.</p>';
+          }?>
+        <?php $i = 0;foreach ($pictures as $picture){ ?>
+            <?php if($i == 0) {?>
+                <?php if($picture['picture_path'] == $_SESSION['user']['path_profile_picture']) {?>
+                    <img class="pictures_list_img offset-md-1 col-md-2" style="height: 100%; width:100%; opacity: 1;" src="/<?php echo $picture['picture_path']?>" alt="" id="picture_<?php echo $picture['picture_id']?>" onclick="picture_profile(<?php echo $picture['picture_id']?>)">
+                <?php } else {?>
+                    <img class="pictures_list_img offset-md-1 col-md-2" style="height: 100%; width:100%; opacity: .5;" src="/<?php echo $picture['picture_path']?>" alt="" id="picture_<?php echo $picture['picture_id']?>" onclick="picture_profile(<?php echo $picture['picture_id']?>)">
+                <?php }?>
+            <?php }else{ ?>
+                <?php if($picture['picture_path'] == $_SESSION['user']['path_profile_picture']) {?>
+                    <img class="pictures_list_img col-md-2" style="height: 100%; width:100%; opacity: 1;" src="/<?php echo $picture['picture_path']?>" alt="" id="picture_<?php echo $picture['picture_id']?>" onclick="picture_profile(<?php echo $picture['picture_id']?>)">
+                <?php } else {?>
+                    <img class="pictures_list_img col-md-2" style="height: 100%; width:100%; opacity: .5;" src="/<?php echo $picture['picture_path']?>" alt="" id="picture_<?php echo $picture['picture_id']?>" onclick="picture_profile(<?php echo $picture['picture_id']?>)">
+                <?php }?>
+        <?php } $i++; } ?>
+      </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="change_profile_picture();">Fini !</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="/assets/js/account.js"></script>

@@ -130,7 +130,7 @@ Class Account extends Controller{
                     imagedestroy($img);
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
-                    $data['success'] = "Votre image a été enregistrée.";
+                    header('Location: /index.php/Profile/' . $_SESSION['user']['login']);
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';
@@ -142,6 +142,11 @@ Class Account extends Controller{
         {
             if($_GET['delete'] == $_SESSION['user']['user_id'])
                 $this->Account_model->delete($_GET['delete']);
+        }
+        if(isset($_GET['profile_picture']))
+        {
+            $this->Account_model->profileimg($_GET['profile_picture'], $_SESSION['user']['user_id']);
+            $_SESSION['user']['path_profile_picture'] = $this->Account_model->getprofileimg($_SESSION['user']['user_id'])['path_profile_picture'];
         }
 
         $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);

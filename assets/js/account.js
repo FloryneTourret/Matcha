@@ -8,7 +8,6 @@ document.getElementById('notif').style.display = "none";
 document.getElementById('display_notif').classList.remove("active");
 document.getElementById('delete').style.display = "none";
 document.getElementById('display_delete').classList.remove("active");
-document.getElementById('image-preview').style.display = "none";
 
 function display_profile(){
     document.getElementById('profile').style.display = "block";
@@ -94,16 +93,30 @@ function name_input(){
     document.getElementById('file_output').innerHTML = (basename(document.getElementById('file_upload').value));
 }
 
-function readURL(input) {
-    if (input.files && input.files[0]) {
-        var reader = new FileReader();
-        reader.onload = function(e) {
-        $('#image-preview').attr('src', e.target.result);
-        }
-        reader.readAsDataURL(input.files[0]);
-    }
+function picture_profile(id_picture){
+    $('.pictures_list_img').each(function(index, el){
+        el.style.opacity = ".5";
+    });
+    document.getElementById('picture_' + id_picture).style.opacity = "1"
 }
 
+function change_profile_picture(){
+    $('.pictures_list_img').each(function(index, el){
+        if (el.style.opacity == "1")
+        {
+            console.log(el.id.substr(8));
+            const req = new XMLHttpRequest();
+            req.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {  
+                    document.location.reload();
+                }
+                };
+            req.open('GET', "/index.php/Account?profile_picture=" + el.id.substr(8), true); 
+            req.send(null);
+        }
+    });
+    
+}
 
   
 $("#file_upload").change(function() {

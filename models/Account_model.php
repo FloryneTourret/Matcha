@@ -36,6 +36,19 @@ Class Account_model extends Model
         $req->execute();
     }
 
+    public function profileimg($id_picture, $id)
+    {
+        $req = $this->db->prepare("UPDATE `users` SET `path_profile_picture`= (SELECT `picture_path` FROM `pictures` WHERE `picture_id` = $id_picture) WHERE `user_id` = $id");
+        $req->execute();
+    }
+
+    public function getprofileimg($id)
+    {
+        $req = $this->db->prepare("SELECT `path_profile_picture` FROM `users` WHERE `user_id` = $id");
+        $req->execute();
+        return ($req->fetch());
+    }
+
     public function delete($id){
         $req = $this->db->prepare("DELETE FROM `users` WHERE `user_id` = '$id'");
         $req->execute();
