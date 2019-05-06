@@ -32,9 +32,9 @@
                 <figure class="image is-128x128 img_user">
                     <h2>Ma photo de profil</h2>
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])){?>
-                        <div data-toggle="modal" data-target="#profile_picture_modal" style='background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+                        <div data-toggle="modal" data-target="#profile_picture_modal" style='cursor: pointer; background-image: url("/<?php echo $_SESSION['user']['path_profile_picture']?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                     <?php }else{ ?>
-                    <div data-toggle="modal" data-target="#profile_picture_modal" style='background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+                    <div data-toggle="modal" data-target="#profile_picture_modal" style='cursor: pointer; background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                     <?php } ?>
                     </div>
                 </figure>
@@ -44,12 +44,13 @@
                 <?php } ?>
 
                 <div class="list-pictures mt-5">
-                    <?php $i = 0;foreach ($pictures as $picture){ ?>
-                        <?php if($i == 0) {?>
-                            <img class="offset-md-1 col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
-                        <?php }else{ ?>
-                            <img class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
-                    <?php } $i++; } ?>
+                    <?php foreach ($pictures as $picture){ ?>
+                            <?php if($_SESSION['user']['path_profile_picture'] == $picture['picture_path']) {?>
+                                <img class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
+                            <?php } else {?>
+                                <img style="cursor: pointer;" class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="" onclick="delete_picture(<?php echo $picture['picture_id']?>)">
+                            <?php } ?>
+                    <?php } ?>
                 </div>
 
                 <?php if (count($pictures) < 5) { ?>
@@ -295,7 +296,7 @@
       </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="change_profile_picture();">Fini !</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="change_profile_picture();">Changer !</button>
       </div>
     </div>
   </div>

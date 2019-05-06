@@ -49,8 +49,20 @@ Class Account_model extends Model
         return ($req->fetch());
     }
 
+    public function getimg($id)
+    {
+        $req = $this->db->prepare("SELECT `picture_path` FROM `pictures` WHERE `picture_id` = $id");
+        $req->execute();
+        return ($req->fetch());
+    }
+
     public function delete($id){
         $req = $this->db->prepare("DELETE FROM `users` WHERE `user_id` = '$id'");
+        $req->execute();
+    }
+
+    public function delete_picture($id, $user_id){
+        $req = $this->db->prepare("DELETE FROM `pictures` WHERE `picture_id` = $id AND `picture_user_id`= $user_id");
         $req->execute();
     }
 }
