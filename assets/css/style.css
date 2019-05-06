@@ -33,6 +33,10 @@
 .gestion_user{
     margin-top: 5vh;
 }
+.carousel{
+    margin-top: 8vh;
+}
+
 
 /* Page account */
 label{
@@ -90,6 +94,9 @@ input:checked + .slider:before {
 }
 .slider.round:before {
     border-radius: 50%;
+}
+h2.title_list_pictures{
+    margin-top: 3vh;
 }
 
 

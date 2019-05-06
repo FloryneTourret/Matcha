@@ -32,7 +32,7 @@ Class Account_model extends Model
     
     public function addimg($path, $id)
     {
-        $req = $this->db->prepare("UPDATE `users` SET `path_profile_picture` = '$path' WHERE `user_id` = '$id'");
+        $req = $this->db->prepare("INSERT INTO `pictures`(`picture_path`, `picture_user_id`) VALUES ('$path', $id)");
         $req->execute();
     }
 

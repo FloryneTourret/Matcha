@@ -118,8 +118,8 @@ Class Account extends Controller{
                     move_uploaded_file($_FILES['newimg']['tmp_name'], $target_file);
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
-                    $_SESSION['user']['path_profile_picture'] = $target;
-                    $data['success'] = "Votre image de profil a bien été mis à jour.";
+                    // $_SESSION['user']['path_profile_picture'] = $target;
+                    $data['success'] = "Votre image a été enregistrée.";
                 }
                 else
                     $data['error'] = 'Le fichier renseigné n\'est pas une image';

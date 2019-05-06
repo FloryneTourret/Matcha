@@ -29,7 +29,47 @@
     </nav>
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-          Contenu pictures
+        <?php 
+        $count_pictures = count($pictures);
+        $i = 0;
+        ?>
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" data-interval="false">
+          <ol class="carousel-indicators">
+          <?php foreach($pictures as $picture) { ?>
+            <?php if($i == 0) {?>
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <?php }else {?>
+            <li data-target="#carouselExampleIndicators" data-slide-to="<?php echo $i; ?>"></li>
+            <?php }$i++; }?>
+          </ol>
+          <?php $i = 0;?>
+          <div class="carousel-inner">
+          <?php foreach($pictures as $picture) { ?>
+            <?php if($i == 0) {?>
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="/<?php echo $picture['picture_path'] ?>" alt="Picture profile">
+            </div>
+            <?php }else {?>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/<?php echo $picture['picture_path'] ?>" alt="Picture profile">
+            </div>
+          <?php }$i++;} ?>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/<?php echo $pictures[0]['picture_path'] ?>" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="/<?php echo $pictures[0]['picture_path'] ?>" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
       </div>
 
       <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
