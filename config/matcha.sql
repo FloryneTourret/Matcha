@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  ven. 03 mai 2019 à 16:25
+-- Généré le :  mer. 08 mai 2019 à 12:18
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -73,11 +73,22 @@ INSERT INTO `orientations` (`orientation_id`, `orientation_name`) VALUES
 CREATE TABLE `pictures` (
   `picture_id` int(11) NOT NULL,
   `picture_path` varchar(255) COLLATE utf8_bin NOT NULL,
-  `picture_title` varchar(255) COLLATE utf8_bin DEFAULT NULL,
-  `picture_desc` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `picture_user_id` int(11) NOT NULL,
   `picture_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Déchargement des données de la table `pictures`
+--
+
+INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_user_id`, `picture_date`) VALUES
+(60, 'assets/upload/ftourret/50bf7da5c6a6757e.jpg', 2, '2019-05-06 16:00:35'),
+(66, 'assets/upload/ftourret/35457773a72738fb.jpg', 2, '2019-05-06 17:34:19'),
+(67, 'assets/upload/ftourret/0123a102a947744c.jpg', 2, '2019-05-06 17:34:36'),
+(69, 'assets/upload/ftourret/b68f8619bf42d8d4.jpg', 2, '2019-05-06 17:35:02'),
+(70, 'assets/upload/ftourret/e2abf9ca230973a2.jpg', 2, '2019-05-06 18:13:50'),
+(72, 'assets/upload/lettoh/713fe1ab9f5022ca.jpg', 1, '2019-05-07 12:17:02'),
+(73, 'assets/upload/lettoh/169b8e0fff618716.jpg', 1, '2019-05-07 12:25:53');
 
 -- --------------------------------------------------------
 
@@ -89,12 +100,14 @@ CREATE TABLE `users` (
   `user_id` int(11) NOT NULL,
   `firstname` varchar(255) NOT NULL,
   `lastname` varchar(255) NOT NULL,
+  `user_birthdate` date DEFAULT NULL,
   `user_gender_id` int(11) NOT NULL DEFAULT '3',
   `user_orientation_id` int(11) NOT NULL DEFAULT '4',
   `login` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `biography` varchar(255) DEFAULT NULL,
   `path_profile_picture` varchar(255) DEFAULT NULL,
+  `last_connexion` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `password` varchar(255) DEFAULT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT '0',
   `notif` tinyint(1) NOT NULL DEFAULT '1',
@@ -107,10 +120,10 @@ CREATE TABLE `users` (
 -- Déchargement des données de la table `users`
 --
 
-INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', 1, 5, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/569251fb93daa59f.jpg', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
-(2, 'Floryne', 'TOURRET', 2, 4, 'ftourret', 'floryne.tourret@gmail.com', NULL, 'assets/upload/ftourret/47c54b7051dc1ddd.jpg', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
-(3, 'Frédéric', 'LEONARD', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
+INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `last_connexion`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
+(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 5, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/713fe1ab9f5022ca.jpg', '0000-00-00 00:00:00', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
+(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', '', 'assets/upload/ftourret/b68f8619bf42d8d4.jpg', '0000-00-00 00:00:00', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
+(3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '0000-00-00 00:00:00', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
 
 --
 -- Index pour les tables déchargées
@@ -163,7 +176,7 @@ ALTER TABLE `orientations`
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=74;
 
 --
 -- AUTO_INCREMENT pour la table `users`
