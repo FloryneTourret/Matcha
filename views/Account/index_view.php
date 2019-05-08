@@ -92,6 +92,18 @@
                             <input class="form-control" type="text" name="user_lastname" placeholder="Nom" required value="<?php echo $_SESSION['user']['lastname']; ?>">
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label>Date de naissance</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-birthday-cake"></i></div>
+                            </div>
+                            <?php $date = strtotime(date("Y-m-d").'-18 year'); ?>
+                            <input class="form-control" type="date" name="user_birthdate" required value="<?php if($_SESSION['user']['user_birthdate'] != NULL) {echo $_SESSION['user']['user_birthdate'];} else { echo date("Y-m-d", $date); } ?>">
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <label>Genre</label>
                         <div class="input-group mb-2">

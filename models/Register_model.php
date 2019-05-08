@@ -33,10 +33,10 @@ Class Register_model extends Model
             return (FALSE);
     }
 
-    public function register($firstname, $lastname, $login, $email, $password, $token)
+    public function register($firstname, $lastname, $login, $email, $password, $birthdate, $token)
     {
-        $req = $this->db->prepare("INSERT INTO `users`(`firstname`, `lastname`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `password`, `token`, `token_expiration`) 
-                                    VALUES ('$firstname','$lastname', 3, 4,'$login','$email','$password', '$token', NOW() + INTERVAL 1 DAY)");
+        $req = $this->db->prepare("INSERT INTO `users`(`firstname`, `lastname`, `user_birthdate`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `password`, `token`, `token_expiration`) 
+                                    VALUES ('$firstname','$lastname', '$birthdate', 3, 4,'$login','$email','$password', '$token', NOW() + INTERVAL 1 DAY)");
         $req->execute();
     }
 

@@ -66,6 +66,17 @@ if (isset($error))
     </div>
 
     <div class="form-group">
+        <label>Date de naissance</label>
+        <div class="input-group mb-2">
+            <div class="input-group-prepend">
+                <div class="input-group-text"><i class="fas fa-birthday-cake"></i></div>
+            </div>
+            <?php $date = strtotime(date("Y-m-d").'-18 year'); ?>
+            <input class="form-control" type="date" name="user_birthdate" required value="<?php if(isset($_POST['user_birthdate'])){echo $_POST['user_birthdate'];} else { echo date("Y-m-d", $date); } ?>">
+        </div>
+    </div>
+
+    <div class="form-group">
         <label class="label">Mot de passe <i class="fas fa-info-circle" data-toggle="modal" data-target="#password_modal"></i></label>
         <div class="control">
             <div class="input-group mb-2">

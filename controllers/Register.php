@@ -18,37 +18,43 @@ Class Register extends Controller{
             {
                 if ($_POST['user_email'] == $_POST['user_email_confirm'])
                 {
-                    if ($_POST['user_password'] == $_POST['user_password_confirm'])
+                    if($_POST['user_birthdate'] == date('Y-m-d', strtotime($_POST['user_birthdate'])))
                     {
-                        $firstname = trim(ucfirst(htmlspecialchars(addslashes($_POST['user_firstname']))));
-                        $lastname = trim(strtoupper(htmlspecialchars(addslashes($_POST['user_lastname']))));
-                        $login = trim(strtolower(htmlspecialchars(addslashes($_POST['user_login']))));
-                        $email = trim(strtolower(htmlspecialchars(addslashes($_POST['user_email']))));
-                        if (strlen($_POST['user_password']) > 11 && preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST['user_password'])) 
+                        $birthdate = $_POST['user_birthdate'];
+                        if ($_POST['user_password'] == $_POST['user_password_confirm'])
                         {
-                            $password = password_hash(htmlspecialchars(addslashes($_POST['user_password'])), PASSWORD_DEFAULT);
-                            if ($this->Register_model->email_already_used($email) == FALSE)
+                            $firstname = trim(ucfirst(htmlspecialchars(addslashes($_POST['user_firstname']))));
+                            $lastname = trim(strtoupper(htmlspecialchars(addslashes($_POST['user_lastname']))));
+                            $login = trim(strtolower(htmlspecialchars(addslashes($_POST['user_login']))));
+                            $email = trim(strtolower(htmlspecialchars(addslashes($_POST['user_email']))));
+                            if (strlen($_POST['user_password']) > 11 && preg_match('#^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W)#', $_POST['user_password'])) 
                             {
-                                if ($this->Register_model->login_already_used($login) == FALSE)
+                                $password = password_hash(htmlspecialchars(addslashes($_POST['user_password'])), PASSWORD_DEFAULT);
+                                if ($this->Register_model->email_already_used($email) == FALSE)
                                 {
-                                    $token = bin2hex(openssl_random_pseudo_bytes(15));
-                                    $link = $_SERVER["HTTP_REFERER"].'/activate/'.$token;
-                                    $this->Register_model->register($firstname, $lastname, $login, $email, $password, $token);
-                                    $message = "Bienvenue sur Matcha\r\nPour activer votre compte, veuillez cliquer sur le lien suivant\r\n".$link;
-                                    mail($email, 'Matcha - Account verification', $message);
-                                    header('Location: /index.php/login');
+                                    if ($this->Register_model->login_already_used($login) == FALSE)
+                                    {
+                                        $token = bin2hex(openssl_random_pseudo_bytes(15));
+                                        $link = $_SERVER["HTTP_REFERER"].'/activate/'.$token;
+                                        $this->Register_model->register($firstname, $lastname, $login, $email, $password, $birthdate, $token);
+                                        $message = "Bienvenue sur Matcha\r\nPour activer votre compte, veuillez cliquer sur le lien suivant\r\n".$link;
+                                        mail($email, 'Matcha - Account verification', $message);
+                                        header('Location: /index.php/login');
+                                    }
+                                    else
+                                        $data['error'] = "Désolé, ce login est déjà utilisé.";
                                 }
                                 else
-                                    $data['error'] = "Désolé, ce login est déjà utilisé.";
+                                    $data['error'] = "Désolé, cet email est déjà utilisé.";
                             }
                             else
-                                $data['error'] = "Désolé, cet email est déjà utilisé.";
+                                $data['error'] = "Le mot de passe n'est pas conforme.";
                         }
                         else
-                            $data['error'] = "Le mot de passe n'est pas conforme.";
+                            $data['error'] = "Les mots de passe ne correspondent pas.";
                     }
                     else
-                        $data['error'] = "Les mots de passe ne correspondent pas.";
+                        $data['error'] = "Merci de sélectionner une date de naisssance valide.";
                 }
                 else
                     $data['error'] = "Les emails ne correspondent pas.";
