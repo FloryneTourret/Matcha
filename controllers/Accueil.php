@@ -3,7 +3,7 @@
 Class Accueil extends Controller{
 
     public function index(){
-        // $this->loadModel('Accueil_model');
+        $this->loadModel('Accueil_model');
         // $data['users'] = $this->Accueil_model->get_users();
 
         $this->loadView('Base/header_view');

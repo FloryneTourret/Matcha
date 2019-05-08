@@ -4,7 +4,10 @@ Class Profile_model extends Model
 {
     public function get_current($login)
     {
-        $req = $this->db->prepare("SELECT * from `users` INNER JOIN `orientations` on users.user_orientation_id = orientations.orientation_id WHERE `login` = '$login'");
+        $req = $this->db->prepare("SELECT *,
+        (SELECT count(*) FROM `pictures` INNER JOIN `users` ON users.user_id = pictures.picture_user_id WHERE `login` = '$login' LIMIT 5) as count_pictures
+        FROM `users` 
+        INNER JOIN `orientations` on users.user_orientation_id = orientations.orientation_id WHERE `login` = '$login'");
         $req->execute();
         return ($req->fetch());
     }

@@ -8,6 +8,15 @@
         <?php } ?>
         </div>
         </figure>
+        <?php if($user['login'] != $_SESSION['user']['login']){?>
+        <div class="profile_buttons text-center">
+          <?php if($user['count_pictures'] > 0 ) {?>
+              <button class="btn btn-sm btn-outline-primary">J'aime</button>
+          <?php } ?>
+          <button class="btn btn-sm btn-outline-warning">Reporter</button>
+          <button class="btn btn-sm btn-outline-danger">Bloquer</button>
+        </div>
+        <?php } ?>
     </div>
     <div class="col-md-6">
         <h1 class="user_login"><?php if($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> '; else if($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> '; else if($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> '; echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';?></h1>

@@ -6,7 +6,7 @@ class Controller
 	private $_params = 0;
     public function __construct()
     {
-		session_start();
+        session_start();
 		if (!isset($_SESSION['token'])) {
 			$_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(6));
 		}
