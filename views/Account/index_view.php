@@ -45,11 +45,7 @@
 
                 <div class="list-pictures mt-5">
                     <?php foreach ($pictures as $picture){ ?>
-                            <?php if($_SESSION['user']['path_profile_picture'] == $picture['picture_path']) {?>
-                                <img class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="">
-                            <?php } else {?>
-                                <img style="cursor: pointer;" class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="" onclick="delete_picture(<?php echo $picture['picture_id']?>)">
-                            <?php } ?>
+                        <img style="cursor: pointer;" class="col-md-2" src="/<?php echo $picture['picture_path']?>" alt="" onclick="delete_picture(<?php echo $picture['picture_id']?>)">
                     <?php } ?>
                 </div>
 

@@ -66,6 +66,11 @@ Class Account_model extends Model
         $req = $this->db->prepare("DELETE FROM `pictures` WHERE `picture_id` = $id AND `picture_user_id`= $user_id");
         $req->execute();
     }
+
+    public function delete_profile_picture($user_id){
+        $req = $this->db->prepare("UPDATE `users` SET `path_profile_picture`= NULL WHERE `user_id` = $user_id");
+        $req->execute();
+    }
 }
 
 ?>

@@ -159,9 +159,11 @@ Class Account extends Controller{
         }
         if(isset($_GET['delete_picture']))
         {
-            if ($this->Account_model->getprofileimg($_SESSION['user']['user_id'])['path_profile_picture'] != $this->Account_model->getimg($_GET['delete_picture'])['picture_path']){
-                $this->Account_model->delete_picture($_GET['delete_picture'], $_SESSION['user']['user_id']);
+            if ($this->Account_model->getprofileimg($_SESSION['user']['user_id'])['path_profile_picture'] == $this->Account_model->getimg($_GET['delete_picture'])['picture_path']){
+                $this->Account_model->delete_profile_picture($_SESSION['user']['user_id']);
+                $_SESSION['user']['path_profile_picture'] = NULL;
             }
+            $this->Account_model->delete_picture($_GET['delete_picture'], $_SESSION['user']['user_id']);
         }
 
         $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);
