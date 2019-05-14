@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  mer. 08 mai 2019 à 12:18
+-- Généré le :  mar. 14 mai 2019 à 13:17
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -121,9 +121,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `last_connexion`, `password`, `admin`, `notif`, `enabled`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 5, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/713fe1ab9f5022ca.jpg', '0000-00-00 00:00:00', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
-(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', '', 'assets/upload/ftourret/b68f8619bf42d8d4.jpg', '0000-00-00 00:00:00', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
-(3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '0000-00-00 00:00:00', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
+(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 5, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/713fe1ab9f5022ca.jpg', '2019-05-14 12:58:05', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, NULL, NULL),
+(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', '', 'assets/upload/ftourret/b68f8619bf42d8d4.jpg', '2019-05-14 13:17:04', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, NULL, NULL),
+(3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '2019-05-14 12:52:35', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, NULL, NULL);
 
 --
 -- Index pour les tables déchargées

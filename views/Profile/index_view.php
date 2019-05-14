@@ -20,6 +20,14 @@
     </div>
     <div class="col-md-6">
         <h1 class="user_login"><?php if($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> '; else if($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> '; else if($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> '; echo $user['login']?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';?></h1>
+        
+        <small class="font-italic"><?php
+          if (-(strtotime($user['last_connexion']) - time() + 7200) < 300) {
+            echo '<span class="dot online" style="color: green;"><i class="fas fa-circle"></i></span> En ligne';
+          } else {
+            echo '<span class="dot offline" style="color: red;"><i class="fas fa-circle"></i></span> Hors ligne. Dernière connexion : <span class="timestamp">' . $user['last_connexion'] . '</span>';
+          } ?></small>
+
         <p>
           <?php echo $user['firstname'].' '.$user['lastname'].', ';
           $birthDate = $user['user_birthdate'];
@@ -103,3 +111,5 @@
     </div>
   </div>
 </div>
+
+<script src="/assets/js/timestamp.js"></script>
