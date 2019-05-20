@@ -156,6 +156,7 @@ Class Account extends Controller{
                     imagedestroy($img);
                     $target = 'assets/upload/'.$_SESSION['user']['login'].'/'.$name;
                     $this->Account_model->addimg($target, $_SESSION['user']['user_id']);
+                    $_SESSION['user']['count_pictures']++;
                     header('Location: /index.php/Profile/' . $_SESSION['user']['login']);
                 }
                 else
@@ -181,6 +182,7 @@ Class Account extends Controller{
                 $_SESSION['user']['path_profile_picture'] = NULL;
             }
             $this->Account_model->delete_picture($_GET['delete_picture'], $_SESSION['user']['user_id']);
+            $_SESSION['user']['count_pictures']--;
         }
 
         $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);

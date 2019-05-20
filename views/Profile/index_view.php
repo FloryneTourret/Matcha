@@ -10,7 +10,7 @@
     </figure>
     <?php if ($user['login'] != $_SESSION['user']['login']) { ?>
       <div class="profile_buttons text-center">
-        <?php if ($user['count_pictures'] > 0) { ?>
+        <?php if ($user['count_pictures'] > 0 && $_SESSION['user']['count_pictures'] > 0) { ?>
           <button class="btn btn-sm btn-outline-primary">J'aime</button>
         <?php } ?>
         <button class="btn btn-sm btn-outline-warning">Reporter</button>

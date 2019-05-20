@@ -4,7 +4,9 @@ Class Login_model extends Model
 {
     public function get_user($login)
     {
-        $req = $this->db->prepare("SELECT * FROM `users` WHERE `login` = '$login'");
+        $req = $this->db->prepare("SELECT *,
+        (SELECT count(*) FROM `pictures` INNER JOIN `users` ON users.user_id = pictures.picture_user_id WHERE `login` = '$login' LIMIT 5) as count_pictures
+        FROM `users` WHERE `login` = '$login'");
         $req->execute();
         return ($req->fetch());
     }
