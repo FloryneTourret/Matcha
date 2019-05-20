@@ -7,6 +7,7 @@ Class Account extends Controller{
         $this->loadModel('Account_model');
         $this->loadModel('Register_model');
         $this->loadModel('Profile_model');
+        $this->loadModel('Login_model');
         if(!isset($_SESSION['user']))
             header('Location: /');
         if (isset($_POST['user_token']))
@@ -56,7 +57,7 @@ Class Account extends Controller{
                             $lastname = strtoupper(trim(htmlspecialchars(addslashes($_POST['user_lastname']))));
                             $login = strtolower(trim(htmlspecialchars(addslashes($_POST['user_pseudo']))));
                             $email = trim(htmlspecialchars(addslashes($_POST['user_mail'])));
-                            
+
                             if ($this->Register_model->email_already_used($email) == FALSE || $email == $_SESSION['user']['email'])
                             {
                                 if ($this->Register_model->login_already_used($login) == FALSE || $login == $_SESSION['user']['login'])
@@ -69,6 +70,20 @@ Class Account extends Controller{
                                     $_SESSION['user']['user_orientation_id'] = $orientation;
                                     $_SESSION['user']['user_gender_id'] = $gender;
                                     $_SESSION['user']['user_birthdate'] = $birthdate;
+
+                                    $this->Account_model->del_tags_user($_SESSION['user']['user_id']);
+                                    foreach($_POST['user_tags'] as $tag)
+                                    {
+                                        if ($tag > 0 && $tag < 2147483647)
+                                            $this->Account_model->add_tag_user($tag, $_SESSION['user']['user_id']);
+                                        else
+                                        {
+                                            $id_tag = $this->Account_model->add_tag(trim(htmlspecialchars(addslashes($tag))));
+                                            $this->Account_model->add_tag_user($id_tag, $_SESSION['user']['user_id']);
+                                        }
+                                    }
+
+                                    $_SESSION['user']['user_tags'] = $this->Login_model->get_user_tags($_SESSION['user']['user_id']);
                                     $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $birthdate, $_SESSION['user']['user_id']);
                                     $data['success'] = "Votre profil a bien été mis à jour.";
                                 }
@@ -167,6 +182,7 @@ Class Account extends Controller{
         }
 
         $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);
+        $data['tags'] = $this->Account_model->get_tags();
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
         $this->loadView('Account/index_view', $data);

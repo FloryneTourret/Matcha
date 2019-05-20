@@ -160,3 +160,7 @@ $("#file_upload").change(function() {
     }
 
 });
+
+$('#tags-select').select2({ 
+    tags: true,
+});

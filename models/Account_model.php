@@ -71,6 +71,29 @@ Class Account_model extends Model
         $req = $this->db->prepare("UPDATE `users` SET `path_profile_picture`= NULL WHERE `user_id` = $user_id");
         $req->execute();
     }
+
+    public function get_tags(){
+        $req = $this->db->prepare("SELECT * FROM `tags` WHERE 1");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
+    public function del_tags_user($id){
+        $req = $this->db->prepare("DELETE FROM `user_tag` WHERE `id_user` = $id");
+        $req->execute();
+    }
+
+    public function add_tag_user($tag, $id){
+        $req = $this->db->prepare("INSERT INTO `user_tag` (`id_user`, `id_tag`) VALUES ($id, $tag)");
+        $req->execute();
+    }
+
+    public function add_tag($tag)
+    {
+        $req = $this->db->prepare("INSERT INTO `tags` (`tag_name`) VALUES ('$tag')");
+        $req->execute();
+        return($this->db->lastInsertId());
+    }
 }
 
 ?>
