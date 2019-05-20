@@ -11,8 +11,22 @@
     <?php if ($user['login'] != $_SESSION['user']['login']) { ?>
       <div class="profile_buttons text-center">
         <?php if ($user['count_pictures'] > 0 && $_SESSION['user']['count_pictures'] > 0) { ?>
-          <button class="btn btn-sm btn-outline-primary">J'aime</button>
+          <?php if ($like == FALSE) { ?>
+            <button class="btn btn-sm btn-outline-primary" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="like"><i class="fas fa-heart"></i></button>
+          <?php } else { ?>
+            <button class="btn btn-sm btn-outline-secondary" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="unlike"><i class="fas fa-heart-broken"></i></button>
+          <?php } ?>
         <?php } ?>
+        <br>
+        <?php 
+        if ($liked == TRUE && $like == FALSE){ 
+          echo '<span id="liked">Vous like !</span>';
+        }
+        else if ($liked == TRUE && $like == TRUE){ 
+          echo '<span id="liked">C\'est un match !</span>';
+        } 
+        ?>
+        <br>
         <button class="btn btn-sm btn-outline-warning">Reporter</button>
         <button class="btn btn-sm btn-outline-danger">Bloquer</button>
       </div>
@@ -131,3 +145,4 @@
 </div>
 
 <script src="/assets/js/timestamp.js"></script>
+<script src="/assets/js/profile.js"></script>
