@@ -72,17 +72,19 @@ Class Account extends Controller{
                                     $_SESSION['user']['user_birthdate'] = $birthdate;
 
                                     $this->Account_model->del_tags_user($_SESSION['user']['user_id']);
-                                    foreach($_POST['user_tags'] as $tag)
+                                    if(isset( $_POST['user_tags']))
                                     {
-                                        if ($tag > 0 && $tag < 2147483647)
-                                            $this->Account_model->add_tag_user($tag, $_SESSION['user']['user_id']);
-                                        else
+                                        foreach($_POST['user_tags'] as $tag)
                                         {
-                                            $id_tag = $this->Account_model->add_tag(trim(htmlspecialchars(addslashes($tag))));
-                                            $this->Account_model->add_tag_user($id_tag, $_SESSION['user']['user_id']);
+                                            if (is_numeric($tag))
+                                                $this->Account_model->add_tag_user($tag, $_SESSION['user']['user_id']);
+                                            else
+                                            {
+                                                $id_tag = $this->Account_model->add_tag(trim(htmlspecialchars(addslashes($tag))));
+                                                $this->Account_model->add_tag_user($id_tag, $_SESSION['user']['user_id']);
+                                            }
                                         }
                                     }
-
                                     $_SESSION['user']['user_tags'] = $this->Login_model->get_user_tags($_SESSION['user']['user_id']);
                                     $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $birthdate, $_SESSION['user']['user_id']);
                                     $data['success'] = "Votre profil a bien été mis à jour.";

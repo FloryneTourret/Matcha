@@ -17,6 +17,13 @@ Class Profile_model extends Model
         $req->execute();
         return ($req->fetchAll());
     }
+
+    public function get_user_tags($login)
+    {
+        $req = $this->db->prepare("SELECT `tag_name` FROM `user_tag` INNER JOIN `tags` on tags.tag_id = user_tag.id_tag INNER JOIN `users` on users.user_id = user_tag.id_user WHERE `login` = '$login'");
+        $req->execute();
+        return ($req->fetchAll());
+    }
 }
 
 ?>

@@ -13,6 +13,7 @@ Class Profile extends Controller{
         else
             $login = htmlspecialchars(addslashes($login));
         $data['user'] = $this->Profile_model->get_current($login);
+        $data['user_tags'] = $this->Profile_model->get_user_tags($login);
         $id = $data['user']['user_id'];
         $data['pictures'] = $this->Profile_model->get_pictures($id);
         if ($data['user'] == FALSE)
