@@ -8,42 +8,45 @@
           <?php } ?>
         </div>
     </figure>
-    <?php if ($user['login'] != $_SESSION['user']['login']) { ?>
-      <div class="profile_buttons text-center">
-        <?php if ($user['count_pictures'] > 0 && $_SESSION['user']['count_pictures'] > 0) { ?>
-          <?php if ($like == FALSE) { ?>
-            <button class="btn btn-sm btn-outline-primary" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="like"><i class="fas fa-heart"></i></button>
-          <?php } else { ?>
-            <button class="btn btn-sm btn-outline-secondary" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="unlike"><i class="fas fa-heart-broken"></i></button>
-          <?php } ?>
-        <?php } ?>
-        <br>
-        <?php 
-        if ($liked == TRUE && $like == FALSE){ 
-          echo '<span id="liked">Vous like !</span>';
-        }
-        else if ($liked == TRUE && $like == TRUE){ 
-          echo '<span id="liked">C\'est un match !</span>';
-        } 
-        ?>
-        <br>
-        <button class="btn btn-sm btn-outline-warning">Reporter</button>
-        <button class="btn btn-sm btn-outline-danger">Bloquer</button>
-      </div>
-    <?php } ?>
+
   </div>
   <div class="col-md-9">
-    <h1 class="user_login"><?php if ($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> ';
-                            else if ($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> ';
-                            else if ($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> ';
-                            echo $user['login'] ?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>'; ?></h1>
+    <h1 class="user_login">
+      <?php if ($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> ';
+      else if ($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> ';
+      else if ($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> ';
+      echo $user['login'] ?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';
+                            ?>
+      <?php if ($user['login'] != $_SESSION['user']['login']) { ?>
+        <?php if ($user['count_pictures'] > 0 && $_SESSION['user']['count_pictures'] > 0) { ?>
+          <?php if ($like == FALSE) { ?>
+            <button class="btn btn-sm btn-outline-dark ml-5" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="like"><i class="fas fa-heart"></i> Liker</button>
+          <?php } else { ?>
+            <button class="btn btn-sm btn-outline-dark ml-5" id="button_like" onclick="like_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="unlike"><i class="fas fa-heart-broken"></i> Vous likez</button>
+          <?php } ?>
+        <?php } ?>
+        <button data-toggle="modal" data-target="#report_blacklist" class="btn btn-sm btn-outline-light ml-5 font-weight-bold" style="color: #000">...</button>
+      <?php } ?>
+    </h1>
+    <h2 style="color: #EF6461" class="font-italic lead">
+      <?php
+      if ($liked == TRUE && $like == FALSE) {
+        echo '<span id="liked">Vous like !</span>';
+      } else if ($liked == TRUE && $like == TRUE) {
+        echo '<span id="liked">C\'est un match !</span>';
+      }
+      ?>
+    </h2>
 
-    <small class="font-italic"><?php
-                                if (-(strtotime($user['last_connexion']) - time() + 7200) < 300) {
-                                  echo '<span class="dot online" style="color: green;"><i class="fas fa-circle"></i></span> En ligne';
-                                } else {
-                                  echo '<span class="dot offline" style="color: red;"><i class="fas fa-circle"></i></span> Hors ligne. Dernière connexion : <span class="timestamp">' . $user['last_connexion'] . '</span>';
-                                } ?></small>
+    <small class="font-italic">
+      <?php
+      if (-(strtotime($user['last_connexion']) - time() + 7200) < 300) {
+        echo '<span class="dot online" style="color: green;"><i class="fas fa-circle"></i></span> En ligne';
+      } else {
+        echo '<span class="dot offline" style="color: red;"><i class="fas fa-circle"></i></span> Hors ligne. Dernière connexion : <span class="timestamp">' . $user['last_connexion'] . '</span>';
+      }
+      ?>
+    </small>
 
     <p>
       <?php echo $user['firstname'] . ' ' . $user['lastname'] . ', ';
@@ -143,6 +146,23 @@
     </div>
   </div>
 </div>
+
+
+<div class="modal fade" id="report_blacklist" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+        <a style="cursor: pointer" class="text-warning" id="button_report" onclick="report_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="report">Signaler l'utilisateur</a>
+        <br>
+        <a style="cursor: pointer" class="text-danger" id="button_blacklist" onclick="blacklist_user(<?php echo $_SESSION['user']['user_id'] ?>, <?php echo $user['user_id'] ?>)" value="block">Bloquer l'utilisateur</a>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <script src="/assets/js/timestamp.js"></script>
 <script src="/assets/js/profile.js"></script>

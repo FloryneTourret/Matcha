@@ -4,9 +4,7 @@ function like_user(id_user, id_user_liked) {
     req.send(null);
     if (document.getElementById('button_like').value == 'like')
     {
-        document.getElementById('button_like').classList.remove('btn-outline-primary')
-        document.getElementById('button_like').classList.add('btn-outline-secondary')
-        document.getElementById('button_like').innerHTML = '<i class="fas fa-heart-broken"></i>'
+        document.getElementById('button_like').innerHTML = '<i class="fas fa-heart"></i> Vous likez'
         document.getElementById('button_like').value = 'unlike'
         if (document.getElementById('liked').textContent == 'Vous like !')
             document.getElementById('liked').innerHTML = 'C\'est un match !'
@@ -14,9 +12,7 @@ function like_user(id_user, id_user_liked) {
     }
     else
     {
-        document.getElementById('button_like').classList.remove('btn-outline-secondary')
-        document.getElementById('button_like').classList.add('btn-outline-primary')
-        document.getElementById('button_like').innerHTML = '<i class="fas fa-heart"></i>'
+        document.getElementById('button_like').innerHTML = '<i class="fas fa-heart"></i> Liker'
         document.getElementById('button_like').value = 'like'
         if (document.getElementById('liked').textContent == 'C\'est un match !')
             document.getElementById('liked').innerHTML = 'Vous like !'
