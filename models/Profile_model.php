@@ -18,6 +18,43 @@ Class Profile_model extends Model
         return ($req->fetchAll());
     }
 
+    public function get_views($id)
+    {
+        $req = $this->db->prepare( "SELECT * FROM `user_view` 
+                                    INNER JOIN `users` on users.user_id = user_view.id_user_view
+                                    LEFT OUTER JOIN `user_blacklist` on users.user_id = user_blacklist.id_user_blacklisted
+                                    WHERE `id_user_viewed` = $id AND id_user_blacklist is NULL");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
+    public function get_likes($id)
+    {
+        $req = $this->db->prepare("SELECT `login`, `path_profile_picture` FROM `user_likes` 
+                                    INNER JOIN `users` on users.user_id = user_likes.id_user_like
+                                    LEFT OUTER JOIN `user_blacklist` on users.user_id = user_blacklist.id_user_blacklisted
+                                    WHERE `id_user_liked` = $id AND id_user_blacklist is NULL");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
+    public function get_mylikes($id)
+    {
+        $req = $this->db->prepare("SELECT `login`, `path_profile_picture` FROM `user_likes` 
+                                    INNER JOIN `users` on users.user_id = user_likes.id_user_liked 
+                                    LEFT OUTER JOIN `user_blacklist` on users.user_id = user_blacklist.id_user_blacklisted
+                                    WHERE `id_user_like` = $id AND id_user_blacklist is NULL");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
+    public function get_blacklist($id)
+    {
+        $req = $this->db->prepare("SELECT `login`, `path_profile_picture` FROM `user_blacklist` INNER JOIN `users` on users.user_id = user_blacklist.id_user_blacklisted WHERE `id_user_blacklist` = $id");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
     public function get_user_tags($login)
     {
         $req = $this->db->prepare("SELECT `tag_name` FROM `user_tag`
@@ -67,6 +104,95 @@ Class Profile_model extends Model
             return (TRUE);
         else
             return (FALSE);
+    }
+
+    public function get_report($current, $user)
+    {
+        $req = $this->db->prepare("SELECT * FROM `user_report` WHERE `id_user_report` = $current AND `id_user_reported` = $user");
+        $req->execute();
+        if (!empty($req->fetchAll()))
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+
+    public function get_block($current, $user)
+    {
+        $req = $this->db->prepare("SELECT * FROM `user_blacklist` WHERE `id_user_blacklist` = $current AND `id_user_blacklisted` = $user");
+        $req->execute();
+        if (!empty($req->fetchAll()))
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+
+    public function get_blocked($current, $user)
+    {
+        $req = $this->db->prepare("SELECT * FROM `user_blacklist` WHERE `id_user_blacklist` = $user AND `id_user_blacklisted` = $current");
+        $req->execute();
+        if (!empty($req->fetchAll()))
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+
+    public function already_report_user($user_report, $user_reported)
+    {
+        $req = $this->db->prepare("SELECT * FROM `user_report` WHERE `id_user_report` = $user_report AND `id_user_reported` = $user_reported");
+        $req->execute();
+        if (!empty($req->fetchAll()))
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+
+    public function report_user($user_report, $user_reported)
+    {
+        $req = $this->db->prepare("INSERT INTO `user_report` (`id_user_report`, `id_user_reported`) VALUES ($user_report, $user_reported)");
+        $req->execute();
+    }
+
+    public function unreport_user($user_report, $user_reported)
+    {
+        $req = $this->db->prepare("DELETE FROM `user_report` WHERE `id_user_report` = $user_report AND `id_user_reported` = $user_reported");
+        $req->execute();
+    }
+
+    public function already_block_user($user_block, $user_blocked)
+    {
+        $req = $this->db->prepare("SELECT * FROM `user_blacklist` WHERE `id_user_blacklist` = $user_block AND `id_user_blacklisted` = $user_blocked");
+        $req->execute();
+        if (!empty($req->fetchAll()))
+            return (TRUE);
+        else
+            return (FALSE);
+    }
+
+    public function block_user($user_block, $user_blocked)
+    {
+        $req = $this->db->prepare("INSERT INTO `user_blacklist` (`id_user_blacklist`, `id_user_blacklisted`) VALUES ($user_block, $user_blocked)");
+        $req->execute();
+    }
+
+    public function unblock_user($user_block, $user_blocked)
+    {
+        $req = $this->db->prepare("DELETE FROM `user_blacklist` WHERE `id_user_blacklist` = $user_block AND `id_user_blacklisted` = $user_blocked");
+        $req->execute();
+    }
+
+    public function view_profile($user_view, $user_viewed){
+        $req = $this->db->prepare("SELECT * FROM `user_view` WHERE `id_user_view` = $user_view AND `id_user_viewed` = $user_viewed");
+        $req->execute();
+        if (!empty($req->fetch()))
+        {
+            $req = $this->db->prepare( "UPDATE `user_view` SET `view_date`= NOW() WHERE `id_user_view` = $user_view AND `id_user_viewed` = $user_viewed");
+            $req->execute();
+        }
+        else
+        {
+            $req = $this->db->prepare( "INSERT INTO `user_view`(`id_user_view`, `id_user_viewed`) VALUES ($user_view, $user_viewed)");
+            $req->execute(); 
+        }
     }
 }
 
