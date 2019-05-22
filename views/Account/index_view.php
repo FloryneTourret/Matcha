@@ -32,7 +32,7 @@
                 <figure class="image is-128x128 img_user">
                     <h2>Ma photo de profil</h2>
                     <?php if (!empty($_SESSION['user']['path_profile_picture'])) { ?>
-                        <div data-toggle="modal" data-target="#profile_picture_modal" style='cursor: pointer; background-image: url("/<?php echo $_SESSION['user']['path_profile_picture'] ?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
+                        <div data-toggle="modal" data-target="#profile_picture_modal" style='cursor: pointer; background-image: url("/<?php echo $_SESSION['user']['path_profile_picture'] ?>"); background-size: cover; background-position: 50% 50rder-radius: 100%; height: 128px; width: 128px;'>
                         <?php } else { ?>
                             <div data-toggle="modal" data-target="#profile_picture_modal" style='cursor: pointer; background-image: url("/assets/img/avatar.png"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 128px; width: 128px;'>
                             <?php } ?>
@@ -163,8 +163,9 @@
                             <div class="input-group-prepend">
                                 <div class="input-group-text"><i class="fas fa-pen-nib"></i></div>
                             </div>
-                            <textarea class="form-control" type="text" name="user_bio" placeholder="Biographie"><?php if (!empty($_SESSION['user']['biography'])) echo $_SESSION['user']['biography']; ?></textarea>
+                            <textarea id="quote-content" class="form-control" type="text" name="user_bio" placeholder="Biographie"><?php if (!empty($_SESSION['user']['biography'])) echo $_SESSION['user']['biography']; ?></textarea>
                         </div>
+                        <button id="get-another-quote-button" class="btn btn-sm btn-outline-secondary"><i class="fas fa-sync-alt"></i> Flemme ?</button>
                     </div>
 
                     <div class="form-group">
@@ -342,3 +343,24 @@
 
 
 <script src="/assets/js/account.js"></script>
+
+<script>
+    $('#get-another-quote-button').on('click', function(e) {
+        e.preventDefault();
+        document.getElementById('quote-content').value = '';
+        $.ajax({
+            url: 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
+            success: function(data) {
+                var post = data.shift();
+                var quote = post.content.substring(3, post.content.length - 5);
+                var quote = $('#quote-content').html(quote).text();
+                document.getElementById('quote-content').value = quote;
+            },
+            cache: false
+        });
+    });
+
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+</script>
