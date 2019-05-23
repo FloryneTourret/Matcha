@@ -189,6 +189,32 @@
                         </div>
                     </div>
 
+                    <div class="form-group">
+                        <label>Adresse</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-user"></i></div>
+                            </div>
+                            <input class="form-control" type="text" name="user_pseudo" placeholder="Pseudo" required value="<?php echo $_SESSION['user']['login']; ?>">
+                        </div>
+                    </div>
+                    <div>
+                        <label>Adresse</label>
+                        <div class="input-group mb-2">
+                            <div class="input-group-prepend">
+                                <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
+                            </div>
+                            <input class="form-control" type="text" id="user_input_autocomplete_address" placeholder="Votre adresse..." value="<?php echo $_SESSION['user']['address']; ?>">
+                        </div>
+                        <input id="street_number" name="street_number" type="hidden">
+                        <input id="route" name="route" type="hidden">
+                        <input id="postal_code" name="postal_code" type="hidden">
+                        <input id="locality" name="locality" type="hidden">
+                        <input id="country" name="country" type="hidden">
+                        <input id="latitude" name="latitude" type="hidden">
+                        <input id="longitude" name="longitude" type="hidden">
+                    </div>
+
                     <input class="input" name="user_token" type="hidden" value="<?php echo $_SESSION['token']; ?>">
                     <div class="clearfix">
                         <button class="btn btn-secondary mb-2 float-right" type="submit">Mettre à jour mon profil</button>
@@ -343,7 +369,7 @@
 
 
 <script src="/assets/js/account.js"></script>
-
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFUDkSZ_ocdopTHNoZiZeq7Uq8T8ARhM4"></script>
 <script>
     $('#get-another-quote-button').on('click', function(e) {
         e.preventDefault();
@@ -363,4 +389,38 @@
     function htmlEntities(str) {
         return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
+</script>
+<script type="text/javascript">
+    function initializeAutocomplete(id) {
+        var element = document.getElementById(id);
+        if (element) {
+            var autocomplete = new google.maps.places.Autocomplete(element, {
+                types: ['geocode']
+            });
+            google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        }
+    }
+
+    function onPlaceChanged() {
+        var place = this.getPlace();
+
+        for (var i in place.address_components) {
+            var component = place.address_components[i];
+            for (var j in component.types) {
+                var type_element = document.getElementById(component.types[j]);
+                if (type_element) {
+                    type_element.value = component.long_name;
+                }
+            }
+        }
+
+        var longitude = document.getElementById("longitude");
+        var latitude = document.getElementById("latitude");
+        longitude.value = place.geometry.location.lng();
+        latitude.value = place.geometry.location.lat();
+    }
+
+    google.maps.event.addDomListener(window, 'load', function() {
+        initializeAutocomplete('user_input_autocomplete_address');
+    });
 </script>

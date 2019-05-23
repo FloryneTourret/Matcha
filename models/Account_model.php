@@ -94,6 +94,11 @@ Class Account_model extends Model
         $req->execute();
         return($this->db->lastInsertId());
     }
+
+    public function updateAddress($longitude, $latitude, $address, $city, $country, $id){
+        $req = $this->db->prepare( "UPDATE `users` SET `longitude`='$longitude',`latitude`='$latitude',`address`='$address',`city`='$city',`country`='$country' WHERE `user_id` = $id");
+        $req->execute();
+    }
 }
 
 ?>

@@ -70,7 +70,6 @@ Class Account extends Controller{
                                     $_SESSION['user']['user_orientation_id'] = $orientation;
                                     $_SESSION['user']['user_gender_id'] = $gender;
                                     $_SESSION['user']['user_birthdate'] = $birthdate;
-
                                     $this->Account_model->del_tags_user($_SESSION['user']['user_id']);
                                     if(isset( $_POST['user_tags']))
                                     {
@@ -87,6 +86,33 @@ Class Account extends Controller{
                                     }
                                     $_SESSION['user']['user_tags'] = $this->Login_model->get_user_tags($_SESSION['user']['user_id']);
                                     $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $birthdate, $_SESSION['user']['user_id']);
+                                    if(!empty($_POST['route']) && !empty($_POST['locality']) && !empty($_POST['country']) && !empty($_POST['latitude']) && !empty($_POST['longitude']))
+                                    {
+                                        if(!empty($_POST['street_number']))
+                                            $street_number = trim(htmlspecialchars(addslashes($_POST[ 'street_number'])));
+                                        else
+                                            $street_number = '';
+                                        if (!empty($_POST[ 'postal_code']))
+                                            $postal_code = trim(htmlspecialchars(addslashes($_POST[ 'postal_code'])));
+                                        else
+                                            $postal_code = '';
+                                        $route = trim(htmlspecialchars(addslashes($_POST['route'])));
+                                        $city = trim(htmlspecialchars(addslashes($_POST['locality'])));
+                                        $country = trim(htmlspecialchars(addslashes($_POST['country'])));
+                                        $latitude = trim(htmlspecialchars(addslashes($_POST['latitude'])));
+                                        $longitude = trim(htmlspecialchars(addslashes($_POST['longitude'])));
+
+                                        $address = trim($street_number.' '. $route.', '. $postal_code.' '. $city . ', '. $country);
+
+                                        $this->Account_model->updateAddress($longitude, $latitude, $address, $city, $country, $_SESSION['user']['user_id']);
+
+                                        $_SESSION['user']['longitude'] = $longitude;
+                                        $_SESSION['user']['latitude'] = $latitude;
+                                        $_SESSION['user']['address'] = $address;
+                                        $_SESSION['user']['city'] = $city;
+                                        $_SESSION['user']['country'] = $country;
+                                    }
+
                                     $data['success'] = "Votre profil a bien été mis à jour.";
                                 }
                                 else
