@@ -16,9 +16,9 @@ Class Login extends Controller{
                 $login = trim(strtolower(htmlspecialchars(addslashes($_POST['user_login']))));
                 $password = htmlspecialchars(addslashes($_POST['user_password']));
                 $user = $this->Login_model->get_user($login);
-                $user['user_tags'] = $this->Login_model->get_user_tags($user['user_id']);
                 if (!empty($user))
                 {
+                    $user['user_tags'] = $this->Login_model->get_user_tags($user['user_id']);
                     if (password_verify($password, $user['password']))
                     {
                         if ($user['enabled'] == 1)
