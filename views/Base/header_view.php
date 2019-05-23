@@ -24,6 +24,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
     <script src="/assets/js/rcrop.min.js"></script>
 
+    <?php 
+    if(isset($_SESSION['user']))
+    {
+        if(empty($_SESSION['user']['address']))
+        {
+    ?>
+            <script src="/assets/js/geolocate.js"></script>
+    <?php 
+        }
+    }
+    ?>
 
     <link rel="shortcut icon" href="/assets/img/camera.png" type="image/png">
 </head>

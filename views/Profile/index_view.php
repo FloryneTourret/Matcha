@@ -15,8 +15,9 @@
       <?php if ($user['user_gender_id'] == 1) echo '<i class="fas fa-mars"></i> ';
       else if ($user['user_gender_id'] == 2) echo '<i class="fas fa-venus"></i> ';
       else if ($user['user_gender_id'] == 3) echo '<i class="fas fa-mercury"></i> ';
-      echo $user['login'] ?><?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>';
-                            ?>
+      echo $user['login'] ?>
+      <?php if (isset($user['city'])) echo '<small>(' . $user['city'] . ')</small>'; ?>
+      <?php if ($user['login'] == $_SESSION['user']['login']) echo '<a href="/index.php/Account" class="settings_user"><i class="fas fa-cog"></i></a>'; ?>
       <?php if ($user['login'] != $_SESSION['user']['login']) { ?>
         <?php if ($user['count_pictures'] > 0 && $_SESSION['user']['count_pictures'] > 0) { ?>
           <?php if ($like == FALSE) { ?>
@@ -240,7 +241,7 @@
                     <a class="lead" style="color: #EF6461" href="/index.php/Profile/<?php echo $like['login'] ?>"><?php echo $like['login'] ?></a>
                   </td>
                   <td>
-                    <?php if (in_array($like, $mylikes)) { ?>
+                    <?php if (in_array($like, $likes)) { ?>
                       <p style="color: #5D576B"><i class="far fa-heart"></i> Vous avez un match !</p>
                     <?php } ?>
                   </td>

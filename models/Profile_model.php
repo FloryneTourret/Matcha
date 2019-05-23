@@ -194,6 +194,17 @@ Class Profile_model extends Model
             $req->execute(); 
         }
     }
+
+    public function address_user($id, $address, $city, $country){
+        $req = $this->db->prepare("UPDATE `users` SET `address`= '$address', `city` = '$city', `country` = '$country' WHERE `user_id` = $id");
+        $req->execute();
+    }
+
+    public function location_user($id, $lat, $long)
+    {
+        $req = $this->db->prepare("UPDATE `users` SET `latitude`= '$lat', `longitude` = '$long' WHERE `user_id` = $id");
+        $req->execute();
+    }
 }
 
 ?>

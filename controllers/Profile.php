@@ -75,5 +75,17 @@ Class Profile extends Controller{
                 else
                     $this->Profile_model->unblock_user($_SESSION['user']['user_id'], $_GET['user_blocked']);
         }
+        if (isset($_GET['address']) && isset($_GET['city']) && isset($_GET['country']))
+        {
+            $address = trim(htmlspecialchars(addslashes($_GET['address'])));
+            $city = trim(htmlspecialchars(addslashes($_GET['city'])));
+            $country = trim(htmlspecialchars(addslashes($_GET['country'])));
+            $this->Profile_model->address_user($_SESSION['user']['user_id'], $address, $city, $country);
+        }
+        if (isset($_GET['lat']) && isset($_GET['long'])) {
+                $lat = trim(htmlspecialchars(addslashes($_GET['lat'])));
+                $long = trim(htmlspecialchars(addslashes($_GET['long'])));
+                $this->Profile_model->location_user($_SESSION['user']['user_id'], $lat, $long);
+            }
     }
 }
