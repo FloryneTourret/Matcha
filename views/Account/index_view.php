@@ -188,16 +188,6 @@
 
                         </div>
                     </div>
-
-                    <div class="form-group">
-                        <label>Adresse</label>
-                        <div class="input-group mb-2">
-                            <div class="input-group-prepend">
-                                <div class="input-group-text"><i class="fas fa-user"></i></div>
-                            </div>
-                            <input class="form-control" type="text" name="user_pseudo" placeholder="Pseudo" required value="<?php echo $_SESSION['user']['login']; ?>">
-                        </div>
-                    </div>
                     <div>
                         <label>Adresse</label>
                         <div class="input-group mb-2">
