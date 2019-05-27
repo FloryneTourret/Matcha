@@ -117,7 +117,6 @@ function change_profile_picture(){
     $('.pictures_list_img').each(function(index, el){
         if (el.style.opacity == "1")
         {
-            console.log(el.id.substr(8));
             const req = new XMLHttpRequest();
             req.onreadystatechange = function() {
                 if (this.readyState == 4 && this.status == 200) {  
