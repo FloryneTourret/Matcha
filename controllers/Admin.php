@@ -32,9 +32,9 @@ Class Admin extends Controller{
                 $user_lastname = strtoupper($this->Random_model->random_last_name());
                 $user_birthdate = $this->Random_model->randomDate('1970-01-01 00:00:00', '2001-01-01 00:00:00');
                 $user_orientation = random_int(1, 5);
-                $user_login = strtolower($this->Random_model->random_username($user_gender));
+                $user_login = substr(strtolower($this->Random_model->random_username($user_gender)), 0, 8);
                 while ($this->Register_model->login_already_used($user_login) == TRUE) {
-                    $user_login = strtolower($this->Random_model->random_username($user_gender));
+                    $user_login = substr(strtolower($this->Random_model->random_username($user_gender)), 0, 8);
                 }
                 $user_email = strtolower($user_login.'@matcha.z4r7p1.fr');
                 while ($this->Register_model->email_already_used($user_email) == TRUE) {
