@@ -5,6 +5,8 @@
 <?php } else { ?>
 
   <h1 class="text-center mt-4 mb-5" style="color:#0A1128">Ces personnes pourraient vous plaire</h1>
+  <p>Trier par : </p>
+  <p>Fitrer par : </p>
   <?php
 
   if (
@@ -23,7 +25,8 @@
       <div class="row">
 
         <?php foreach ($users as $user) { ?>
-          <div class="col-md-3 text-center pt-4 position-relative" style="background-color: #FFFFFF; border: 1px solid #F4F2F7; padding-bottom: 100px;">
+          <div class="col-md-3 text-centerposition-relative" style="background-color: #FFFFFF; border: 1px solid #F4F2F7; padding-bottom: 100px;padding-top: 50px;">
+            <small class="position-absolute" style="color: #EF6561; margin: 10px; top: 10px; right: 10px;"><?php echo $user['match'] ?>%</small>
             <?php if (!empty($user['path_profile_picture'])) { ?>
               <div style='background-image: url("/<?php echo $user['path_profile_picture'] ?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 80px; width: 80px; margin: auto;'></div>
             <?php } else { ?>
@@ -35,9 +38,9 @@
             ? ((date("Y") - $birthDate[0]) - 1)
             : (date("Y") - $birthDate[0]));
           ?>
-            <p class="lead mt-2 mb-2"><a href="/index.php/Profile/<?php echo $user['login'] ?>" style="color: #EF6561"><?php echo $user['login'] . ' (' . $age  . 'ans)' ?></a></p>
+            <p class="lead mt-2 mb-2 text-center"><a href="/index.php/Profile/<?php echo $user['login'] ?>" style="color: #EF6561"><?php echo $user['login'] . ' (' . $age  . 'ans)' ?></a></p>
 
-            <div class="mt-2 mb-2">
+            <div class="mt-2 mb-2 text-center">
               <?php
               $i = 0;
               if (isset($user['user_tags'][0])) {
@@ -54,12 +57,20 @@
               ?>
             </div>
 
-            <div class="mt-4 mb-2 position-absolute" style="bottom: 50px;left: 0;right: 0;">
-              <small><?php echo $user['city']; ?></small>
+            <div class="mt-4 mb-2 position-absolute text-center" style="bottom: 50px;left: 0;right: 0;">
+              <small><?php echo $user['city']; ?> (<?php echo $user['distance']; ?>km)</small>
             </div>
 
-            <div class="mt-2 position-absolute" style="bottom: 10px;left: 0;right: 0;">
-              <small style="color: #EF6561; margin: 10px;"><i class="fas fa-heart"></i> Liker</small>
+            <div class="mt-2 position-absolute text-center" style="bottom: 10px;left: 0;right: 0;">
+              <?php if ($user['liked'] == 0 && $user['like'] == 0) { ?>
+                <small style="color: #EF6561; margin: 10px;"><i class="fas fa-heart"></i> Liker</small>
+              <?php } else if ($user['like'] == 1 && $user['liked'] == 1) { ?>
+                <small style="color: #EF6561; margin: 10px;"><i class="fas fa-heart"></i> Vous matchez</small>
+              <?php } else if ($user['liked'] == 1 && $user['like'] == 0) { ?>
+                <small style="color: #EF6561; margin: 10px;"><i class="fas fa-heart"></i> Vous likez</small>
+              <?php } else { ?>
+                <small style="color: #EF6561; margin: 10px;"><i class="fas fa-heart"></i> Liker en retour</small>
+              <?php } ?>
               <small style="color: #EF6561; margin: 10px;"><i class="fas fa-fire"></i> <?php echo $user['popularity']; ?> pts</small>
             </div>
           </div>
