@@ -3,7 +3,7 @@
 class Controller
 {
 	private $_vars = array();
-	private $_params = 0;
+	private $_params = array();
     public function __construct()
     {
         session_start();

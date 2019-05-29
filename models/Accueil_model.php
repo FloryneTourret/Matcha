@@ -22,7 +22,7 @@ Class Accueil_model extends Model
         return $meter;
     }
 
-    public function get_suggestions($type){
+    public function get_suggestions($type, $age_min, $age_max, $city, $distance, $pop_min, $pop_max){
         $orientation = $_SESSION['user']['user_orientation_id'];
         $gender = $_SESSION['user']['user_gender_id'];
         $latitude = $_SESSION['user']['latitude'];
@@ -202,6 +202,70 @@ Class Accueil_model extends Model
             $i++;
         }
 
+        if ($age_min != 'none') {
+            $i = 0;
+            foreach($results as $user)
+            {
+                $datemin = date("Y-m-d", strtotime(date("Y-m-d") . '-' . $age_min . ' year'));
+                if($user['user_birthdate'] > $datemin)
+                {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($age_max != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                $datemax = date("Y-m-d", strtotime(date("Y-m-d") . '-' . ($age_max + 1) . ' year'));
+                if ($user['user_birthdate'] <= $datemax) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($city != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                if ($user['city'] != $city) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($distance != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                if ($user['distance'] > $distance) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($pop_min != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                if ($user['popularity'] < $pop_min) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($pop_max != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                if ($user['popularity'] > $pop_max) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
 
         if ($type == 'distance') {
             $dist = array();
