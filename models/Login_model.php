@@ -6,7 +6,10 @@ Class Login_model extends Model
     {
         $req = $this->db->prepare("SELECT *,
         (SELECT count(*) FROM `pictures` INNER JOIN `users` ON users.user_id = pictures.picture_user_id WHERE `login` = '$login' LIMIT 5) as count_pictures
-        FROM `users` WHERE `login` = '$login'");
+        FROM `users`
+        INNER JOIN `genders` ON genders.gender_id = users.user_gender_id
+        INNER JOIN `orientations` ON orientations.orientation_id = users.user_orientation_id
+        WHERE `login` = '$login'");
         $req->execute();
         return ($req->fetch());
     }
