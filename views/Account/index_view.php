@@ -171,7 +171,7 @@
                     <div class="form-group">
                         <label>Tags</label>
                         <div class="input-group mb-2">
-                            <select class="form-control" id="tags-select" name="user_tags[]" multiple="multiple" style="width: 100%">
+                            <select id="tags-select" name="user_tags[]" multiple="multiple" style="width: 100%">
                                 <?php foreach ($tags as $tag) { ?>
                                     <?php $found = 0; ?>
                                     <?php foreach ($_SESSION['user']['user_tags'] as $user_tag) { ?>
@@ -358,5 +358,70 @@
 </div>
 
 
-<script src="/assets/js/account.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFUDkSZ_ocdopTHNoZiZeq7Uq8T8ARhM4"></script>
+<script src="/assets/js/account.js"></script>
+<script>
+    $('#tags-select').selectize({
+        plugins: ['remove_button'],
+        delimiter: ',',
+        persist: false,
+        create: function(input) {
+            return {
+                value: input,
+                text: input
+            }
+        }
+    });
+
+    $('#get-another-quote-button').on('click', function(e) {
+        e.preventDefault();
+        document.getElementById('quote-content').value = '';
+        $.ajax({
+            url: 'http://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1',
+            success: function(data) {
+                var post = data.shift();
+                var quote = post.content.substring(3, post.content.length - 5);
+                var quote = $('#quote-content').html(quote).text();
+                document.getElementById('quote-content').value = quote;
+            },
+            cache: false
+        });
+    });
+
+    function htmlEntities(str) {
+        return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function initializeAutocomplete(id) {
+        var element = document.getElementById(id);
+        if (element) {
+            var autocomplete = new google.maps.places.Autocomplete(element, {
+                types: ['geocode']
+            });
+            google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        }
+    }
+
+    function onPlaceChanged() {
+        var place = this.getPlace();
+
+        for (var i in place.address_components) {
+            var component = place.address_components[i];
+            for (var j in component.types) {
+                var type_element = document.getElementById(component.types[j]);
+                if (type_element) {
+                    type_element.value = component.long_name;
+                }
+            }
+        }
+
+        var longitude = document.getElementById("longitude");
+        var latitude = document.getElementById("latitude");
+        longitude.value = place.geometry.location.lng();
+        latitude.value = place.geometry.location.lat();
+    }
+
+    google.maps.event.addDomListener(window, 'load', function() {
+        initializeAutocomplete('user_input_autocomplete_address');
+    });
+</script>

@@ -38,3 +38,27 @@
 </head>
 
 <body class="has-navbar-fixed-top">
+
+    <select class="js-example-basic-multiple col-md-12" name="states[]" multiple="multiple">
+        <option value="AL">Alabama</option>
+        <option value="WY">Wyoming</option>
+    </select>
+
+
+
+    <script>
+        $('.js-example-basic-multiple').selectize({
+            plugins: ['remove_button'],
+            delimiter: ',',
+            persist: false,
+            create: function(input) {
+                return {
+                    value: input,
+                    text: input
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

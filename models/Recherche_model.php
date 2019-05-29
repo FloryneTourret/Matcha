@@ -4,7 +4,7 @@ Class Recherche_model extends Model
 {
     public function get_tags()
     {
-        $req = $this->db->prepare("SELECT * FROM `tags` WHERE 1");
+        $req = $this->db->prepare("SELECT * FROM `tags` WHERE 1 ORDER BY `tag_name` ASC");
         $req->execute();
         return ($req->fetchAll());
     }

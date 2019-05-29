@@ -5,7 +5,7 @@ Class Recherche extends Controller{
     public function index(){
         $this->loadModel('Recherche_model');
         $data['tags'] = $this->Recherche_model->get_tags();
-        // var_dump($_SESSION);
+        
         if (!empty($_POST['orientation']) || !empty($_POST['latitude']) ||
             !empty($_POST['min_age']) || !empty($_POST['max_age']) || 
             !empty($_POST['distance']) || !empty($_POST['tags']))
