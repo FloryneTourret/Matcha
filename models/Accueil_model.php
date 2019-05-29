@@ -22,7 +22,7 @@ Class Accueil_model extends Model
         return $meter;
     }
 
-    public function get_suggestions(){
+    public function get_suggestions($type){
         $orientation = $_SESSION['user']['user_orientation_id'];
         $gender = $_SESSION['user']['user_gender_id'];
         $latitude = $_SESSION['user']['latitude'];
@@ -203,11 +203,39 @@ Class Accueil_model extends Model
         }
 
 
-        $match = array();
-        foreach ($results as $key => $row) {
-            $match[$key] = $row['match'];
+        if ($type == 'distance') {
+            $dist = array();
+            foreach ($results as $key => $row) {
+                $dist[$key] = $row['distance'];
+            }
+            array_multisort($dist, SORT_ASC, $results);
+        } else if ($type == 'age') {
+            $age = array();
+            foreach ($results as $key => $row) {
+                $age[$key] = $row['user_birthdate'];
+            }
+            array_multisort($age, SORT_DESC, $results);
+        } else if ($type == 'popularite') {
+            $popu = array();
+            foreach ($results as $key => $row) {
+                $popu[$key] = $row['popularity'];
+            }
+            array_multisort($popu, SORT_DESC, $results);
+        } else if ($type == 'tags') {
+            $tags = array();
+            foreach ($results as $key => $row) {
+                $tags[$key] = $row['tags_commun'];
+            }
+            array_multisort($tags, SORT_DESC, $results);
         }
-        array_multisort($match, SORT_DESC, $results);
+        else{
+            $match = array();
+            foreach ($results as $key => $row) {
+                $match[$key] = $row['match'];
+            }
+            array_multisort($match, SORT_DESC, $results);
+        }
+        
         return ($results);
     }
     
