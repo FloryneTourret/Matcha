@@ -31,6 +31,15 @@
       <input type="number" class="form-control" id="pop_max" placeholder="Popularité maximum">
     </div>
 
+    <div class="input-group mb-4 mr-sm-4" style="min-width: 30vw;">
+      <select id="tags" name="tags[]" class="selectpicker form-control"multiple>
+        <?php
+        foreach ($tags as $tag)
+          echo '<option>' . $tag['tag_name'] . '</option>';
+        ?>
+      </select>
+    </div>
+
     <button onclick="sort()" class="btn btn-primary mb-4" style="background-color: #EF6461; color: black; border: none">Filtrer</button>
   </div>
 
@@ -85,7 +94,27 @@
     pop_max = document.getElementById('pop_max').value;
     if (pop_max == '')
       pop_max = 'none';
-    $("#suggestions").load("/index.php/Accueil/sort/" + type + '?age_min=' + age_min + '&age_max=' + age_max + '&city=' + city + '&distance=' + distance + '&pop_min=' + pop_min + '&pop_max=' + pop_max);
+    tags = getSelectValues(document.getElementById('tags'));
+    tags_user = JSON.stringify(tags)
+    if (tags_user == '[]')
+      tags_user = "none";
+
+    $("#suggestions").load("/index.php/Accueil/sort/" + type + '?age_min=' + age_min + '&age_max=' + age_max + '&city=' + city + '&distance=' + distance + '&pop_min=' + pop_min + '&pop_max=' + pop_max + '&tags=' + tags_user);
+  }
+
+  function getSelectValues(select) {
+    var result = [];
+    var options = select && select.options;
+    var opt;
+
+    for (var i = 0, iLen = options.length; i < iLen; i++) {
+      opt = options[i];
+
+      if (opt.selected) {
+        result.push(opt.value || opt.text);
+      }
+    }
+    return result;
   }
   sort();
 </script>

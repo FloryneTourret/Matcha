@@ -22,7 +22,7 @@ Class Accueil_model extends Model
         return $meter;
     }
 
-    public function get_suggestions($type, $age_min, $age_max, $city, $distance, $pop_min, $pop_max){
+    public function get_suggestions($type, $age_min, $age_max, $city, $distance, $pop_min, $pop_max, $search_tags){
         $orientation = $_SESSION['user']['user_orientation_id'];
         $gender = $_SESSION['user']['user_gender_id'];
         $latitude = $_SESSION['user']['latitude'];
@@ -260,6 +260,23 @@ Class Accueil_model extends Model
             $i = 0;
             foreach ($results as $user) {
                 if ($user['popularity'] > $pop_max) {
+                    array_splice($results, $i, 1);
+                    $i--;
+                }
+                $i++;
+            }
+        }
+        if ($search_tags != 'none') {
+            $i = 0;
+            foreach ($results as $user) {
+                $tags_commun = 0;
+                foreach ($user['user_tags'] as $user_tag) {
+                    foreach ( $search_tags as $tag) {
+                        if ($tag == $user_tag['tag_name'])
+                            $tags_commun++;
+                    }
+                }
+                if($tags_commun != count($search_tags)) {
                     array_splice($results, $i, 1);
                     $i--;
                 }
