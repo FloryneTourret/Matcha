@@ -13,7 +13,7 @@ Class Login_model extends Model
 
     public function get_user_tags($id)
     {
-        $req = $this->db->prepare("SELECT `id_tag` FROM `user_tag` WHERE `id_user` = '$id'");
+        $req = $this->db->prepare("SELECT `id_tag`, `tag_name` FROM `user_tag` INNER JOIN `tags` on tags.tag_id = user_tag.id_tag WHERE `id_user` = '$id'");
         $req->execute();
         return ($req->fetchAll());
     }

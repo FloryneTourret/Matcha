@@ -76,14 +76,18 @@ Class Profile_model extends Model
 
     public function like_user($user_like, $user_liked)
     {
-        $req = $this->db->prepare( "INSERT INTO `user_likes` (`id_user_like`, `id_user_liked`) VALUES ($user_like, $user_liked)");
+        $req = $this->db->prepare("INSERT INTO `user_likes` (`id_user_like`, `id_user_liked`) VALUES ($user_like, $user_liked)");
         $req->execute();
+        $pts = $this->db->prepare("UPDATE `users` SET `popularity`= `popularity` + 15 WHERE `user_id` = $user_liked");
+        $pts->execute();
     }
 
     public function unlike_user($user_like, $user_liked)
     {
         $req = $this->db->prepare("DELETE FROM `user_likes` WHERE `id_user_like` = $user_like AND `id_user_liked` = $user_liked");
         $req->execute();
+        $pts = $this->db->prepare("UPDATE `users` SET `popularity`= `popularity` - 15 WHERE `user_id` = $user_liked");
+        $pts->execute();
     }
 
     public function get_like($current, $user)
@@ -191,7 +195,9 @@ Class Profile_model extends Model
         else
         {
             $req = $this->db->prepare( "INSERT INTO `user_view`(`id_user_view`, `id_user_viewed`) VALUES ($user_view, $user_viewed)");
-            $req->execute(); 
+            $req->execute();
+            $pts = $this->db->prepare("UPDATE `users` SET `popularity`= `popularity` + 1 WHERE `user_id` = $user_viewed");
+            $pts->execute();
         }
     }
 

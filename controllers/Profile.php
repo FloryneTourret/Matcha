@@ -37,7 +37,10 @@ Class Profile extends Controller{
                 $data['mylikes'] = $this->Profile_model->get_mylikes($id);
                 $data['blacklist'] = $this->Profile_model->get_blacklist($id);
                 if($id != $_SESSION['user']['user_id'])
+                {
                     $this->Profile_model->view_profile($_SESSION['user']['user_id'], $id);
+                    $data[ 'user'] = $this->Profile_model->get_current($login);
+                }
                 $this->loadView('Base/header_view');
                 $this->loadView('Base/navbar_view');
                 $this->loadView('Profile/index_view', $data);

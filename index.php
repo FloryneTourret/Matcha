@@ -30,9 +30,15 @@ if ($controller == 'Profile')
 
 if (file_exists('controllers/' . $controller . '.php')) {
     require 'controllers/' . $controller . '.php';
-	$controller = new $controller();
+    $controller = new $controller();
 	if (isset($params[2]) && !empty($params[2])) {
 		$controller->set_params($params[2]);
+        $i = 0;
+        while(isset($params[$i]) && !empty($params[$i]))
+        {
+            $controller->set_params($params[$i]);
+            $i++;
+        }
 	}
     if (method_exists($controller, $method)) {
         if (!empty($argv))

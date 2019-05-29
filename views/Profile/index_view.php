@@ -76,15 +76,7 @@
     </p>
   </div>
   <div clas="col-md-2">
-    <?php
-    $popularite = 0;
-
-    foreach ($views as $view)
-      $popularite++;
-    foreach ($likes as $like)
-      $popularite += 15;
-    ?>
-    <p class="lead" style="color: #EF6461"><i class=" fas fa-fire"></i> <span id="popularite"><?php echo $popularite; ?></span> pts</p>
+    <p class="lead" style="color: #EF6461"><i class=" fas fa-fire"></i> <span id="popularite"><?php echo $user['popularity']; ?></span> pts</p>
   </div>
 </div>
 <div class="row">
