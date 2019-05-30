@@ -417,8 +417,10 @@
 
         var longitude = document.getElementById("longitude");
         var latitude = document.getElementById("latitude");
-        longitude.value = place.geometry.location.lng();
-        latitude.value = place.geometry.location.lat();
+        if (longitude.value != '' && latitude.value != '') {
+            longitude.value = place.geometry.location.lng();
+            latitude.value = place.geometry.location.lat();
+        }
     }
 
     google.maps.event.addDomListener(window, 'load', function() {
