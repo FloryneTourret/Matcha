@@ -9,7 +9,7 @@ Class Recherche_model extends Model
         return ($req->fetchAll());
     }
 
-    public function get_users_from_search($genre, $min, $max, $orientation, $locality, $distance, $tags)
+    public function get_users_from_search($genre, $min, $max, $orientation, $locality, $distance, $tags, $min_pop, $max_pop)
     {
         $datemin = date("Y-m-d", strtotime(date("Y-m-d").'-'.$min.' year'));
         $datemax = date("Y-m-d", strtotime(date("Y-m-d").'-'.$max.' year'));

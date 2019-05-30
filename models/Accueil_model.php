@@ -170,21 +170,26 @@ Class Accueil_model extends Model
             $results[$i]['tags_commun'] = $tags_commun;
             $i++;
         }
-
+        $mybirthDate = $_SESSION['user']['user_birthdate'];
+        $mybirthDate = explode("-", $mybirthDate);
+        $age = (date("md", date("U", mktime(0, 0, 0, $mybirthDate[1], $mybirthDate[2], $mybirthDate[0]))) > date("md")
+            ? ((date("Y") - $mybirthDate[0]) - 1)
+            : (date("Y") - $mybirthDate[0]));
         $i = 0;
         foreach ($results as $user) {
             $match = 0;
             $match_tag = 0;
             $match_pic = 0;
-            $match_dist = 45;
+            $match_dist = 35;
             $match_pop = 0;
+            $match_age = 0;
 
             $match_tag = 5 * $tags_commun;
             if ($match_tag > 25)
                 $match_tag = 25;
             $match_pic = 2 * $user['count_pictures'];
             $dist = 0;
-            while ($dist <= 225)
+            while ($dist <= 175)
             {
                 if($user['distance'] > $dist)
                     $match_dist -= 5;
@@ -196,8 +201,18 @@ Class Accueil_model extends Model
                     $match_pop += 5;
                 $pop += 50;
             }
+           
+            $birthDate = $user['user_birthdate'];
+            $birthDate = explode("-", $birthDate);
+            $user['age']  = (date("md", date("U", mktime(0, 0, 0, $birthDate[1], $birthDate[2], $birthDate[0]))) > date("md")
+                ? ((date("Y") - $birthDate[0]) - 1)
+                : (date("Y") - $birthDate[0]));
 
-            $match = $match_tag + $match_pic + $match_dist + $match_pop;
+            if($user['age'] > ($age - 5) &&  $user['age'] < ($age + 5))
+                $match_age = 10;
+            else if ($user['age'] > ($age - 10) &&  $user['age'] < ($age + 10))
+                $match_age = 5;
+            $match = $match_tag + $match_pic + $match_dist + $match_pop + $match_age;
             $results[$i]['match'] = $match;
             $i++;
         }

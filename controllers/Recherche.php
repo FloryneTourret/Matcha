@@ -8,7 +8,8 @@ Class Recherche extends Controller{
         
         if (!empty($_POST['orientation']) || !empty($_POST['latitude']) ||
             !empty($_POST['min_age']) || !empty($_POST['max_age']) || 
-            !empty($_POST['distance']) || !empty($_POST['tags']))
+            !empty($_POST['distance']) || !empty($_POST['tags']) ||
+            !empty($_POST['min_pop']) || !empty($_POST['max_pop']))
         {
             if (!empty($_POST['min_age']) && !empty($_POST['max_age']))
             {
@@ -46,7 +47,20 @@ Class Recherche extends Controller{
                     $i++;
                 }
             }
-            $search = $this->Recherche_model->get_users_from_search($_SESSION['user']["orientation_name"], $min, $max, $orientation, $city, $distance, $tags);
+            if (!empty($_POST['min_pop']) && !empty($_POST['max_pop'])) {
+                $min_pop = htmlspecialchars(addslashes($_POST['min_pop']));
+                $max_pop = htmlspecialchars(addslashes($_POST['max_pop']));
+                if ( $min_pop > $max_pop)
+                    $data['error'] = "La popularité minimum est supérieur à la popularité maximum";
+            } else if (!empty($_POST['min_pop']))
+                $min_pop = htmlspecialchars(addslashes($_POST['min_pop']));
+            else if (!empty($_POST['max_pop']))
+                $max_pop = htmlspecialchars(addslashes($_POST['max_pop']));
+            else {
+                $min_pop = 0;
+                $max_pop = 5000;
+            }
+            $data['search'] = $this->Recherche_model->get_users_from_search($_SESSION['user']["orientation_name"], $min, $max, $orientation, $city, $distance, $tags, $min_pop, $max_pop);
         }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
