@@ -63,6 +63,7 @@ Class Profile extends Controller{
                     $this->Profile_model->like_user($_SESSION['user']['user_id'], $_GET['user_liked']);
                     if ($this->Profile_model->get_liked($_SESSION['user']['user_id'], $_GET['user_liked']) == TRUE)
                         $this->Profile_model->create_discussion($_SESSION['user']['user_id'], $_GET['user_liked']);
+                    // CREER NOTIF DE MATCH
                 }
                 else
                     $this->Profile_model->unlike_user($_SESSION['user']['user_id'], $_GET['user_liked']);
