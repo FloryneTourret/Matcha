@@ -218,4 +218,15 @@ Class Account extends Controller{
         $this->loadView('Account/index_view', $data);
         $this->loadView('Base/footer_view');
     }
+
+    public function getSession()
+    {
+        $this->loadModel('Login_model');
+        $user = $this->Login_model->get_user($_SESSION['user']['login']);
+        $_SESSION['user']['address'] = $user['address'];
+        $_SESSION['user']['city'] = $user['city'];
+        $_SESSION['user']['country'] = $user['country'];
+        $_SESSION['user']['latitude'] = $user['latitude'];
+        $_SESSION['user']['longitude'] = $user['longitude'];
+    }
 }

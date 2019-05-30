@@ -34,6 +34,7 @@
 }
 ?>
 
+
     <link rel="shortcut icon" href="/assets/img/camera.png" type="image/png">
 </head>
 

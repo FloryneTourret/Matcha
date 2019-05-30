@@ -5,7 +5,11 @@ function getUserAdress(latitude, longitude) {
                 address = response.results[0].formatted_address
                 city = response.results[7].formatted_address.split(',')
                 country = response.results[response.results.length - 1].formatted_address
-                $.ajax('/index.php/Profile?address=' + address + '&city=' + city[0] + "&country=" + country)
+                $.ajax('/index.php/Profile?address=' + address + '&city=' + city[0] + "&country=" + country).done(function () {
+                    $.ajax('/index.php/Account/getSession').done(function () {
+                        location.reload();
+                    });
+                });
             },
         )
 }
