@@ -60,7 +60,7 @@ Class Recherche extends Controller{
                 $min_pop = 0;
                 $max_pop = 5000;
             }
-            $data['search'] = $this->Recherche_model->get_users_from_search($_SESSION['user']["orientation_name"], $min, $max, $orientation, $city, $distance, $tags, $min_pop, $max_pop);
+            $data['search'] = $this->Recherche_model->get_users_from_search($_SESSION['user']['genre'], $min, $max, $orientation, $city, $distance, $tags, $min_pop, $max_pop);
         }
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view');
