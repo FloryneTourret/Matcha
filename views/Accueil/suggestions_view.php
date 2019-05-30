@@ -2,8 +2,10 @@
   <div class="row">
 
     <?php foreach ($users as $user) { ?>
-      <div class="col-md-3 text-centerposition-relative" style="background-color: #FFFFFF; border: 1px solid #F4F2F7; padding-bottom: 100px;padding-top: 50px;">
-        <small class="position-absolute" style="color: #EF6561; margin: 10px; top: 10px; right: 10px;"><?php echo $user['match'] ?>%</small>
+      <div class="col-md-3 text-center position-relative" style="background-color: #FFFFFF; border: 1px solid #F4F2F7; padding-bottom: 100px;padding-top: 50px;">
+        <?php if (isset($user['match'])) { ?>
+            <small class="position-absolute" style="color: #EF6561; margin: 10px; top: 10px; right: 10px;"><?php echo $user['match'] ?>%</small>
+        <?php } ?>
         <?php if (!empty($user['path_profile_picture'])) { ?>
           <div style='background-image: url("/<?php echo $user['path_profile_picture'] ?>"); background-size: cover; background-position: 50% 50%; border-radius: 100%; height: 80px; width: 80px; margin: auto;'></div>
         <?php } else { ?>
