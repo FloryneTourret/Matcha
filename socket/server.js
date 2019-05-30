@@ -35,8 +35,13 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
 
+    socket.on('join', (data) => {
+        socket.join('room-' + data.roomId);
+        console.log("User joined room room-" + data.roomId);
+    })
+
     socket.on('message', (data) => {
         console.log(data);
-        socket.to('room-' + data.roomId).emit('message-received', { user_id: data.userId, message_content: data.content, path_profile_picture: data.picture });
+        socket.to('room-' + data.roomId).emit('message-received', { discussion_id: data.discussionId, user_id: data.userId, message_content: data.content, path_profile_picture: data.picture });
     })
 })

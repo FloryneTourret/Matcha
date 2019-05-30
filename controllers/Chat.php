@@ -34,12 +34,21 @@ Class Chat extends Controller {
 	{
 		if (isset($_POST['discussion_id']) && is_numeric($_POST['discussion_id']) && isset($_POST['message_content']))
 		{
-			echo "ok";
 			$this->loadModel('Chat_model');
 
 			$this->Chat_model->new_message($_POST['discussion_id'], $_POST['message_content']);
 		} else {
 			echo "ko";
+		}
+	}
+
+	public function read_all()
+	{
+		if (isset($_POST['discussion_id']) && is_numeric($_POST['discussion_id']))
+		{
+			$this->loadModel('Chat_model');
+
+			$this->Chat_model->read_messages($_POST['discussion_id']);
 		}
 	}
 }
