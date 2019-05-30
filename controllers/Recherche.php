@@ -27,13 +27,16 @@ Class Recherche extends Controller{
                 $max = htmlspecialchars(addslashes($_GET['max_age']));
                 if ($min > $max)
                     $data['error'] = "L'age minimum est supérieur à l'âge maximum";
-            } else if (!empty($_GET['min_age']))
+            } else if (!empty($_GET['min_age']) && $_GET['min_age'] != 'none')
                 $min = htmlspecialchars(addslashes($_GET['min_age']));
             else if (!empty($_GET['max_age']))
+            {
+                $min = 18;
                 $max = htmlspecialchars(addslashes($_GET['max_age']));
+            }
             else {
                 $min = 'none';
-                $max = 'none';
+                $max = 1;
             }
             if (!empty($_GET['orientation']))
                 $orientation = htmlspecialchars(addslashes($_GET['orientation']));
@@ -41,7 +44,7 @@ Class Recherche extends Controller{
                 $city = htmlspecialchars(addslashes($_GET['city']));
             else
                 $city = 0;
-            if (!empty($_GET['distance']))
+            if (isset($_GET['distance']))
                 $distance  = htmlspecialchars(addslashes($_GET['distance']));
             else
                 $distance = 'none';
@@ -56,19 +59,14 @@ Class Recherche extends Controller{
             else{
                 $tags = 'none';
             }
-            if (!empty($_GET['min_pop']) && !empty($_GET['max_pop'])) {
+            if (isset($_GET['min_pop']) && is_numeric($_GET['min_pop']))
                 $min_pop = htmlspecialchars(addslashes($_GET['min_pop']));
+            else
+                $min_pop = 'none';
+            if (isset($_GET['max_pop']) && is_numeric($_GET['max_pop']))
                 $max_pop = htmlspecialchars(addslashes($_GET['max_pop']));
-                if ($min_pop > $max_pop)
-                    $data['error'] = "La popularité minimum est supérieur à la popularité maximum";
-            } else if (!empty($_GET['min_pop']))
-                $min_pop = htmlspecialchars(addslashes($_GET['min_pop']));
-            else if (!empty($_GET['max_pop']))
-                $max_pop = htmlspecialchars(addslashes($_GET['max_pop']));
-            else {
-                $min_pop = 0;
-                $max_pop = 5000;
-            }
+            else
+                $max_pop = 'none';
             $data['users'] = $this->Recherche_model->get_users_from_search($_SESSION['user']['user_gender_id'],$type, $min, $max, $orientation, $city, $distance, $tags, $min_pop, $max_pop);
         }
         $this->loadView('Accueil/suggestions_view', $data);

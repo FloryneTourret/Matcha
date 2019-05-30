@@ -22,6 +22,16 @@ Class Accueil_model extends Model
         return $meter;
     }
 
+    public function is_valid_tag($tag)
+    {
+        $req = $this->db->prepare("SELECT * FROM `tags` WHERE `tag_name` = '$tag'");
+        $result = $req->execute();
+        if (empty($result))
+            return (0);
+        else
+            return (1);
+    }
+
     public function get_suggestions($type, $age_min, $age_max, $city, $distance, $pop_min, $pop_max, $search_tags){
         $orientation = $_SESSION['user']['user_orientation_id'];
         $gender = $_SESSION['user']['user_gender_id'];
