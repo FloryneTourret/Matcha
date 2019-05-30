@@ -38,7 +38,7 @@ Class Accueil_model extends Model
         $latitude = $_SESSION['user']['latitude'];
         $longitude = $_SESSION['user']['longitude'];
         $login = $_SESSION['user']['login'];
-        if($orientation > 0 && $orientation < 3)
+        if($orientation > 0 && $orientation <= 3)
         {
             if ($gender > 0 && $gender < 3)
             {
