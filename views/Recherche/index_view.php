@@ -28,7 +28,7 @@
             <div class="input-group-prepend">
                 <div class="input-group-text"><i class="fas fa-map-marker-alt"></i></div>
             </div>
-            <input class="form-control" type="text" id="address" placeholder="Votre adresse..." value="<?php echo $_SESSION['user']['address']; ?>">
+            <input class="form-control" type="text" id="user_input_autocomplete_address" placeholder="Votre adresse...">
         </div>
         <input id="street_number" name="street_number" type="hidden">
         <input id="route" name="route" type="hidden">
@@ -90,7 +90,7 @@
 
 
 </div>
-    <div id="users"></div>
+<div id="users"></div>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFUDkSZ_ocdopTHNoZiZeq7Uq8T8ARhM4"></script>
 
 <script type="text/javascript">
