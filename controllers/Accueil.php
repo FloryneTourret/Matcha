@@ -15,31 +15,33 @@ Class Accueil extends Controller{
 
     public function sort($type = 'match')
     {
-        if (!empty($_GET['age_min']) && is_numeric($_GET['age_min']))
+        if (isset($_GET['age_min']) && is_numeric($_GET['age_min']))
             $age_min = htmlspecialchars(addslashes($_GET['age_min']));
         else
             $age_min = 'none';
-        if (!empty($_GET['age_max']) && is_numeric($_GET['age_max']))
+        if (isset($_GET['age_max']) && is_numeric($_GET['age_max']))
+        {
             $age_max = htmlspecialchars(addslashes($_GET['age_max']));
+        }
         else
             $age_max = 'none';
-        if (!empty($_GET['city']) && ($_GET['city'] != 'none'))
+        if (isset($_GET['city']) && ($_GET['city'] != 'none'))
             $city = ucfirst(strtolower(htmlspecialchars(addslashes($_GET['city']))));
         else
             $city = 'none';
-        if (!empty($_GET['distance']) && is_numeric($_GET['distance']))
+        if (isset($_GET['distance']) && is_numeric($_GET['distance']))
             $distance = htmlspecialchars(addslashes($_GET['distance']));
         else
             $distance = 'none';
-        if (!empty($_GET['pop_min']) && is_numeric($_GET['pop_min']))
+        if (isset($_GET['pop_min']) && is_numeric($_GET['pop_min']))
             $pop_min = htmlspecialchars(addslashes($_GET['pop_min']));
         else
             $pop_min = 'none';
-        if (!empty($_GET['pop_max']) && is_numeric($_GET['pop_max']))
+        if (isset($_GET['pop_max']) && is_numeric($_GET['pop_max']))
             $pop_max = htmlspecialchars(addslashes($_GET['pop_max']));
         else
             $pop_max = 'none';
-        if (!empty($_GET['tags']))
+        if (isset($_GET['tags']))
             $tags = $_GET['tags'];
         else
             $tags = 'none';
