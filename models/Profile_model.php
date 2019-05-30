@@ -82,6 +82,11 @@ Class Profile_model extends Model
         $pts->execute();
     }
 
+    public function create_discussion($user1, $user2){
+        $req = $this->db->prepare( "INSERT INTO `user_discussion`(`first_user_id`, `second_user_id`) VALUES ($user1,$user2)");
+        $req->execute();
+    }
+
     public function unlike_user($user_like, $user_liked)
     {
         $req = $this->db->prepare("DELETE FROM `user_likes` WHERE `id_user_like` = $user_like AND `id_user_liked` = $user_liked");
