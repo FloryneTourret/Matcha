@@ -23,8 +23,8 @@ Class Accueil extends Controller{
             $age_max = htmlspecialchars(addslashes($_GET['age_max']));
         else
             $age_max = 'none';
-        if (!empty($_GET['city']))
-            $city = htmlspecialchars(addslashes($_GET['city']));
+        if (!empty($_GET['city']) && ($_GET['city'] != 'none'))
+            $city = ucfirst(strtolower(htmlspecialchars(addslashes($_GET['city']))));
         else
             $city = 'none';
         if (!empty($_GET['distance']) && is_numeric($_GET['distance']))
