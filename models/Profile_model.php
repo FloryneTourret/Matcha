@@ -2,6 +2,16 @@
 
 Class Profile_model extends Model
 {
+    public function get_notifs($id)
+    {
+        $req = $this->db->prepare( "SELECT * FROM `notifs` 
+                                    INNER JOIN `users` on users.user_id = notifs.emit_user_id
+                                    WHERE notifs.user_id = $id
+                                    ORDER BY `notif_date` DESC");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
     public function get_current($login)
     {
         $req = $this->db->prepare("SELECT *,

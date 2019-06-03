@@ -225,8 +225,12 @@ Class Account extends Controller{
 
         $data['pictures'] = $this->Profile_model->get_pictures($_SESSION['user']['user_id']);
         $data['tags'] = $this->Account_model->get_tags();
+
+        $this->loadModel('Profile_model');
+        $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
         $this->loadView('Base/header_view');
-        $this->loadView('Base/navbar_view');
+        $this->loadView('Base/navbar_view', $data);
+        
         $this->loadView('Account/index_view', $data);
         $this->loadView('Base/footer_view');
     }

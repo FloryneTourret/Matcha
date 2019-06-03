@@ -90,93 +90,104 @@
 
 
 </div>
-<div id="users"></div>
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFUDkSZ_ocdopTHNoZiZeq7Uq8T8ARhM4"></script>
+<?php 
+if (
+    empty($_SESSION['user']['firstname']) || empty($_SESSION['user']['lastname']) || empty($_SESSION['user']['user_birthdate'])
+    || empty($_SESSION['user']['user_gender_id']) || empty($_SESSION['user']['user_orientation_id'])
+    || empty($_SESSION['user']['login']) || empty($_SESSION['user']['email']) || empty($_SESSION['user']['biography'])
+    || empty($_SESSION['user']['path_profile_picture']) || empty($_SESSION['user']['longitude']) || empty($_SESSION['user']['latitude'])
+    || empty($_SESSION['user']['address']) || empty($_SESSION['user']['city']) || empty($_SESSION['user']['country'])
+    || $_SESSION['user']['count_pictures'] <= 0 || count($_SESSION['user']['user_tags']) <=0 ) {
+echo '<p>Veuillez remplir votre profil étendu pour accèder aux suggestions</p>' ; 
+} else { ?>
+    <div id="users"></div>
+<?php } ?>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyCFUDkSZ_ocdopTHNoZiZeq7Uq8T8ARhM4"></script>
 
-<script type="text/javascript">
-    function initializeAutocomplete(id) {
-        var element = document.getElementById(id);
-        if (element) {
-            var autocomplete = new google.maps.places.Autocomplete(element, {
-                types: ['geocode']
-            });
-            google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+    <script type="text/javascript">
+        function initializeAutocomplete(id) {
+            var element = document.getElementById(id);
+            if (element) {
+                var autocomplete = new google.maps.places.Autocomplete(element, {
+                    types: ['geocode']
+                });
+                google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
+            }
         }
-    }
 
-    function onPlaceChanged() {
-        var place = this.getPlace();
+        function onPlaceChanged() {
+            var place = this.getPlace();
 
-        for (var i in place.address_components) {
-            var component = place.address_components[i];
-            for (var j in component.types) {
-                var type_element = document.getElementById(component.types[j]);
-                if (type_element) {
-                    type_element.value = component.long_name;
+            for (var i in place.address_components) {
+                var component = place.address_components[i];
+                for (var j in component.types) {
+                    var type_element = document.getElementById(component.types[j]);
+                    if (type_element) {
+                        type_element.value = component.long_name;
+                    }
                 }
             }
-        }
 
-        var longitude = document.getElementById("longitude");
-        var latitude = document.getElementById("latitude");
-        if (longitude.value != '' && latitude.value != '') {
-            longitude.value = place.geometry.location.lng();
-            latitude.value = place.geometry.location.lat();
-        }
-    }
-
-    google.maps.event.addDomListener(window, 'load', function() {
-        initializeAutocomplete('user_input_autocomplete_address');
-    });
-</script>
-
-<script>
-    function sort(type = 'classic') {
-        age_min = document.getElementById('age_min').value;
-        if (age_min == '')
-            age_min = 'none';
-        age_max = document.getElementById('age_max').value;
-        if (age_max == '')
-            age_max = 'none';
-
-        city = document.getElementById('locality').value;
-        if (city == '')
-            city = 'none';
-
-        distance = document.getElementById('distance').value;
-        if (distance == '')
-            distance = 'none';
-
-        pop_min = document.getElementById('pop_min').value;
-        if (pop_min == '')
-            pop_min = 'none';
-        pop_max = document.getElementById('pop_max').value;
-        if (pop_max == '')
-            pop_max = 'none';
-        tags = getSelectValues(document.getElementById('tagselect'));
-        tags_user = JSON.stringify(tags)
-        if (tags_user == '[]')
-            tags_user = "none";
-
-        orientation = document.getElementById('orientation').value;
-        if (orientation == '')
-            orientation = 'none';
-
-        $("#users").load("/index.php/Recherche/sort/" + type + '?min_age=' + age_min + '&max_age=' + age_max + '&city=' + city + '&distance=' + distance + '&min_pop=' + pop_min + '&max_pop=' + pop_max + '&orientation=' + orientation + '&tags=' + tags_user);
-    }
-
-    function getSelectValues(select) {
-        var result = [];
-        var options = select && select.options;
-        var opt;
-
-        for (var i = 0, iLen = options.length; i < iLen; i++) {
-            opt = options[i];
-
-            if (opt.selected) {
-                result.push(opt.value || opt.text);
+            var longitude = document.getElementById("longitude");
+            var latitude = document.getElementById("latitude");
+            if (longitude.value != '' && latitude.value != '') {
+                longitude.value = place.geometry.location.lng();
+                latitude.value = place.geometry.location.lat();
             }
         }
-        return result;
-    }
-</script>
+
+        google.maps.event.addDomListener(window, 'load', function() {
+            initializeAutocomplete('user_input_autocomplete_address');
+        });
+    </script>
+
+    <script>
+        function sort(type = 'classic') {
+            age_min = document.getElementById('age_min').value;
+            if (age_min == '')
+                age_min = 'none';
+            age_max = document.getElementById('age_max').value;
+            if (age_max == '')
+                age_max = 'none';
+
+            city = document.getElementById('locality').value;
+            if (city == '')
+                city = 'none';
+
+            distance = document.getElementById('distance').value;
+            if (distance == '')
+                distance = 'none';
+
+            pop_min = document.getElementById('pop_min').value;
+            if (pop_min == '')
+                pop_min = 'none';
+            pop_max = document.getElementById('pop_max').value;
+            if (pop_max == '')
+                pop_max = 'none';
+            tags = getSelectValues(document.getElementById('tagselect'));
+            tags_user = JSON.stringify(tags)
+            if (tags_user == '[]')
+                tags_user = "none";
+
+            orientation = document.getElementById('orientation').value;
+            if (orientation == '')
+                orientation = 'none';
+
+            $("#users").load("/index.php/Recherche/sort/" + type + '?min_age=' + age_min + '&max_age=' + age_max + '&city=' + city + '&distance=' + distance + '&min_pop=' + pop_min + '&max_pop=' + pop_max + '&orientation=' + orientation + '&tags=' + tags_user);
+        }
+
+        function getSelectValues(select) {
+            var result = [];
+            var options = select && select.options;
+            var opt;
+
+            for (var i = 0, iLen = options.length; i < iLen; i++) {
+                opt = options[i];
+
+                if (opt.selected) {
+                    result.push(opt.value || opt.text);
+                }
+            }
+            return result;
+        }
+    </script>

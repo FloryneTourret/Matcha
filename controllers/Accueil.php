@@ -3,12 +3,17 @@
 Class Accueil extends Controller{
 
     public function index(){
-        $this->loadModel('Accueil_model');
         $this->loadModel('Recherche_model');
 
         $data['tags'] = $this->Recherche_model->get_tags();
+        
+        if(isset($_SESSION['user']['user_id']))
+        {
+            $this->loadModel('Profile_model');
+            $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
+        }
         $this->loadView('Base/header_view');
-        $this->loadView('Base/navbar_view');
+        $this->loadView('Base/navbar_view', $data);
         $this->loadView('Accueil/index_view', $data);
         $this->loadView('Base/footer_view');
     }

@@ -17,8 +17,11 @@ Class Profile extends Controller{
         if ($data['user'] == FALSE)
         {
             $data['error'] = "Le profil que vous recherchez n'existe pas.";
-            $this->loadView('Base/navbar_view');
+
+            $this->loadModel('Profile_model');
+            $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
             $this->loadView('Base/header_view');
+            $this->loadView('Base/navbar_view', $data);
             $this->loadView('Profile/invalid_view', $data);
             $this->loadView('Base/footer_view');
         }
@@ -41,15 +44,21 @@ Class Profile extends Controller{
                     $this->Profile_model->view_profile($_SESSION['user']['user_id'], $id);
                     $data['user'] = $this->Profile_model->get_current($login);
                 }
+
+                $this->loadModel('Profile_model');
+                $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
                 $this->loadView('Base/header_view');
-                $this->loadView('Base/navbar_view');
+                $this->loadView('Base/navbar_view', $data);
                 $this->loadView('Profile/index_view', $data);
                 $this->loadView('Base/footer_view'); 
             } 
             else {
                 $data['error'] = "Vous ne pouvez pas accèder à ce profil.";
-                $this->loadView('Base/navbar_view');
+
+                $this->loadModel('Profile_model');
+                $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
                 $this->loadView('Base/header_view');
+                $this->loadView('Base/navbar_view', $data);
                 $this->loadView('Profile/invalid_view', $data);
                 $this->loadView('Base/footer_view');
             }
@@ -65,7 +74,8 @@ Class Profile extends Controller{
                     if ($this->Profile_model->get_liked($_SESSION['user']['user_id'], $_GET['user_liked']) == TRUE)
                     {
                         $this->Profile_model->create_discussion($_SESSION['user']['user_id'], $_GET['user_liked']);
-                        $this->Profile_model->notif($_SESSION['user']['user_id'], $_GET['user_liked'], 'vous a matché');
+                        $this->Profile_model->notif($_SESSION['user']['user_id'], $_GET['user_liked'], 'et vous matchez');
+                        $this->Profile_model->notif($_GET['user_liked'],$_SESSION['user']['user_id'], 'et vous matchez');
                     }
                 }
                 else

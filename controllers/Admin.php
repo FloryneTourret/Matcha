@@ -97,9 +97,11 @@ Class Admin extends Controller{
             else
                 $data['error'] = "Une erreur est survenue.";
         }
-
+        
+        $this->loadModel('Profile_model');
+        $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
         $this->loadView('Base/header_view');
-        $this->loadView('Base/navbar_view');
+        $this->loadView('Base/navbar_view', $data);
         $this->loadView('Admin/index_view', $data);
         $this->loadView('Base/footer_view');
     }

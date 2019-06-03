@@ -5,9 +5,11 @@ Class Recherche extends Controller{
     public function index(){
         $this->loadModel('Recherche_model');
         $data['tags'] = $this->Recherche_model->get_tags();
-        
+
+        $this->loadModel('Profile_model');
+        $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
         $this->loadView('Base/header_view');
-        $this->loadView('Base/navbar_view');
+        $this->loadView('Base/navbar_view', $data);
         $this->loadView('Recherche/index_view',$data);
         $this->loadView('Base/footer_view');
     }

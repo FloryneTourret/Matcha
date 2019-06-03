@@ -9,8 +9,11 @@ Class Chat extends Controller {
 			'discussions' => $this->Chat_model->get_user_discussions($_SESSION['user']['user_id'])
 		);
 
-		$this->loadView('base/header_view');
-		$this->loadView('base/navbar_view');
+
+		$this->loadModel('Profile_model');
+		$data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
+		$this->loadView('Base/header_view');
+		$this->loadView('Base/navbar_view', $data);
 		$this->loadView('chat/chat_view', $data);
 		$this->loadView('base/footer_view');
 	}
