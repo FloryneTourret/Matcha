@@ -189,9 +189,29 @@ Class Profile_model extends Model
         $req->execute();
     }
 
+    public function notif($user_view, $user_viewed, $content)
+    { 
+        $notif = $this->db->prepare("INSERT INTO `notifs`(`user_id`, `content_notif`, `emit_user_id`) VALUES ($user_viewed,'$content',$user_view)");
+        $notif->execute();
+    }
+
     public function view_profile($user_view, $user_viewed){
         $req = $this->db->prepare("SELECT * FROM `user_view` WHERE `id_user_view` = $user_view AND `id_user_viewed` = $user_viewed");
         $req->execute();
+        $date = $this->db->prepare("SELECT * FROM `notifs` WHERE `emit_user_id` = $user_view AND `user_id` = $user_viewed");;
+        $date->execute();
+        $date_view = $date->fetchALL();
+        if(isset($date_view[0]['notif_date']))
+        {
+            if (!(-(strtotime($date_view[count($date_view) - 1]['notif_date']) - time() + 7200) < 300)) {
+                $notif = $this->db->prepare( "INSERT INTO `notifs`(`user_id`, `content_notif`, `emit_user_id`) VALUES ($user_viewed,'a vu votre profil',$user_view)");
+                $notif->execute();
+            }
+        }
+        else{
+            $notif = $this->db->prepare("INSERT INTO `notifs`(`user_id`, `content_notif`, `emit_user_id`) VALUES ($user_viewed,'a vu votre profil',$user_view)");
+            $notif->execute();
+        }
         if (!empty($req->fetch()))
         {
             $req = $this->db->prepare( "UPDATE `user_view` SET `view_date`= NOW() WHERE `id_user_view` = $user_view AND `id_user_viewed` = $user_viewed");

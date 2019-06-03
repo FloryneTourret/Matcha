@@ -39,7 +39,7 @@ Class Profile extends Controller{
                 if($id != $_SESSION['user']['user_id'])
                 {
                     $this->Profile_model->view_profile($_SESSION['user']['user_id'], $id);
-                    $data[ 'user'] = $this->Profile_model->get_current($login);
+                    $data['user'] = $this->Profile_model->get_current($login);
                 }
                 $this->loadView('Base/header_view');
                 $this->loadView('Base/navbar_view');
@@ -61,13 +61,20 @@ Class Profile extends Controller{
                 if($this->Profile_model->already_like_user($_SESSION['user']['user_id'], $_GET['user_liked']) == FALSE)
                 {
                     $this->Profile_model->like_user($_SESSION['user']['user_id'], $_GET['user_liked']);
+                    $this->Profile_model->notif($_SESSION['user']['user_id'], $_GET['user_liked'], 'vous a liké');
                     if ($this->Profile_model->get_liked($_SESSION['user']['user_id'], $_GET['user_liked']) == TRUE)
+                    {
                         $this->Profile_model->create_discussion($_SESSION['user']['user_id'], $_GET['user_liked']);
-                    // CREER NOTIF DE MATCH
+                        $this->Profile_model->notif($_SESSION['user']['user_id'], $_GET['user_liked'], 'vous a matché');
+                    }
                 }
                 else
+                {
                     $this->Profile_model->unlike_user($_SESSION['user']['user_id'], $_GET['user_liked']);
-            // CREER UNE NOTIFICATION AU LIKE OU UNLIKE ( SI IL Y AVAIT MATCH) + VERIF SI MATCH
+                    if ($this->Profile_model->get_liked($_SESSION['user']['user_id'], $_GET['user_liked']) == TRUE)
+                        $this->Profile_model->notif($_SESSION['user']['user_id'], $_GET['user_liked'], 'ne vous match plus');
+                }
+                    
         }
         if (isset($_GET['user_report']) && isset($_GET['user_reported']) && is_numeric($_GET['user_report']) && is_numeric($_GET['user_reported'])) {
                 if ($_GET['user_report'] == $_SESSION['user']['user_id'])
