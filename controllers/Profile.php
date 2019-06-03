@@ -112,5 +112,8 @@ Class Profile extends Controller{
                 $long = trim(htmlspecialchars(addslashes($_GET['long'])));
                 $this->Profile_model->location_user($_SESSION['user']['user_id'], $lat, $long);
             }
+        if (isset($_GET['read']) && $_GET['read'] == 'notifs') {
+            $this->Profile_model->read_notif($_SESSION['user']['user_id']);
+        }
     }
 }

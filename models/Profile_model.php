@@ -236,6 +236,11 @@ Class Profile_model extends Model
         }
     }
 
+    public function read_notif ($id){
+        $req = $this->db->prepare( "UPDATE `notifs` SET `lu`= 1 WHERE `user_id` = $id");
+        $req->execute();
+    }
+
     public function address_user($id, $address, $city, $country){
         $req = $this->db->prepare("UPDATE `users` SET `address`= '$address', `city` = '$city', `country` = '$country' WHERE `user_id` = $id");
         $req->execute();

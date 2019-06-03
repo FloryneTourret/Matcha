@@ -20,7 +20,7 @@
         </li>
         <li class="nav-item dropdown" id="notif-content" id="notifications">
           <div id="content-notif">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" onclick="read()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <?php if ($notifs[0]['lu'] == 0) { ?>
                 <i class="fas fa-bell"></i>
               <?php } else { ?>
