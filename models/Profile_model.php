@@ -93,8 +93,18 @@ Class Profile_model extends Model
     }
 
     public function create_discussion($user1, $user2){
-        $req = $this->db->prepare( "INSERT INTO `user_discussion`(`first_user_id`, `second_user_id`) VALUES ($user1,$user2)");
-        $req->execute();
+        $verif1 = $this->db->prepare("SELECT * FROM `user_discussion` WHERE `first_user_id` = $user1 AND `second_user_id` = $user2");
+        $verif1->execute();
+        if (empty($verif1->fetchAll()))
+        {
+            $verif2 = $this->db->prepare("SELECT * FROM `user_discussion` WHERE `first_user_id` = $user2 AND `second_user_id` = $user1");
+            $verif2->execute();
+            if (empty($verif2->fetchAll()))
+            {
+                $req = $this->db->prepare( "INSERT INTO `user_discussion`(`first_user_id`, `second_user_id`) VALUES ($user1,$user2)");
+                $req->execute();
+            }
+        }
     }
 
     public function unlike_user($user_like, $user_liked)

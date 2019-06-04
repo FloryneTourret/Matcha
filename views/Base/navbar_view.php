@@ -18,20 +18,20 @@
         <li class="nav-item">
           <a class="nav-link chat" href="/index.php/Chat"><i class="far fa-comment-alt"></i></a>
         </li>
-        <li class="nav-item dropdown" id="notif-content" id="notifications">
+        <li class="nav-item dropdown" id="notif-content">
           <div id="content-notif">
-            <a class="nav-link dropdown-toggle" onclick="read()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" onclick="read()" id="notifs" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <?php if (isset($notifs[0]['lu'])) { ?>
               <?php if ($notifs[0]['lu'] == 0) { ?>
-                <i class="fas fa-bell"></i>
+                <i class="fas fa-bell" id="icon_notif"></i>
               <?php } else { ?>
-                <i class="far fa-bell"></i>
+                <i class="far fa-bell" id="icon_notif"></i>
               <?php } ?>
             <?php } else { ?>
-              <i class="far fa-bell"></i>
+              <i class="far fa-bell" id="icon_notif"></i>
             <?php } ?>
             </a>
-            <div class="dropdown-menu dropdown-menu-right content-notif" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-right content-notif" aria-labelledby="notifs" id="content-dropdown-notif">
               <?php if (isset($notifs[0]['content_notif'])) { ?>
                 <?php foreach ($notifs as $notif) { ?>
                   <p class="dropdown-item"><?php echo $notif['login'] . ' ' . $notif['content_notif']; ?></p>

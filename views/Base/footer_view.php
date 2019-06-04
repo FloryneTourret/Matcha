@@ -1,18 +1,23 @@
 <?php if (isset($_SESSION['user']['user_id'])) { ?>
 
     <script>
-        setInterval(refresh_notif, 5000)
+        var interval;
+        interval = setInterval(refresh_notif, 5000)
+        var click = 0;
 
         function refresh_notif() {
-            // console.log('test')
-            $("#notifications").load("/index.php/Accueil#content-notif");
+             $("#notif-content").load("/index.php/Accueil #content-notif");
         }
-
         function read() {
-            console.log('read')
-            $.ajax('/index.php/Profile?read=notifs').done(function() {
-                $("#notifications").load("/index.php/Accueil#content-notif");
-            });
+            if(document.getElementById('content-dropdown-notif').classList.contains('show') == false)
+            {
+                $.ajax('/index.php/Profile?read=notifs')
+                clearInterval(interval)
+            }
+            else{
+                refresh_notif()
+                interval = setInterval(refresh_notif, 5000)
+            }
         }
     </script>
 
