@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  mar. 04 juin 2019 à 09:56
+-- Généré le :  mar. 04 juin 2019 à 10:05
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -69,6 +69,18 @@ CREATE TABLE `notifs` (
   `notif_date` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `lu` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `notifs`
+--
+
+INSERT INTO `notifs` (`user_id`, `emit_user_id`, `content_notif`, `notif_date`, `lu`) VALUES
+(2, 1, 'a vu votre profil', '2019-06-04 10:02:44', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:02:47', 1),
+(1, 2, 'a vu votre profil', '2019-06-04 10:03:02', 0),
+(1, 2, 'vous a liké', '2019-06-04 10:03:03', 0),
+(1, 2, 'et vous matchez', '2019-06-04 10:03:03', 0),
+(2, 1, 'et vous matchez', '2019-06-04 10:03:03', 1);
 
 -- --------------------------------------------------------
 
@@ -606,7 +618,8 @@ INSERT INTO `pictures` (`picture_id`, `picture_path`, `picture_user_id`, `pictur
 (494, 'assets/upload/Redwolf8/5cf63f6628e23.jpg', 555, '2019-06-04 09:52:38'),
 (495, 'assets/upload/Crazybea/5cf63f85a3890.jpg', 556, '2019-06-04 09:53:10'),
 (496, 'assets/upload/Bigcat26/5cf63f8bd034d.jpg', 557, '2019-06-04 09:53:16'),
-(497, 'assets/upload/Silverfr/5cf63f8cc1031.jpg', 558, '2019-06-04 09:53:16');
+(497, 'assets/upload/Silverfr/5cf63f8cc1031.jpg', 558, '2019-06-04 09:53:16'),
+(498, 'assets/upload/lettoh/7c50d72c4df2b3d0.jpg', 1, '2019-06-04 10:02:16');
 
 -- --------------------------------------------------------
 
@@ -676,8 +689,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `last_connexion`, `password`, `admin`, `notif`, `enabled`, `longitude`, `latitude`, `address`, `city`, `country`, `popularity`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 2, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', NULL, '2019-05-30 16:31:10', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
-(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', 'You came here because we do this better than you, and part of that is letting our creatives be unproductive until they are.', 'assets/upload/ftourret/953c9c16a07e78cc.jpg', '2019-06-04 09:55:49', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
+(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 2, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/7c50d72c4df2b3d0.jpg', '2019-06-04 10:02:47', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
+(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', 'You came here because we do this better than you, and part of that is letting our creatives be unproductive until they are.', 'assets/upload/ftourret/953c9c16a07e78cc.jpg', '2019-06-04 10:03:37', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
 (3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '2019-05-23 14:02:32', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, 2.3527, 48.8543, 'Hôtel de Ville, Quai de l\'Hôtel de ville, 75004 Paris, France', 'Paris', 'France', 0, NULL, NULL),
 (4, 'Nathan', 'PUNCH MAN', '1995-08-02', 1, 2, 'napunchman', 'naplouvi@student.le-101.fr', 'How can there be too many typefaces in the world? Are there too many songs, too many books, too many places to go?', NULL, '2019-05-30 17:15:53', '$2y$10$biHqxwJhplQ0zjL6AV0tWe1Rp5B5gU0.8nXPGwTeSoCsJo3d/r7/q', 0, 1, 1, 2.3527, 48.8543, 'Hôtel de Ville, Quai de l\'Hôtel de ville, 75004 Paris, France', 'Paris', 'France', 0, NULL, NULL),
 (63, 'Lucas', 'BAUER', '1987-08-04', 1, 5, 'Organict', 'Organict@matcha.z4r7p1.fr', 'Proud entrepreneur. Wannabe troublemaker. Twitter advocate. Internet maven. Bacon nerd. Hipster-friendly food buff. Amateur communicator.', 'assets/upload/Organict/5cf63ad02dbb9.jpg', '2019-06-04 09:33:04', '$2y$10$S2GYgTpwPq8jwwF1ycy7Pe5i9CVcPwEDYLTbzYKycjRhWXybHxsxK', 0, 0, 1, 5.09442, 45.7842, 'Chemin de Decrozo, 38280 Villette-d\'Anthon, France', 'Villette-d\\\'Anthon', 'France', 0, NULL, NULL),
@@ -1204,6 +1217,13 @@ CREATE TABLE `user_discussion` (
   `second_user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `user_discussion`
+--
+
+INSERT INTO `user_discussion` (`discussion_id`, `first_user_id`, `second_user_id`) VALUES
+(1, 2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1214,6 +1234,14 @@ CREATE TABLE `user_likes` (
   `id_user_like` int(11) NOT NULL,
   `id_user_liked` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user_likes`
+--
+
+INSERT INTO `user_likes` (`id_user_like`, `id_user_liked`) VALUES
+(1, 2),
+(2, 1);
 
 -- --------------------------------------------------------
 
@@ -1270,9 +1298,6 @@ INSERT INTO `user_tag` (`id_user`, `id_tag`) VALUES
 (1, 12),
 (1, 13),
 (1, 14),
-(2, 1),
-(2, 3),
-(2, 7),
 (63, 2),
 (63, 5),
 (63, 8),
@@ -3752,7 +3777,15 @@ INSERT INTO `user_tag` (`id_user`, `id_tag`) VALUES
 (558, 10),
 (558, 11),
 (558, 12),
-(558, 16);
+(558, 16),
+(2, 1),
+(2, 3),
+(2, 7),
+(2, 6),
+(2, 8),
+(2, 10),
+(2, 11),
+(2, 12);
 
 -- --------------------------------------------------------
 
@@ -3765,6 +3798,14 @@ CREATE TABLE `user_view` (
   `id_user_viewed` int(11) NOT NULL,
   `view_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user_view`
+--
+
+INSERT INTO `user_view` (`id_user_view`, `id_user_viewed`, `view_date`) VALUES
+(1, 2, '2019-06-04 10:02:44'),
+(2, 1, '2019-06-04 10:03:32');
 
 --
 -- Index pour les tables déchargées
@@ -3829,7 +3870,7 @@ ALTER TABLE `orientations`
 -- AUTO_INCREMENT pour la table `pictures`
 --
 ALTER TABLE `pictures`
-  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=498;
+  MODIFY `picture_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=499;
 
 --
 -- AUTO_INCREMENT pour la table `tags`
@@ -3847,7 +3888,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `user_discussion`
 --
 ALTER TABLE `user_discussion`
-  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
