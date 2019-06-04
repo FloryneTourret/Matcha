@@ -11,7 +11,7 @@
 						<img src="/<?= $picture ?>" class="align-self-center mr-3 rounded-circle" style="width:64px" alt="...">
 						<div class="media-body">
 							<h5 id="user-<?php echo $discussion['first_user_id'] == $_SESSION['user']['user_id'] ?  $discussion['second_user_id'] : $discussion['first_user_id']?>" class="mt-0 text-break"><?= $discussion['u1_login'] == $_SESSION['user']['login'] ? $discussion['u2_login'] : $discussion['u1_login'] ?></h5>
-							<p class="text-break"><?= $discussion['lu'] == 0  && $discussion['last_message_user'] != $_SESSION['user']['user_id'] ? "<span id='dot-" . $discussion['discussion_id'] ."' class='dot'></span>" : ""?><?= $discussion['last_message']; ?></p>
+							<p class="text-break"><?= $discussion['lu'] === 0  && $discussion['last_message_user'] != $_SESSION['user']['user_id'] ? "<span id='dot-" . $discussion['discussion_id'] ."' class='dot'></span>" : ""?><?= $discussion['last_message']; ?></p>
 						</div>
 					</div>
 				<?php endforeach; ?>
