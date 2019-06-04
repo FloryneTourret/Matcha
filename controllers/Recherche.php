@@ -3,6 +3,9 @@
 Class Recherche extends Controller{
 
     public function index(){
+        if(!isset($_SESSION['user']))
+            header('Location: /');
+
         $this->loadModel('Recherche_model');
         $data['tags'] = $this->Recherche_model->get_tags();
 

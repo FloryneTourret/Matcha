@@ -8,10 +8,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-
+    <?php if (isset($_SESSION['user'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="/index.php/recherche">Rechercher</a>
       </li>
+    <?php } ?>
     </ul>
     <?php if (isset($_SESSION['user'])) { ?>
       <ul class="navbar-nav ml-auto notification" id="notif-icon" style="padding-right: 10px!important;">
