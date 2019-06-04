@@ -269,7 +269,7 @@
                     <a class="lead" style="color: #EF6461" href="/index.php/Profile/<?php echo $user['login'] ?>"><?php echo $user['login'] ?></a>
                   </td>
                   <td>
-                    <a class="btn btn-sm btn-outline-secondary" href="/index.php/Profile/<?php echo $like['login'] ?>">Voir le profil</a>
+                    <a class="btn btn-sm btn-outline-secondary" href="/index.php/Profile/<?php echo $user['login'] ?>">Voir le profil</a>
                   </td>
                 </tr>
               <?php } ?>
