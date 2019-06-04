@@ -240,3 +240,10 @@ td.email{
   max-height: 50vh;
   overflow-y: auto;
 }
+
+
+@media screen and (max-width: 768px) {
+  .content-page{
+    padding-left: 20px;
+  }
+}

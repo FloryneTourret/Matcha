@@ -1,3 +1,5 @@
+</div>
+
 <?php if (isset($_SESSION['user']['user_id'])) { ?>
 
     <script>

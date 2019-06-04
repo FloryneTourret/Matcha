@@ -41,8 +41,10 @@ Class Recherche extends Controller{
                 $min = 'none';
                 $max = 1;
             }
-            if (!empty($_GET['orientation']))
+            if (isset($_GET['orientation']))
                 $orientation = htmlspecialchars(addslashes($_GET['orientation']));
+            else 
+                $orientation = $_SESSION['user']['user_orientation_id'];
             if (!empty($_GET['city']))
                 $city = htmlspecialchars(addslashes($_GET['city']));
             else

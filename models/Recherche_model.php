@@ -88,6 +88,14 @@ Class Recherche_model extends Model
                                         ORDER BY `popularity` DESC");
             }
         }
+        else{
+            $req = $this->db->prepare("SELECT * , (SELECT count(*) FROM `pictures` INNER JOIN `users` ON users.user_id = pictures.picture_user_id WHERE `login` = '$login' LIMIT 5) as count_pictures
+            FROM `users` 
+            LEFT OUTER JOIN `user_blacklist` on users.user_id = user_blacklist.id_user_blacklisted
+            WHERE (`user_orientation_id` = $gender OR `user_orientation_id` = 5 OR `user_orientation_id` = 4)
+            AND id_user_blacklist is NULL
+            ORDER BY `popularity` DESC");
+        }
         $req->execute();
         $results = $req->fetchAll();
 
