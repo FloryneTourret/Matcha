@@ -6,7 +6,9 @@ Class Profile_model extends Model
     {
         $req = $this->db->prepare( "SELECT * FROM `notifs` 
                                     INNER JOIN `users` on users.user_id = notifs.emit_user_id
+                                    LEFT OUTER JOIN `user_blacklist` on users.user_id = user_blacklist.id_user_blacklisted 
                                     WHERE notifs.user_id = $id
+                                    AND id_user_blacklist is NULL
                                     ORDER BY `notif_date` DESC");
         $req->execute();
         return ($req->fetchAll());
