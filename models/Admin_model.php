@@ -8,6 +8,13 @@ Class Admin_model extends Model
         return ($req->fetchAll());
     }
 
+    public function get_users_report(){
+        $req = $this->db->prepare("SELECT * FROM `users` 
+        INNER JOIN `user_report` on users.user_id = user_report.id_user_reported");
+        $req->execute();
+        return ($req->fetchAll());
+    }
+
     public function ban_users($id){
         $req = $this->db->prepare("UPDATE `users` SET `enabled`= -1 WHERE `user_id` = $id");
         $req->execute();

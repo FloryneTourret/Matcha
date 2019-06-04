@@ -18,6 +18,7 @@
                 </p>
                 <nav class="nav flex-column">
                     <a class="nav-link active" onclick="display_users()" id="display_users">Gérer les utilisateurs</a>
+                    <a class="nav-link" onclick="display_report()" id="display_report">Utilisateurs signalés</a>
                     <a class="nav-link" onclick="display_admin()" id="display_admin">Ajouter un administrateur</a>
                     <a class="nav-link" onclick="display_create()" id="display_create">Générer des utilisateurs</a>
                 </nav>
@@ -70,6 +71,63 @@
                                 <td class="email">' . $user['email'] . '</td>
                                 <td id="button_' . $user['user_id'] . '"><button class="btn btn-sm btn-danger" onclick="ban(\'' . $user['user_id'] . '\' , \'' . $user['enabled'] . '\' , \'' . $user['admin'] . '\')">Bannir l\'utilisateur</button></td>
                                 </tr>';
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="container-report" id="report">
+                <table class="table">
+                    <td class="text-success">Admin</td>
+                    <td class="text-danger">Banni</td>
+                    <td class="text-warning">Non activé</td>
+                    <td class="text-dark">Utilisateur</td>
+                </table>
+                <table class="table table-striped table-hover">
+                    <thead class="thead-dark">
+                        <th scope="col">Prénom Nom</th>
+                        <th scope="col">Login</th>
+                        <th scope="col">Email</th>
+                        <th scope="col"></th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if(!isset($banned[0]['login']))
+                        {
+                            echo 'Aucun utilisateur signalé';
+                        }
+                        else{
+                            
+                            foreach ($banned as $user) {
+                                if ($user['admin'] == 1)
+                                    echo '<tr id="tr_' . $user['user_id'] . '">
+                                    <td id="name_' . $user['user_id'] . '" class="text-success">' . $user['firstname'] . ' ' . $user['lastname'] . '</td>
+                                    <td><a style="color: #0A1128" href="/index.php/Profile/' . $user['login'] . '">' . $user['login'] . '</a></td>
+                                    <td class="email">' . $user['email'] . '</td>
+                                    <td id="button_' . $user['user_id'] . '"></td>
+                                    </tr>';
+                                else if ($user['enabled'] == -1)
+                                    echo '<tr id="tr_' . $user['user_id'] . '">
+                                    <td id="name_' . $user['user_id'] . '" class="text-danger">' . $user['firstname'] . ' ' . $user['lastname'] . '</td>
+                                    <td><a style="color: #0A1128" href="/index.php/Profile/' . $user['login'] . '">' . $user['login'] . '</a></td>
+                                    <td class="email">' . $user['email'] . '</td>
+                                    <td id="button_' . $user['user_id'] . '"><button class="btn btn-sm btn-warning" onclick="unban(\'' . $user['user_id'] . '\' , \'' . $user['enabled'] . '\' , \'' . $user['admin'] . '\')">Autoriser l\'utilisateur</button></td>
+                                    </tr>';
+                                else if ($user['enabled'] == 0)
+                                    echo '<tr id="tr_' . $user['user_id'] . '">
+                                    <td id="name_' . $user['user_id'] . '" class="text-warning">' . $user['firstname'] . ' ' . $user['lastname'] . '</td>
+                                    <td><a style="color: #0A1128" href="/index.php/Profile/' . $user['login'] . '">' . $user['login'] . '</a></td>
+                                    <td class="email">' . $user['email'] . '</td>
+                                    <td id="button_' . $user['user_id'] . '"><button class="btn btn-sm btn-danger" onclick="ban(\'' . $user['user_id'] . '\' , \'' . $user['enabled'] . '\' , \'' . $user['admin'] . '\')">Bannir l\'utilisateur</button></td>
+                                    </tr>';
+                                else
+                                    echo '<tr id="tr_' . $user['user_id'] . '">
+                                    <td id="name_report_' . $user['user_id'] . '" class="text-dark">' . $user['firstname'] . ' ' . $user['lastname'] . '</td>
+                                    <td><a style="color: #0A1128" href="/index.php/Profile/' . $user['login'] . '">' . $user['login'] . '</a></td>
+                                    <td class="email">' . $user['email'] . '</td>
+                                    <td id="button_report_' . $user['user_id'] . '"><button class="btn btn-sm btn-danger" onclick="ban(\'' . $user['user_id'] . '\' , \'' . $user['enabled'] . '\' , \'' . $user['admin'] . '\')">Bannir l\'utilisateur</button></td>
+                                    </tr>';
+                            }
                         }
                         ?>
                     </tbody>

@@ -13,6 +13,7 @@ Class Admin extends Controller{
         $this->loadModel('Register_model');
         $this->loadModel('Random_model');
         $data['users'] = $this->Admin_model->get_users();
+        $data['banned'] = $this->Admin_model->get_users_report();
 
         if(isset($_GET['ban']) && is_numeric($_GET['ban']))
         {
