@@ -4,7 +4,7 @@
         setInterval(refresh_notif, 5000)
 
         function refresh_notif() {
-            console.log('test')
+            // console.log('test')
             $("#notifications").load("/index.php/Accueil#content-notif");
         }
 

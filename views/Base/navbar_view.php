@@ -21,11 +21,15 @@
         <li class="nav-item dropdown" id="notif-content" id="notifications">
           <div id="content-notif">
             <a class="nav-link dropdown-toggle" onclick="read()" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <?php if (isset($notifs[0]['lu'])) { ?>
               <?php if ($notifs[0]['lu'] == 0) { ?>
                 <i class="fas fa-bell"></i>
               <?php } else { ?>
                 <i class="far fa-bell"></i>
               <?php } ?>
+            <?php } else { ?>
+              <i class="far fa-bell"></i>
+            <?php } ?>
             </a>
             <div class="dropdown-menu dropdown-menu-right content-notif" aria-labelledby="navbarDropdown">
               <?php if (isset($notifs[0]['content_notif'])) { ?>
