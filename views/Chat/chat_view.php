@@ -124,9 +124,10 @@
 		lastMsg.innerText = data.message_content.substr(0, 15);
 		room.lastChild.scrollIntoView();
 	})
-
-	$(".contact")[0].classList.add('active');
-	selectDiscussion(currentDiscussion.id);
+	if($(".contact")[0] != undefined){
+		$(".contact")[0].classList.add('active');
+		selectDiscussion(currentDiscussion.id);
+	}
 
 	if (input != null) {
 		input.addEventListener('keyup', (e) => {
@@ -172,17 +173,18 @@
 						message_content: obj[i].message_content,
 						path_profile_picture: obj[i].path_profile_picture
 					});
+
+					room.lastChild.scrollIntoView();
 				} else {
 					room.innerHTML += htmlMessageReceived({
 						message_content: obj[i].message_content,
 						path_profile_picture: obj[i].path_profile_picture
 					});
+					room.lastChild.scrollIntoView();
 				}
 			}
-			room.lastChild.scrollIntoView();
 		});
 		$.post('/index.php/chat/read_all', {discussion_id: currentDiscussion.id}, (data) => {
-			console.log(data);
 		});
 	}
 

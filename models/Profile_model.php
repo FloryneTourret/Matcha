@@ -30,7 +30,7 @@ Class Profile_model extends Model
         $results = $req->fetchAll();
         foreach($results as $result)
         {
-            if($result['lu'] == 0)
+            if($result['lu'] === 0)
                 return TRUE;
         }
         return FALSE;
