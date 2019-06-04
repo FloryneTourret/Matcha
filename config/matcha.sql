@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : mysql
--- Généré le :  mar. 04 juin 2019 à 10:05
+-- Généré le :  mar. 04 juin 2019 à 13:38
 -- Version du serveur :  5.5.61
 -- Version de PHP :  7.2.14
 
@@ -35,6 +35,24 @@ CREATE TABLE `discussion_messages` (
   `message_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `lu` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `discussion_messages`
+--
+
+INSERT INTO `discussion_messages` (`user_id`, `discussion_id`, `message_content`, `message_date`, `lu`) VALUES
+(2, 9, 'cc', '2019-06-04 11:31:24', 1),
+(1, 9, 'aaa', '2019-06-04 11:41:34', 1),
+(1, 9, 'geryrtyru', '2019-06-04 12:40:34', 1),
+(1, 9, 'fertertyery', '2019-06-04 12:42:20', 1),
+(1, 9, 'trewtwy', '2019-06-04 12:42:32', 1),
+(1, 9, 'yrteyr', '2019-06-04 12:43:14', 1),
+(1, 9, 'gestrtuy', '2019-06-04 12:46:01', 1),
+(1, 9, 'tryrtyrtu', '2019-06-04 12:47:10', 1),
+(1, 9, 'ferytwyrtey', '2019-06-04 12:55:30', 1),
+(1, 9, 'coucou', '2019-06-04 12:55:46', 1),
+(2, 9, 'teryt', '2019-06-04 13:00:05', 1),
+(2, 10, 'vrtertr\\', '2019-06-04 13:06:35', 1);
 
 -- --------------------------------------------------------
 
@@ -77,10 +95,77 @@ CREATE TABLE `notifs` (
 INSERT INTO `notifs` (`user_id`, `emit_user_id`, `content_notif`, `notif_date`, `lu`) VALUES
 (2, 1, 'a vu votre profil', '2019-06-04 10:02:44', 1),
 (2, 1, 'vous a liké', '2019-06-04 10:02:47', 1),
-(1, 2, 'a vu votre profil', '2019-06-04 10:03:02', 0),
-(1, 2, 'vous a liké', '2019-06-04 10:03:03', 0),
-(1, 2, 'et vous matchez', '2019-06-04 10:03:03', 0),
-(2, 1, 'et vous matchez', '2019-06-04 10:03:03', 1);
+(1, 2, 'a vu votre profil', '2019-06-04 10:03:02', 1),
+(1, 2, 'vous a liké', '2019-06-04 10:03:03', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:03:03', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:03:03', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 10:06:25', 1),
+(2, 1, 'a vu votre profil', '2019-06-04 10:12:12', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:12:13', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:12:13', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:12:13', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 10:12:37', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:15:29', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:15:29', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:15:29', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 10:17:09', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:17:10', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:17:10', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:17:10', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 10:17:37', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:17:37', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:17:37', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:17:37', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 10:21:40', 1),
+(2, 1, 'vous a liké', '2019-06-04 10:21:40', 1),
+(2, 1, 'et vous matchez', '2019-06-04 10:21:40', 1),
+(1, 2, 'et vous matchez', '2019-06-04 10:21:40', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:12:23', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:12:23', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:12:23', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:12:23', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:12:58', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:12:59', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:12:59', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:12:59', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:16:16', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:23:22', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:23:22', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:23:22', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:23:38', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:23:44', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:23:44', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:23:44', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:28:15', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:28:15', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:28:15', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:28:15', 1),
+(2, 1, 'ne vous match plus', '2019-06-04 11:29:45', 1),
+(2, 1, 'vous a liké', '2019-06-04 11:29:49', 1),
+(2, 1, 'et vous matchez', '2019-06-04 11:29:49', 1),
+(1, 2, 'et vous matchez', '2019-06-04 11:29:49', 1),
+(1, 2, 'a vu votre profil', '2019-06-04 11:36:03', 0),
+(72, 2, 'a vu votre profil', '2019-06-04 11:37:18', 0),
+(2, 3, 'a vu votre profil', '2019-06-04 11:37:49', 1),
+(2, 3, 'a vu votre profil', '2019-06-04 12:21:34', 1),
+(1, 2, 'a vu votre profil', '2019-06-04 12:45:51', 0),
+(1, 2, 'a vu votre profil', '2019-06-04 12:56:10', 0),
+(1, 2, 'a vu votre profil', '2019-06-04 13:01:20', 0),
+(86, 2, 'a vu votre profil', '2019-06-04 13:02:45', 0),
+(86, 2, 'vous a liké', '2019-06-04 13:02:47', 0),
+(2, 86, 'a vu votre profil', '2019-06-04 13:03:06', 1),
+(2, 86, 'vous a liké', '2019-06-04 13:03:08', 1),
+(2, 86, 'et vous matchez', '2019-06-04 13:03:08', 1),
+(86, 2, 'et vous matchez', '2019-06-04 13:03:08', 0),
+(442, 2, 'a vu votre profil', '2019-06-04 13:07:08', 0),
+(442, 2, 'vous a liké', '2019-06-04 13:07:11', 0),
+(2, 442, 'a vu votre profil', '2019-06-04 13:07:19', 1),
+(2, 442, 'vous a liké', '2019-06-04 13:07:20', 1),
+(2, 442, 'et vous matchez', '2019-06-04 13:07:20', 1),
+(442, 2, 'et vous matchez', '2019-06-04 13:07:20', 0),
+(1, 2, 'a vu votre profil', '2019-06-04 13:10:13', 0),
+(159, 2, 'a vu votre profil', '2019-06-04 13:26:32', 0),
+(151, 2, 'a vu votre profil', '2019-06-04 13:33:19', 0);
 
 -- --------------------------------------------------------
 
@@ -689,9 +774,9 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user_gender_id`, `user_orientation_id`, `login`, `email`, `biography`, `path_profile_picture`, `last_connexion`, `password`, `admin`, `notif`, `enabled`, `longitude`, `latitude`, `address`, `city`, `country`, `popularity`, `token`, `token_expiration`) VALUES
-(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 2, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/7c50d72c4df2b3d0.jpg', '2019-06-04 10:02:47', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
-(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', 'You came here because we do this better than you, and part of that is letting our creatives be unproductive until they are.', 'assets/upload/ftourret/953c9c16a07e78cc.jpg', '2019-06-04 10:03:37', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
-(3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '2019-05-23 14:02:32', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, 2.3527, 48.8543, 'Hôtel de Ville, Quai de l\'Hôtel de ville, 75004 Paris, France', 'Paris', 'France', 0, NULL, NULL),
+(1, 'Frédéric', 'LEONARD', '1997-08-12', 1, 2, 'lettoh', 'lettoh08@gmail.com', 'Je suis Fred. Je ne suis pas non binaire. Entièrement Homme. Avec un pénis quoi.', 'assets/upload/lettoh/7c50d72c4df2b3d0.jpg', '2019-06-04 13:02:53', '$2y$10$N9eet7EhGZfqNr5ZNb5k9eVy4BXIuxmcVP/4xD5NFUsv/pL.JABjS', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
+(2, 'Floryne', 'TOURRET', '1998-12-04', 2, 1, 'ftourret', 'floryne.tourret@gmail.com', 'You came here because we do this better than you, and part of that is letting our creatives be unproductive until they are.', 'assets/upload/ftourret/953c9c16a07e78cc.jpg', '2019-06-04 13:38:06', '$2y$10$iBDaoi5JQ7QKIIqLi.DWve3Qp6cAyx5PuUxGmoclQqhPl3rZ6MxsC', 1, 1, 1, 4.78405, 45.7582, '10 Avenue de Ménival, 69005 Lyon, France', 'Lyon', 'France', 49, NULL, NULL),
+(3, 'Frédéric', 'LEONARD', '1997-08-12', 3, 4, 'lettard', 'frederic.leonard.pro@gmail.com', NULL, NULL, '2019-06-04 12:40:22', '$2y$10$LL173fJwQAKDxyx//q15BukDGX//c4x0Kzo4pkHYYZY0njcSNSwCS', 0, 1, 1, 2.3527, 48.8543, 'Hôtel de Ville, Quai de l\'Hôtel de ville, 75004 Paris, France', 'Paris', 'France', 0, NULL, NULL),
 (4, 'Nathan', 'PUNCH MAN', '1995-08-02', 1, 2, 'napunchman', 'naplouvi@student.le-101.fr', 'How can there be too many typefaces in the world? Are there too many songs, too many books, too many places to go?', NULL, '2019-05-30 17:15:53', '$2y$10$biHqxwJhplQ0zjL6AV0tWe1Rp5B5gU0.8nXPGwTeSoCsJo3d/r7/q', 0, 1, 1, 2.3527, 48.8543, 'Hôtel de Ville, Quai de l\'Hôtel de ville, 75004 Paris, France', 'Paris', 'France', 0, NULL, NULL),
 (63, 'Lucas', 'BAUER', '1987-08-04', 1, 5, 'Organict', 'Organict@matcha.z4r7p1.fr', 'Proud entrepreneur. Wannabe troublemaker. Twitter advocate. Internet maven. Bacon nerd. Hipster-friendly food buff. Amateur communicator.', 'assets/upload/Organict/5cf63ad02dbb9.jpg', '2019-06-04 09:33:04', '$2y$10$S2GYgTpwPq8jwwF1ycy7Pe5i9CVcPwEDYLTbzYKycjRhWXybHxsxK', 0, 0, 1, 5.09442, 45.7842, 'Chemin de Decrozo, 38280 Villette-d\'Anthon, France', 'Villette-d\\\'Anthon', 'France', 0, NULL, NULL),
 (64, 'Fabian', 'OLIVER', '1982-04-26', 1, 1, 'Greencat', 'Greencat@matcha.z4r7p1.fr', 'Zombie expert. Freelance food fanatic. Amateur web maven. Bacon aficionado. Passionate explorer. Proud gamer. Typical analyst.', 'assets/upload/Greencat/5cf63ad108685.jpg', '2019-06-04 09:33:05', '$2y$10$ZkhPaijLVjj4Db99l2WV9uPrFJZ.JtCGfPJ8rtNg0xP1AiotJj8NC', 0, 0, 1, 4.92756, 45.7673, '19 Rue de l\'Esperance, 69120 Vaulx-en-Velin, France', 'Vaulx-en-Velin', 'France', 0, NULL, NULL),
@@ -702,7 +787,7 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user
 (69, 'Ines', 'EVERETT', '1979-02-28', 3, 3, 'Goldendu', 'Goldendu@matcha.z4r7p1.fr', 'Entrepreneur. Troublemaker. Social media practitioner. Subtly charming twitter geek. Proud beer enthusiast. Bacon ninja. Web fan. Typical reader.', 'assets/upload/Goldendu/5cf63ad7a731b.jpg', '2019-06-04 09:33:12', '$2y$10$/zeSbHCJy9uK2T5QwBuHvOkkn3oKgajnz3AShjqJMkuocvybeAgSS', 0, 0, 1, 4.88167, 45.77, '13 Rue Branly, 69100 Villeurbanne, France', 'Villeurbanne', 'France', 0, NULL, NULL),
 (70, 'Mackenzie', 'GILLESPIE', '1973-02-25', 2, 2, 'Silverko', 'Silverko@matcha.z4r7p1.fr', 'Introvert. Prone to fits of apathy. Unable to type with boxing gloves on. Proud bacon aficionado. Alcohol buff. Social media junkie.', 'assets/upload/Silverko/5cf63ad8cbea5.jpg', '2019-06-04 09:33:13', '$2y$10$DuGq1oFvApcEX9LiJ3s4y.Q45Pymo4Si.iiRIV63VAg/WEOsfZ2i6', 0, 0, 1, 5.37368, 46.0229, '13 Chemin du Pré des Granges, 01640 Saint-Jean-le-Vieux, France', 'Saint-Jean-le-Vieux', 'France', 0, NULL, NULL),
 (71, 'Pauline', 'ALVARADO', '1983-10-14', 2, 5, 'Blackbir', 'Blackbir@matcha.z4r7p1.fr', 'Extreme bacon fan. Internet geek. Explorer. Award-winning analyst. Pop culture fanatic. Incurable coffee enthusiast. Freelance introvert.', 'assets/upload/Blackbir/5cf63ada43bd8.jpg', '2019-06-04 09:33:14', '$2y$10$qwNmhseB6bkcYqQaT2BQ0ui1FMD.ukMjAwKndpiKYiVrVW10PrLea', 0, 0, 1, 4.87404, 45.7446, '124 Cours Albert Thomas, 69008 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
-(72, 'Alexis', 'GRAY', '1996-03-22', 1, 4, 'Blackrab', 'Blackrab@matcha.z4r7p1.fr', 'Introvert. Prone to fits of apathy. Unable to type with boxing gloves on. Proud bacon aficionado. Alcohol buff. Social media junkie.', 'assets/upload/Blackrab/5cf63adc3a924.jpg', '2019-06-04 09:33:16', '$2y$10$31eGOau1LsDe6PYgkRyG2uHnUYQKrLXzxRIa/nig1D0Uc0nn5sYaC', 0, 0, 1, 4.86438, 45.7338, '69 Boulevard des États-Unis, 69008 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
+(72, 'Alexis', 'GRAY', '1996-03-22', 1, 4, 'Blackrab', 'Blackrab@matcha.z4r7p1.fr', 'Introvert. Prone to fits of apathy. Unable to type with boxing gloves on. Proud bacon aficionado. Alcohol buff. Social media junkie.', 'assets/upload/Blackrab/5cf63adc3a924.jpg', '2019-06-04 09:33:16', '$2y$10$31eGOau1LsDe6PYgkRyG2uHnUYQKrLXzxRIa/nig1D0Uc0nn5sYaC', 0, 0, 1, 4.86438, 45.7338, '69 Boulevard des États-Unis, 69008 Lyon, France', 'Lyon', 'France', 1, NULL, NULL),
 (73, 'Michel', 'MATHIS', '1976-08-08', 3, 2, 'Redduck1', 'Redduck1@matcha.z4r7p1.fr', 'Amateur beer guru. Certified pop culture practitioner. Evil music advocate. Food enthusiast.', 'assets/upload/Redduck1/5cf63add0ba2b.jpg', '2019-06-04 09:33:17', '$2y$10$i/cJYC11D3aeODEkaafMB.zOef6l8G/bJY0ARVN0tWZpCJ0y10ksy', 0, 0, 1, 4.80947, 45.8463, 'Chemin du Tignot, 69270 Couzon-au-Mont-d\'Or, France', 'Couzon-au-Mont-d\\\'Or', 'France', 0, NULL, NULL),
 (74, 'John', 'GILLESPIE', '1998-06-07', 1, 2, 'Brownsna', 'Brownsna@matcha.z4r7p1.fr', 'Proud entrepreneur. Wannabe troublemaker. Twitter advocate. Internet maven. Bacon nerd. Hipster-friendly food buff. Amateur communicator.', 'assets/upload/Brownsna/5cf63addb2252.jpg', '2019-06-04 09:33:18', '$2y$10$1PQGBwxCR8WJYIM5IN1UVuovjUC9CXYeQVQVNyg1FirXmZz3HT3CW', 0, 0, 1, 5.68316, 45.1167, '11B Chemin de la Pissarde, 38640 Claix, France', 'Claix', 'France', 0, NULL, NULL),
 (75, 'Rayan', 'SILVA', '1972-03-02', 3, 2, 'Beautifu', 'Beautifu@matcha.z4r7p1.fr', 'Proud entrepreneur. Wannabe troublemaker. Twitter advocate. Internet maven. Bacon nerd. Hipster-friendly food buff. Amateur communicator.', 'assets/upload/Beautifu/5cf63adf01cf7.jpg', '2019-06-04 09:33:19', '$2y$10$7b4nbCfN3VrOnZ7PcTd6FuyAaphuBT81Aurki9LFITzMLiiXoOkbi', 0, 0, 1, 4.84184, 45.764, '19 Quai du Général Sarrail, 69006 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
@@ -716,7 +801,7 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user
 (83, 'Zoe', 'MADDOX', '1989-10-10', 3, 1, 'Redtiger', 'Redtiger@matcha.z4r7p1.fr', 'Extreme bacon fan. Internet geek. Explorer. Award-winning analyst. Pop culture fanatic. Incurable coffee enthusiast. Freelance introvert.', 'assets/upload/Redtiger/5cf63aec433c7.jpg', '2019-06-04 09:33:32', '$2y$10$tmdiM6K2IN27rdkzoO4Sde8Jkf76ih8nVOkR3wp338iwFZyWJ2e0a', 0, 0, 1, 4.09517, 45.4259, 'Le Lac, 42380 Saint-Nizier-de-Fornas, France', 'Saint-Nizier-de-Fornas', 'France', 0, NULL, NULL),
 (84, 'Vance', 'HUFFMAN', '1972-01-29', 1, 4, 'Happyrab', 'Happyrab@matcha.z4r7p1.fr', 'Freelance reader. Zombie lover. Troublemaker. Travel fan. Friend of animals everywhere. Extreme writer. Certified social media scholar.', 'assets/upload/Happyrab/5cf63aed2fbdf.jpg', '2019-06-04 09:33:33', '$2y$10$pSx6HfQd3kRkIRLKafKSvOBjdJTddpAFs5vVSDwmmgo2XM8MJ586C', 0, 0, 1, 5.37612, 45.2106, '458 Chemin du Rafour, 38470 Vinay, France', 'Vinay', 'France', 0, NULL, NULL),
 (85, 'Hermionne', 'HUFFMAN', '1988-03-02', 2, 4, 'Angryfro', 'Angryfro@matcha.z4r7p1.fr', 'Amateur beer guru. Certified pop culture practitioner. Evil music advocate. Food enthusiast.', 'assets/upload/Angryfro/5cf63aefb792a.jpg', '2019-06-04 09:33:36', '$2y$10$NT16bjSQ0cDIDW01rNruYe.Kwxrc7wl2W6yC8MKCudNjy5CQFKxMG', 0, 0, 1, 4.84565, 45.7301, '118 Rue Challemel-Lacour, 69007 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
-(86, 'Jean-Mehmoud', 'GLASS', '1994-08-01', 1, 2, 'Happyfis', 'Happyfis@matcha.z4r7p1.fr', 'Friend of animals everywhere. Future teen idol. General internet junkie. Evil webaholic. Extreme reader. Gamer.', 'assets/upload/Happyfis/5cf63af137fd3.jpg', '2019-06-04 09:33:37', '$2y$10$BLsE6kYPw6Zenco4As.Px.vJ1XNoeFbZkkIwRyFl83XERO.MBEBg.', 0, 0, 1, 4.80228, 45.7528, '11 Rue du Dr Albéric Pont, 69005 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
+(86, 'Jean-Mehmoud', 'GLASS', '1994-08-01', 1, 2, 'Happyfis', 'Happyfis@matcha.z4r7p1.fr', 'Friend of animals everywhere. Future teen idol. General internet junkie. Evil webaholic. Extreme reader. Gamer.', 'assets/upload/Happyfis/5cf63af137fd3.jpg', '2019-06-04 13:06:57', '$2y$10$BLsE6kYPw6Zenco4As.Px.vJ1XNoeFbZkkIwRyFl83XERO.MBEBg.', 0, 0, 1, 4.80228, 45.7528, '11 Rue du Dr Albéric Pont, 69005 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
 (87, 'Lise', 'MADDOX', '1972-12-03', 2, 5, 'Silverdo', 'Silverdo@matcha.z4r7p1.fr', 'Introvert. Prone to fits of apathy. Unable to type with boxing gloves on. Proud bacon aficionado. Alcohol buff. Social media junkie.', 'assets/upload/Silverdo/5cf63af2614e3.jpg', '2019-06-04 09:33:38', '$2y$10$nLnkIRE2xr416HZcBwYX6eMuuS9IwRvIQg3U0JT2aG6q.knHJohpW', 0, 0, 1, 3.87433, 45.4515, 'D256, 63840 Églisolles, France', 'Églisolles', 'France', 0, NULL, NULL),
 (88, 'Visclum', 'ZAMORA', '1987-11-01', 2, 5, 'Heavylad', 'Heavylad@matcha.z4r7p1.fr', 'Troublemaker. Music lover. Internet fan. Evil reader. Alcohol fanatic. Coffee practitioner. Bacon trailblazer.', 'assets/upload/Heavylad/5cf63af3eeb0b.jpg', '2019-06-04 09:33:40', '$2y$10$yqm664C5MGegM6xAmtgpaOD1p4EGiWBd5bQMj1oa1KVftADxeI3vq', 0, 0, 1, 4.83061, 45.7758, '3 Rue de Cuire, 69004 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (89, 'Natacha', 'HOBBS', '1981-06-10', 2, 3, 'Whitepea', 'Whitepea@matcha.z4r7p1.fr', 'Food aficionado. Travel guru. Web scholar. Proud problem solver. Zombie advocate. Analyst. Incurable tv nerd.', 'assets/upload/Whitepea/5cf63af5400c3.jpg', '2019-06-04 09:33:41', '$2y$10$M0SFnrpBp8uDThxr.vhOcOA6K4f9z1MSnRUuvINEPk07tHUEfNI6u', 0, 0, 1, 4.69056, 45.6061, 'D342, 69440 Mornant, France', 'Mornant', 'France', 0, NULL, NULL),
@@ -781,7 +866,7 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user
 (148, 'Pauline', 'WINTERS', '1974-07-03', 3, 2, 'Angryzeb', 'Angryzeb@matcha.z4r7p1.fr', 'Total explorer. Student. Alcoholaholic. Incurable coffee buff. Passionate tv enthusiast. Thinker.', 'assets/upload/Angryzeb/5cf63b456aa97.jpg', '2019-06-04 09:35:01', '$2y$10$zmVsI8xR2ZVCbh3QsiwQEuL5kFKN967V/zhy4qcVUAASQZjiG5/tm', 0, 0, 1, 4.27419, 46.4517, '26 Route de Génelard, 71120 Charolles, France', 'Charolles', 'France', 0, NULL, NULL),
 (149, 'Coralie', 'CHASE', '1998-02-08', 2, 1, 'Goldenle', 'Goldenle@matcha.z4r7p1.fr', 'Entrepreneur. Troublemaker. Social media practitioner. Subtly charming twitter geek. Proud beer enthusiast. Bacon ninja. Web fan. Typical reader.', 'assets/upload/Goldenle/5cf63b46cb10a.jpg', '2019-06-04 09:35:03', '$2y$10$63RFXygi07wMGtH5BZr0euuwX5lf.AztEkqn0QslcPmleZyW6bbB6', 0, 0, 1, 4.63546, 44.9486, 'Aux Granges, 07270 Saint-Barthélémy-Grozon, France', 'Saint-Barthélémy-Grozon', 'France', 0, NULL, NULL),
 (150, 'Louis', 'RANGEL', '1980-08-04', 1, 3, 'Yellowdu', 'Yellowdu@matcha.z4r7p1.fr', 'Hardcore travel geek. Lifelong problem solver. Internet junkie. Creator. Thinker. Certified explorer.', 'assets/upload/Yellowdu/5cf63b480469b.jpg', '2019-06-04 09:35:04', '$2y$10$ag.naAZQ7bFRFGssU4hIhueepg71jYvWpJrQMGG1CE4TqHcUvlVy6', 0, 0, 1, 4.09867, 45.5404, 'D109, 42610 Saint-Georges-Haute-ville, France', 'Saint-Georges-Haute-ville', 'France', 0, NULL, NULL),
-(151, 'Phillip', 'WILCOX', '1995-10-25', 1, 2, 'Whitebea', 'Whitebea@matcha.z4r7p1.fr', 'Troublemaker. Music lover. Internet fan. Evil reader. Alcohol fanatic. Coffee practitioner. Bacon trailblazer.', 'assets/upload/Whitebea/5cf63b48d07e3.jpg', '2019-06-04 09:35:05', '$2y$10$dffn8SCQKqN7/AthUG8MA.drRGItMmUyjnGQCTVFr4U7Ru2WfXlG2', 0, 0, 1, 4.69824, 45.9247, '134 Chemin de Rongefer, 69480 Lachassagne, France', 'Lachassagne', 'France', 0, NULL, NULL),
+(151, 'Phillip', 'WILCOX', '1995-10-25', 1, 2, 'Whitebea', 'Whitebea@matcha.z4r7p1.fr', 'Troublemaker. Music lover. Internet fan. Evil reader. Alcohol fanatic. Coffee practitioner. Bacon trailblazer.', 'assets/upload/Whitebea/5cf63b48d07e3.jpg', '2019-06-04 09:35:05', '$2y$10$dffn8SCQKqN7/AthUG8MA.drRGItMmUyjnGQCTVFr4U7Ru2WfXlG2', 0, 0, 1, 4.69824, 45.9247, '134 Chemin de Rongefer, 69480 Lachassagne, France', 'Lachassagne', 'France', 1, NULL, NULL),
 (152, 'Fanny', 'HOBBS', '1986-12-31', 2, 5, 'Angrygoo', 'Angrygoo@matcha.z4r7p1.fr', 'Travel scholar. Avid pop culture enthusiast. Falls down a lot. Unapologetic student. Communicator.', 'assets/upload/Angrygoo/5cf63b499d6bd.jpg', '2019-06-04 09:35:05', '$2y$10$bZgnNaZRuTXlDIcmnKyjfuvekDttxGzgu56Gfgd1IZU4mm1nzSMhq', 0, 0, 1, 4.86438, 45.7338, '69 Boulevard des États-Unis, 69008 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (153, 'Vincent', 'VANCE', '1978-12-11', 3, 5, 'Tinygoos', 'Tinygoos@matcha.z4r7p1.fr', 'Food aficionado. Travel guru. Web scholar. Proud problem solver. Zombie advocate. Analyst. Incurable tv nerd.', 'assets/upload/Tinygoos/5cf63b4a5c81c.jpg', '2019-06-04 09:35:06', '$2y$10$KyekvRGMVZk0CV1tA8WOhentt70g88rtJ/0Ze.OHUB.FIJ08SGfDO', 0, 0, 1, 5.03109, 45.6547, 'Z.A.C. Les Prés de Charmy, Chemin de Satolas, 69780 Saint-Pierre-de-Chandieu, France', 'de Satolas', '69780 Saint-Pierre-de-Chandieu', 0, NULL, NULL),
 (154, 'Darren', 'FERNANDEZ', '1976-11-13', 1, 2, 'Lazyostr', 'Lazyostr@matcha.z4r7p1.fr', 'Twitter practitioner. Analyst. Unapologetic tv trailblazer. Bacon expert. Internet fanatic.', 'assets/upload/Lazyostr/5cf63b4ba10a2.jpg', '2019-06-04 09:35:07', '$2y$10$4CKJeBhmExubykgN9D9TxeqRi58/pKZGqldHiM.DEbw6RCynDZr7e', 0, 0, 1, 5.0963, 45.7316, 'Rue du Lermier, 69124 Colombier-Saugnieu, France', 'Colombier-Saugnieu', 'France', 0, NULL, NULL),
@@ -789,7 +874,7 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user
 (156, 'London', 'LEBLANC', '1994-01-12', 1, 2, 'Orangeli', 'Orangeli@matcha.z4r7p1.fr', 'Troublemaker. Music lover. Internet fan. Evil reader. Alcohol fanatic. Coffee practitioner. Bacon trailblazer.', 'assets/upload/Orangeli/5cf63b4e3b0a5.jpg', '2019-06-04 09:35:10', '$2y$10$4p4QFzdkj03BmBaixRBilOhoTod480BOCyt2MpVSuiCPVGKF5CNc2', 0, 0, 1, 3.76083, 45.9933, 'Terrenoire, 03250 Laprugne, France', 'Laprugne', 'France', 0, NULL, NULL),
 (157, 'Louise', 'KEITH', '2000-08-08', 2, 4, 'Lazylion', 'Lazylion@matcha.z4r7p1.fr', 'Incurable entrepreneur. Extreme internet enthusiast. Subtly charming introvert. Friend of animals everywhere.', 'assets/upload/Lazylion/5cf63b50dc60c.jpg', '2019-06-04 09:35:13', '$2y$10$vFyr3XqEKm1LIPir9q5Vuuw2w39AFSQ/TbVqy.mSvs6FGFl2jNpKS', 0, 0, 1, 4.85352, 45.7629, '20 Boulevard Eugène Deruelle, 69003 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (158, 'Parfait', 'COX', '1970-10-03', 3, 4, 'Goldenfr', 'Goldenfr@matcha.z4r7p1.fr', 'Extreme coffee buff. Social media expert. Passionate zombie fanatic. Hipster-friendly beer ninja.', 'assets/upload/Goldenfr/5cf63b51c543e.jpg', '2019-06-04 09:35:14', '$2y$10$xSJ9.lTN9lxgDGXt1ggeXu0QqrWw7wxZAG3mKzSfWsKHbYFVt5B4e', 0, 0, 1, 4.92756, 45.7673, '19 Rue de l\'Esperance, 69120 Vaulx-en-Velin, France', 'Vaulx-en-Velin', 'France', 0, NULL, NULL),
-(159, 'Mohammed', 'MATHIS', '2000-09-22', 1, 4, 'Brownrab', 'Brownrab@matcha.z4r7p1.fr', 'Twitter practitioner. Analyst. Unapologetic tv trailblazer. Bacon expert. Internet fanatic.', 'assets/upload/Brownrab/5cf63bc048802.jpg', '2019-06-04 09:37:04', '$2y$10$BBrFDDXHP/kRqp32RxnSueR7eWaLXQoUPMnaGzAl8ffKvIcbIB9qS', 0, 0, 1, 4.82196, 45.6243, '17 Allée du Bois Rond, 69360 Sérézin-du-Rhône, France', 'Sérézin-du-Rhône', 'France', 0, NULL, NULL),
+(159, 'Mohammed', 'MATHIS', '2000-09-22', 1, 4, 'Brownrab', 'Brownrab@matcha.z4r7p1.fr', 'Twitter practitioner. Analyst. Unapologetic tv trailblazer. Bacon expert. Internet fanatic.', 'assets/upload/Brownrab/5cf63bc048802.jpg', '2019-06-04 09:37:04', '$2y$10$BBrFDDXHP/kRqp32RxnSueR7eWaLXQoUPMnaGzAl8ffKvIcbIB9qS', 0, 0, 1, 4.82196, 45.6243, '17 Allée du Bois Rond, 69360 Sérézin-du-Rhône, France', 'Sérézin-du-Rhône', 'France', 1, NULL, NULL),
 (160, 'Adele', 'HUFFMAN', '1975-12-04', 2, 2, 'Lazygori', 'Lazygori@matcha.z4r7p1.fr', 'Freelance reader. Zombie lover. Troublemaker. Travel fan. Friend of animals everywhere. Extreme writer. Certified social media scholar.', 'assets/upload/Lazygori/5cf63bc2036db.jpg', '2019-06-04 09:37:06', '$2y$10$B0O9Reqy2LT4T/RDZojMBOAsRmAxkQPRQAPSdgfgmX3M1qgoeWM1C', 0, 0, 1, 3.87433, 45.4515, 'D256, 63840 Églisolles, France', 'Églisolles', 'France', 0, NULL, NULL),
 (161, 'Katelynn', 'WADE', '1980-11-11', 2, 5, 'Tinylion', 'Tinylion@matcha.z4r7p1.fr', 'Travel scholar. Avid pop culture enthusiast. Falls down a lot. Unapologetic student. Communicator.', 'assets/upload/Tinylion/5cf63bc3ced39.jpg', '2019-06-04 09:37:08', '$2y$10$perNwqRqDDhodXNkUrDF2udxnSdk9VY3EMssBweQ0HONHI79eH.Nu', 0, 0, 1, 3.86368, 45.8568, 'Rochefort, 42430 Champoly, France', 'Champoly', 'France', 0, NULL, NULL),
 (162, 'Paulette', 'ABBOTT', '1985-02-27', 3, 1, 'Bluewolf', 'Bluewolf@matcha.z4r7p1.fr', 'Hardcore introvert. Falls down a lot. Certified gamer. Internet buff. Lifelong student.', 'assets/upload/Bluewolf/5cf63bc497c1b.jpg', '2019-06-04 09:37:09', '$2y$10$W0akhN9LEPgBgQDgl3zYeuxjPntS8sdXDZLUp.9ul0TrPKyOpL7Ou', 0, 0, 1, 4.81799, 45.7518, '3 Montée des Genovefains, 69005 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
@@ -1075,7 +1160,7 @@ INSERT INTO `users` (`user_id`, `firstname`, `lastname`, `user_birthdate`, `user
 (439, 'Jésus', 'RIVERS', '1983-10-07', 1, 4, 'Sadbutte', 'Sadbutte@matcha.z4r7p1.fr', 'Incurable entrepreneur. Extreme internet enthusiast. Subtly charming introvert. Friend of animals everywhere.', 'assets/upload/Sadbutte/5cf63dbdc3f62.jpg', '2019-06-04 09:45:35', '$2y$10$mtD417rCgde5s1LQH4p6EOrwncGTfyRlGb16drxshlRXWimblp5ES', 0, 0, 1, 4.86553, 45.7536, '11 Rue Jean Pierre Lévy, 69003 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (440, 'Noah', 'BIRD', '1980-10-17', 3, 1, 'Blackdog', 'Blackdog@matcha.z4r7p1.fr', 'Incurable entrepreneur. Extreme internet enthusiast. Subtly charming introvert. Friend of animals everywhere.', 'assets/upload/Blackdog/5cf63dc11dc03.jpg', '2019-06-04 09:45:37', '$2y$10$yoWm6Z.PIVRCvgmUsLmz8uQPyJWPwuB5UL7Wn2XVmM/7nTO22Kjou', 0, 0, 1, 4.8327, 45.7228, '353 Avenue Jean Jaurès, 69007 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (441, 'Fatima', 'HUFFMAN', '1996-05-31', 2, 4, 'Bluedog5', 'Bluedog5@matcha.z4r7p1.fr', 'Zombie expert. Freelance food fanatic. Amateur web maven. Bacon aficionado. Passionate explorer. Proud gamer. Typical analyst.', 'assets/upload/Bluedog5/5cf63dc39c5d1.jpg', '2019-06-04 09:45:39', '$2y$10$It1wll4JKNOKKQrR/Po3Dem.02gh2/Z0lbg3Jk.f3HLB4109R2v3S', 0, 0, 1, 3.96272, 45.5532, 'Le Roy, 42560 Gumières, France', 'Gumières', 'France', 0, NULL, NULL),
-(442, 'Josue', 'CAREY', '1995-06-29', 1, 2, 'Lazyswan', 'Lazyswan@matcha.z4r7p1.fr', 'Hardcore travel geek. Lifelong problem solver. Internet junkie. Creator. Thinker. Certified explorer.', 'assets/upload/Lazyswan/5cf63dc4b3c7e.jpg', '2019-06-04 09:45:40', '$2y$10$dI60Tnsym6Tawx8da3kKi.p73dSThatFRe7muaTl0UoXBcheho5X.', 0, 0, 1, 4.86224, 45.759, '14 Avenue Georges Pompidou, 69003 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
+(442, 'Josue', 'CAREY', '1995-06-29', 1, 2, 'Lazyswan', 'Lazyswan@matcha.z4r7p1.fr', 'Hardcore travel geek. Lifelong problem solver. Internet junkie. Creator. Thinker. Certified explorer.', 'assets/upload/Lazyswan/5cf63dc4b3c7e.jpg', '2019-06-04 13:38:07', '$2y$10$dI60Tnsym6Tawx8da3kKi.p73dSThatFRe7muaTl0UoXBcheho5X.', 0, 0, 1, 4.86224, 45.759, '14 Avenue Georges Pompidou, 69003 Lyon, France', 'Lyon', 'France', 16, NULL, NULL),
 (443, 'Ines', 'SOTO', '1972-12-14', 2, 2, 'Greenwol', 'Greenwol@matcha.z4r7p1.fr', 'Introvert. Prone to fits of apathy. Unable to type with boxing gloves on. Proud bacon aficionado. Alcohol buff. Social media junkie.', 'assets/upload/Greenwol/5cf63dc724f97.jpg', '2019-06-04 09:45:43', '$2y$10$imTWLSPb168UDUVwdvMxlOZkVFtlkBnpRQl4YWL864sVnJZaNq2JS', 0, 0, 1, 4.54328, 44.9547, 'Grangette, 07570 Saint-Basile, France', 'Saint-Basile', 'France', 0, NULL, NULL),
 (444, 'Augustin', 'HOBBS', '1980-10-04', 3, 4, 'Heavyfis', 'Heavyfis@matcha.z4r7p1.fr', 'Hardcore travel geek. Lifelong problem solver. Internet junkie. Creator. Thinker. Certified explorer.', 'assets/upload/Heavyfis/5cf63dc9335c2.jpg', '2019-06-04 09:45:45', '$2y$10$lG5nbjCM8dKz0uM/9Xsfqumjwsu4D1JIydR996TrmMmjlc0HEtZsC', 0, 0, 1, 4.84187, 45.7717, '12 Rue Malesherbes, 69006 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
 (445, 'Shayna', 'HOOD', '1981-06-18', 2, 3, 'Sadfish6', 'Sadfish6@matcha.z4r7p1.fr', 'Freelance reader. Zombie lover. Troublemaker. Travel fan. Friend of animals everywhere. Extreme writer. Certified social media scholar.', 'assets/upload/Sadfish6/5cf63dcc56737.jpg', '2019-06-04 09:45:48', '$2y$10$G2r.dV.d9dbJIqDIyDyOEukO4ESyn6eXfhlEYnMmQhNJHwcRCMERe', 0, 0, 1, 4.83061, 45.7758, '3 Rue de Cuire, 69004 Lyon, France', 'Lyon', 'France', 0, NULL, NULL),
@@ -1205,6 +1290,14 @@ CREATE TABLE `user_blacklist` (
   `id_user_blacklisted` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Déchargement des données de la table `user_blacklist`
+--
+
+INSERT INTO `user_blacklist` (`id_user_blacklist`, `id_user_blacklisted`) VALUES
+(2, 72),
+(2, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -1222,7 +1315,9 @@ CREATE TABLE `user_discussion` (
 --
 
 INSERT INTO `user_discussion` (`discussion_id`, `first_user_id`, `second_user_id`) VALUES
-(1, 2, 1);
+(9, 1, 2),
+(10, 86, 2),
+(11, 442, 2);
 
 -- --------------------------------------------------------
 
@@ -1240,8 +1335,12 @@ CREATE TABLE `user_likes` (
 --
 
 INSERT INTO `user_likes` (`id_user_like`, `id_user_liked`) VALUES
+(2, 1),
 (1, 2),
-(2, 1);
+(2, 86),
+(86, 2),
+(2, 442),
+(442, 2);
 
 -- --------------------------------------------------------
 
@@ -1265,6 +1364,13 @@ CREATE TABLE `user_report` (
   `id_user_report` int(11) NOT NULL,
   `id_user_reported` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Déchargement des données de la table `user_report`
+--
+
+INSERT INTO `user_report` (`id_user_report`, `id_user_reported`) VALUES
+(2, 151);
 
 -- --------------------------------------------------------
 
@@ -3804,8 +3910,16 @@ CREATE TABLE `user_view` (
 --
 
 INSERT INTO `user_view` (`id_user_view`, `id_user_viewed`, `view_date`) VALUES
-(1, 2, '2019-06-04 10:02:44'),
-(2, 1, '2019-06-04 10:03:32');
+(1, 2, '2019-06-04 10:16:45'),
+(2, 1, '2019-06-04 13:10:13'),
+(2, 72, '2019-06-04 11:37:25'),
+(3, 2, '2019-06-04 12:21:34'),
+(2, 86, '2019-06-04 13:02:45'),
+(86, 2, '2019-06-04 13:03:06'),
+(2, 442, '2019-06-04 13:07:08'),
+(442, 2, '2019-06-04 13:07:19'),
+(2, 159, '2019-06-04 13:28:37'),
+(2, 151, '2019-06-04 13:33:19');
 
 --
 -- Index pour les tables déchargées
@@ -3888,7 +4002,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `user_discussion`
 --
 ALTER TABLE `user_discussion`
-  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `discussion_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
