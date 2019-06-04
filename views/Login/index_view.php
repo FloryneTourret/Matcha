@@ -31,7 +31,7 @@ if (isset($error))
         <button class="btn btn-secondary mb-2 float-right" type="submit">Me connecter</button>
     </div>
     <div class="clearfix">
-      <a class="text-white float-right" href="/index.php/login/forgotpassword">Mot de passe oublié?</a>
+      <a class="text-dark float-right" href="/index.php/login/forgotpassword">Mot de passe oublié?</a>
     </div>
 </form>
 </div>

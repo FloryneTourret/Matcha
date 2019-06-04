@@ -14,6 +14,26 @@ Class Profile_model extends Model
         return ($req->fetchAll());
     }
 
+    public function get_notif_messages($user_id)
+    {
+        $req = $this->db->prepare("SELECT d.*, (SELECT message_content FROM discussion_messages WHERE discussion_id = d.discussion_id ORDER BY message_date DESC LIMIT 1) AS last_message, 
+                                    (SELECT lu FROM discussion_messages WHERE discussion_id = d.discussion_id ORDER BY message_date DESC LIMIT 1) AS lu,
+                                    (SELECT `user_id` FROM discussion_messages WHERE discussion_id = d.discussion_id ORDER BY message_date DESC LIMIT 1) AS last_message_user,
+                                    u1.login AS u1_login, u1.path_profile_picture AS u1_picture, u2.login AS u2_login, u2.path_profile_picture AS u2_picture 
+                                    FROM user_discussion d 
+                                    INNER JOIN users u1 ON u1.user_id = d.first_user_id 
+                                    INNER JOIN users u2 ON u2.user_id = d.second_user_id 
+                                    WHERE u2.user_id = ? OR u1.user_id = ?");
+        $req->execute([$user_id, $user_id]);
+        $results = $req->fetchAll();
+        foreach($results as $result)
+        {
+            if($result['lu'] == 0)
+                return TRUE;
+        }
+        return FALSE;
+    }
+
     public function get_current($login)
     {
         $req = $this->db->prepare("SELECT *,

@@ -100,6 +100,7 @@ Class Admin extends Controller{
         
         $this->loadModel('Profile_model');
         $data['notifs'] = $this->Profile_model->get_notifs($_SESSION['user']['user_id']);
+        $data['notif_message'] = $this->Profile_model->get_notif_messages($_SESSION['user']['user_id']);
         $this->loadView('Base/header_view');
         $this->loadView('Base/navbar_view', $data);
         $this->loadView('Admin/index_view', $data);

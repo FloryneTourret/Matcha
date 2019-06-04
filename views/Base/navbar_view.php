@@ -15,8 +15,18 @@
     </ul>
     <?php if (isset($_SESSION['user'])) { ?>
       <ul class="navbar-nav ml-auto notification" id="notif-icon" style="padding-right: 10px!important;">
-        <li class="nav-item">
+        <li class="nav-item" id="message-content">
+        <div id="content-message">
+        <?php if(isset($notif_message)) {?>
+          <?php if($notif_message == TRUE) {?>
+            <a class="nav-link chat" href="/index.php/Chat"><i class="fas fa-comment-alt"></i></a>
+          <?php } else {?>
+            <a class="nav-link chat" href="/index.php/Chat"><i class="far fa-comment-alt"></i></a>
+          <?php } ?>
+        <?php } else {?>
           <a class="nav-link chat" href="/index.php/Chat"><i class="far fa-comment-alt"></i></a>
+        <?php } ?>
+        </div>
         </li>
         <li class="nav-item dropdown" id="notif-content">
           <div id="content-notif">
