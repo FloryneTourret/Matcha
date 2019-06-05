@@ -407,6 +407,7 @@
     function onPlaceChanged() {
         var place = this.getPlace();
         if (place.address_components != undefined)
+        {
             for (var i in place.address_components) {
             var component = place.address_components[i];
             for (var j in component.types) {
@@ -414,13 +415,13 @@
                 if (type_element) {
                     type_element.value = component.long_name;
                 }
+                }
             }
-        }
 
-        var longitude = document.getElementById("longitude");
-        var latitude = document.getElementById("latitude");
-            longitude.value = place.geometry.location.lng();
-            latitude.value = place.geometry.location.lat();
+            var longitude = document.getElementById("longitude");
+            var latitude = document.getElementById("latitude");
+                longitude.value = place.geometry.location.lng();
+                latitude.value = place.geometry.location.lat();
         }
     }
 
