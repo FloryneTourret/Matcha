@@ -1,6 +1,6 @@
 <?php if (!isset($_SESSION['user']['login'])) { ?>
 
-  <h1>Page d'accueil</h1>
+  <h1>Bienvenue sur Matcha</h1>
 
 <?php } else { ?>
 

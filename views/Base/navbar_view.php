@@ -11,7 +11,7 @@
     <?php if (isset($_SESSION['user'])) { ?>
       <li class="nav-item">
         <a class="nav-link" href="/index.php/recherche">Rechercher</a>
-      </li>
+      </li> 
     <?php } ?>
     </ul>
     <?php if (isset($_SESSION['user'])) { ?>

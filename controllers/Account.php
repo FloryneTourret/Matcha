@@ -79,14 +79,14 @@ Class Account extends Controller{
                                                 $this->Account_model->add_tag_user($tag, $_SESSION['user']['user_id']);
                                             else
                                             {
-                                                $id_tag = $this->Account_model->add_tag(trim(htmlspecialchars(addslashes($tag))));
+                                                $id_tag = $this->Account_model->add_tag(trim(htmlspecialchars(addslashes(preg_replace('/\s+/', '', $tag)))));
                                                 $this->Account_model->add_tag_user($id_tag, $_SESSION['user']['user_id']);
                                             }
                                         }
                                     }
                                     $_SESSION['user']['user_tags'] = $this->Login_model->get_user_tags($_SESSION['user']['user_id']);
                                     $this->Account_model->updateProfile($firstname, $lastname, $login, $email, $bio, $orientation, $gender, $birthdate, $_SESSION['user']['user_id']);
-                                    if(!empty($_POST['latitude']) && !empty($_POST['longitude']))
+                                    if(!empty($_POST['locality']))
                                     {
                                         if(!empty($_POST['street_number']))
                                             $street_number = trim(htmlspecialchars(addslashes($_POST[ 'street_number'])));
@@ -108,8 +108,14 @@ Class Account extends Controller{
                                             $country = trim(htmlspecialchars(addslashes($_POST['country'])));
                                         else
                                             $country = '';
-                                        $latitude = trim(htmlspecialchars(addslashes($_POST['latitude'])));
-                                        $longitude = trim(htmlspecialchars(addslashes($_POST['longitude'])));
+                                        if (!empty($_POST[ 'latitude']))
+                                            $latitude = trim(htmlspecialchars(addslashes($_POST['latitude'])));
+                                        else
+                                            $latitude = '';
+                                        if (!empty($_POST[ 'longitude']))
+                                            $longitude = trim(htmlspecialchars(addslashes($_POST['longitude'])));
+                                        else
+                                            $longitude = '';
 
                                         if(!empty($route))
                                             $address = trim($street_number.' '. $route.', '. $postal_code.' '. $city . ', '. $country);
