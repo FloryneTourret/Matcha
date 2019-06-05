@@ -392,6 +392,8 @@
         return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
     }
 
+    
+    
     function initializeAutocomplete(id) {
         var element = document.getElementById(id);
         if (element) {
@@ -404,8 +406,8 @@
 
     function onPlaceChanged() {
         var place = this.getPlace();
-
-        for (var i in place.address_components) {
+        if (place.address_components != undefined)
+            for (var i in place.address_components) {
             var component = place.address_components[i];
             for (var j in component.types) {
                 var type_element = document.getElementById(component.types[j]);
@@ -417,7 +419,6 @@
 
         var longitude = document.getElementById("longitude");
         var latitude = document.getElementById("latitude");
-        if (longitude.value != '' && latitude.value != '') {
             longitude.value = place.geometry.location.lng();
             latitude.value = place.geometry.location.lat();
         }
@@ -426,4 +427,5 @@
     google.maps.event.addDomListener(window, 'load', function() {
         initializeAutocomplete('user_input_autocomplete_address');
     });
+    
 </script>
